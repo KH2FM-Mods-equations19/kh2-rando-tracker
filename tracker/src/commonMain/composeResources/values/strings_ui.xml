@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <string name="app_title">KH2 Rando Tracker</string>
+    <string name="menu_tracker">Tracker</string>
+    <string name="menu_start_auto_tracking">Start auto-tracking</string>
+    <string name="menu_save_progress">Save progress</string>
+    <string name="menu_extended_window">Extended information window</string>
+    <string name="menu_objective_window">Objective window</string>
+    <string name="menu_about_tracker">About KH2 Rando Tracker</string>
+    <string name="menu_reset_tracker">Reset tracker</string>
+    <string name="menu_reset_window_size">Reset window size</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_location_layout">Location layout</string>
+    <string name="menu_layout_classic">Classic</string>
+    <string name="menu_layout_vanilla">Vanilla</string>
+    <string name="menu_layout_goa">Garden of Assemblage</string>
+    <string name="menu_auto_save_progress">Auto-save tracker progress</string>
+    <string name="menu_use_custom_images">Load custom images</string>
+    <string name="menu_auto_math">Revealed item auto-math</string>
+
+    <string name="state_loading_seed">Loading seed</string>
+
+    <string name="about_acknowledgements">Acknowledgements</string>
+    <string name="about_licenses">Open Source licenses</string>
+
+    <string name="dialog_reset_tracker_question">Reset tracker state?</string>
+    <string name="dialog_reset_confirm">Reset</string>
+    <string name="dialog_reset_cancel">Cancel</string>
+
+    <string name="main_drop_seed_here">Drop a randomizer seed (.zip) or a tracker save (.kh2tracker) file here to begin.</string>
+
+    <string name="stat_level">Sora's level</string>
+    <string name="stat_strength">Strength</string>
+    <string name="stat_magic">Magic</string>
+    <string name="stat_defense">Defense</string>
+    <string name="stat_deaths">Deaths</string>
+    <string name="stat_acquired_items">Acquired items / total</string>
+
+    <string name="desc_seed_hash">Seed hash</string>
+    <string name="desc_location_complete">Completed</string>
+    <string name="desc_locked_visit">Locked visit</string>
+    <string name="desc_no_path_to_light">No path to the light</string>
+    <string name="desc_proofs">Proofs</string>
+    <string name="desc_emblems">Lucky Emblems (%1$s available)</string>
+    <string name="desc_objectives">Objectives</string>
+    <string name="desc_reports">Secret Ansem Reports</string>
+
+    <string name="settings_level_1">Level 1 Checks</string>
+    <string name="settings_level_50">Level 50 Checks</string>
+    <string name="settings_level_99">Level 99 Checks</string>
+    <string name="settings_absent_silhouettes">Absent Silhouettes</string>
+    <string name="settings_absent_silhouettes_with_split">Absent Silhouettes (Data Split on)</string>
+    <string name="settings_data_organization">Data Organization</string>
+    <string name="settings_sephiroth">Sephiroth</string>
+    <string name="settings_lingering_will">Lingering Will</string>
+    <string name="settings_cavern_of_remembrance">Cavern of Remembrance</string>
+    <string name="settings_transport_to_remembrance">Transport to Remembrance</string>
+    <string name="settings_cups">Underdrome Cups</string>
+    <string name="settings_hades_paradox_cup">Hades Paradox Cup</string>
+
+    <string name="max_form_level_text">Max</string>
+    <string name="max_form_level_tooltip">Maximum Drive Form level</string>
+
+    <string name="hint_system_disabled">No</string>
+    <string name="hint_system_jsmartee">JSmartee</string>
+    <string name="hint_system_shananas">Shananas</string>
+    <string name="hint_system_points">Points</string>
+    <string name="hint_system_path">Path</string>
+    <string name="hint_system_spoiler">Spoiler</string>
+    <string name="hint_system_template">%1$s hints</string>
+    <string name="progression_hints_plus_points">Progression hints + points to next hint</string>
+    <string name="progression_hint_info_template">%1$s + %2$s/%3$s</string>
+    <string name="progression_total_points">Progression points</string>
+
+    <string name="hint_hinted_hint">Hinted hint</string>
+    <string name="hint_count_adjusted_by_reveals">Count adjusted by revealed item(s)</string>
+
+    <string name="hint_general_reveal">%1$s has been revealed</string>
+
+    <plurals name="hint_important_checks_template">
+        <item quantity="one">%1$s has %2$d important check</item>
+        <item quantity="other">%1$s has %2$d important checks</item>
+    </plurals>
+
+    <plurals name="hint_points_total_template">
+        <item quantity="one">%1$s has 1 total point</item>
+        <item quantity="other">%1$s has %2$s total points</item>
+    </plurals>
+    <string name="hint_item_location_template">%1$s has %2$s</string>
+
+    <string name="hint_item_path_none">%1$s has no path to the light</string>
+    <string name="hint_item_path_connection">%1$s is on the path to Connection</string>
+    <string name="hint_item_path_nonexistence">%1$s is on the path to Nonexistence</string>
+    <string name="hint_item_path_peace">%1$s is on the path to Peace</string>
+    <string name="hint_item_path_connection_nonexistence">%1$s is on the path to Connection and Nonexistence</string>
+    <string name="hint_item_path_connection_peace">%1$s is on the path to Connection and Peace</string>
+    <string name="hint_item_path_nonexistence_peace">%1$s is on the path to Nonexistence and Peace</string>
+    <string name="hint_item_path_all">%1$s has a path to all lights</string>
+    <string name="hint_summary_no_hints">No hints to display</string>
+
+    <string name="status_not_connected">Not connected</string>
+    <string name="status_searching_for_game">Searching for game</string>
+    <string name="status_err_unsupported_game_version">Detected an unsupported game version</string>
+    <string name="status_err_connecting">Unable to connect to the game</string>
+
+</resources>

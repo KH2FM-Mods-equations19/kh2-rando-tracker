@@ -1,0 +1,336 @@
+{
+  "hintsType": "Spoiler",
+  "generatorVersion": "3.1.0-beta4",
+  "settings": [
+    "ExcludeFrom50",
+    "better_stt",
+    "Land of Dragons",
+    "Beast's Castle",
+    "Hollow Bastion",
+    "Twilight Town",
+    "The World That Never Was",
+    "Space Paranoids",
+    "Port Royal",
+    "Olympus Coliseum",
+    "Agrabah",
+    "Halloween Town",
+    "Pride Lands",
+    "Disney Castle / Timeless River",
+    "Hundred Acre Wood",
+    "Simulated Twilight Town",
+    "Form Levels",
+    "Garden of Assemblage",
+    "PromiseCharm",
+    "dummy_forms"
+  ],
+  "checkValue": {
+    "proof": 5,
+    "form": 9,
+    "magic": 7,
+    "summon": 5,
+    "ability": 5,
+    "keyblade": 0,
+    "page": 5,
+    "report": 3,
+    "visit": 2,
+    "bonus": 10,
+    "complete": 10,
+    "formlv": 3,
+    "other": 0,
+    "boss_as": 20,
+    "boss_datas": 30,
+    "boss_sephi": 40,
+    "boss_terra": 50,
+    "boss_final": 100,
+    "boss_other": 10,
+    "deaths": -10,
+    "collection_magic": 0,
+    "collection_page": 0,
+    "collection_pouches": 0,
+    "collection_proof": 0,
+    "collection_form": 0,
+    "collection_summon": 0,
+    "collection_ability": 0,
+    "collection_report": 0,
+    "collection_visit": 0
+  },
+  "hintableItems": [
+    "magic",
+    "form",
+    "summon",
+    "page",
+    "ability",
+    "visit",
+    "proof",
+    "report"
+  ],
+  "dummy_forms": true,
+  "reveal": [
+    "magic",
+    "form",
+    "summon",
+    "page",
+    "ability",
+    "report",
+    "visit",
+    "proof",
+    "complete",
+    "reportmode"
+  ],
+  "level_data": {
+    "Valor Level": {
+      "6": 25
+    },
+    "Wisdom Level": {},
+    "Limit Level": {},
+    "Master Level": {},
+    "Final Level": {},
+    "Level": {
+      "Sword": {
+        "39": 233,
+        "46": 32,
+        "34": 87
+      },
+      "Staff": {
+        "39": 233,
+        "46": 32,
+        "34": 87
+      },
+      "Shield": {
+        "39": 233,
+        "46": 32,
+        "34": 87
+      }
+    }
+  },
+  "world": {
+    "Level": [
+      233,
+      32,
+      87
+    ],
+    "Land of Dragons": [
+      415,
+      23,
+      231,
+      234
+    ],
+    "Beast's Castle": [
+      236,
+      232,
+      226,
+      27,
+      159
+    ],
+    "Hollow Bastion": [
+      31,
+      23
+    ],
+    "Twilight Town": [
+      32,
+      160,
+      87,
+      595,
+      88
+    ],
+    "The World That Never Was": [
+      230,
+      229,
+      24,
+      21
+    ],
+    "Space Paranoids": [
+      594,
+      87
+    ],
+    "Atlantica": [],
+    "Port Royal": [
+      593,
+      563,
+      416,
+      32,
+      88,
+      22,
+      32
+    ],
+    "Olympus Coliseum": [
+      29
+    ],
+    "Agrabah": [
+      383,
+      21,
+      22,
+      227
+    ],
+    "Halloween Town": [
+      22,
+      238,
+      32,
+      26,
+      228
+    ],
+    "Pride Lands": [
+      24,
+      88,
+      237,
+      21
+    ],
+    "Disney Castle / Timeless River": [
+      235
+    ],
+    "Hundred Acre Wood": [],
+    "Simulated Twilight Town": [
+      524,
+      24,
+      23
+    ],
+    "Form Levels": [
+      25
+    ],
+    "Creations": [],
+    "Critical Bonuses": [],
+    "Garden of Assemblage": []
+  },
+  "aux_data": {
+    "233": "Secret Ansem's Report 8",
+    "32": "Torn Pages",
+    "87": "Magnet Element",
+    "415": "Second Chance",
+    "23": "Thunder Element",
+    "231": "Secret Ansem's Report 6",
+    "234": "Secret Ansem's Report 9",
+    "236": "Secret Ansem's Report 11",
+    "232": "Secret Ansem's Report 7",
+    "226": "Secret Ansem's Report 1",
+    "27": "Wisdom Form",
+    "159": "Lamp Charm (Genie)",
+    "31": "Master Form",
+    "160": "Feather Charm (Peter Pan)",
+    "595": "Proof of Peace",
+    "88": "Reflect Element",
+    "230": "Secret Ansem's Report 5",
+    "229": "Secret Ansem's Report 4",
+    "24": "Cure Element",
+    "21": "Fire Element",
+    "594": "Proof of Nonexistence",
+    "593": "Proof of Connection",
+    "563": "Limit Form",
+    "416": "Once More",
+    "22": "Blizzard Element",
+    "29": "Final Form",
+    "383": "Baseball Charm (Chicken Little)",
+    "227": "Secret Ansem's Report 2",
+    "238": "Secret Ansem's Report 13",
+    "26": "Valor Form",
+    "228": "Secret Ansem's Report 3",
+    "237": "Secret Ansem's Report 12",
+    "235": "Secret Ansem's Report 10",
+    "524": "PromiseCharm",
+    "25": "Ukulele Charm (Stitch)"
+  },
+  "Reports": {
+    "1": {
+      "World": "Simulated Twilight Town",
+      "Location": "Beast's Castle",
+      "JournalText": ""
+    },
+    "2": {
+      "World": "Olympus Coliseum",
+      "Location": "Agrabah",
+      "JournalText": ""
+    },
+    "3": {
+      "World": "Port Royal",
+      "Location": "Halloween Town",
+      "JournalText": ""
+    },
+    "4": {
+      "World": "Disney Castle / Timeless River",
+      "Location": "The World That Never Was",
+      "JournalText": ""
+    },
+    "5": {
+      "World": "Level",
+      "Location": "The World That Never Was",
+      "JournalText": ""
+    },
+    "6": {
+      "World": "Hollow Bastion",
+      "Location": "Land of Dragons",
+      "JournalText": ""
+    },
+    "7": {
+      "World": "Space Paranoids",
+      "Location": "Beast's Castle",
+      "JournalText": ""
+    },
+    "8": {
+      "World": "Form Levels",
+      "Location": "Level",
+      "JournalText": ""
+    },
+    "9": {
+      "World": "Pride Lands",
+      "Location": "Land of Dragons",
+      "JournalText": ""
+    },
+    "10": {
+      "World": "Land of Dragons",
+      "Location": "Disney Castle / Timeless River",
+      "JournalText": ""
+    },
+    "11": {
+      "World": "Twilight Town",
+      "Location": "Beast's Castle",
+      "JournalText": ""
+    },
+    "12": {
+      "World": "Halloween Town",
+      "Location": "Pride Lands",
+      "JournalText": ""
+    },
+    "13": {
+      "World": "Beast's Castle",
+      "Location": "Halloween Town",
+      "JournalText": ""
+    }
+  },
+  "startingInventory": [
+    82,
+    138,
+    158,
+    393,
+    94,
+    98,
+    102,
+    106,
+    564,
+    54,
+    54,
+    55,
+    55,
+    59,
+    59,
+    60,
+    60,
+    61,
+    61,
+    62,
+    62,
+    72,
+    72,
+    73,
+    73,
+    74,
+    74,
+    369,
+    369,
+    375,
+    375,
+    375,
+    368,
+    460,
+    460,
+    366
+  ]
+}

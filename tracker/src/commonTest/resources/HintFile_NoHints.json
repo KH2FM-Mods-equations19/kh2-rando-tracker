@@ -1,0 +1,197 @@
+{
+  "hintsType": "Disabled",
+  "generatorVersion": "3.1.0-beta4",
+  "settings": [
+    "ExcludeFrom50",
+    "better_stt",
+    "library",
+    "Dream Weapon Matters",
+    "Land of Dragons",
+    "Beast's Castle",
+    "Hollow Bastion",
+    "Cavern of Remembrance",
+    "Twilight Town",
+    "The World That Never Was",
+    "Space Paranoids",
+    "Atlantica",
+    "Port Royal",
+    "Olympus Coliseum",
+    "Olympus Cups",
+    "Hades Paradox Cup",
+    "Agrabah",
+    "Halloween Town",
+    "Pride Lands",
+    "Disney Castle / Timeless River",
+    "Hundred Acre Wood",
+    "Simulated Twilight Town",
+    "Absent Silhouettes",
+    "Sephiroth",
+    "Lingering Will (Terra)",
+    "Data Organization XIII",
+    "Form Levels",
+    "Garden of Assemblage",
+    "Critical Bonuses",
+    "Puzzle",
+    "Transport to Remembrance",
+    "Synthesis",
+    "PromiseCharm",
+    "extra_ics",
+    "dummy_forms"
+  ],
+  "checkValue": {
+    "proof": 5,
+    "form": 9,
+    "magic": 7,
+    "summon": 5,
+    "ability": 5,
+    "keyblade": 9,
+    "page": 5,
+    "report": 3,
+    "visit": 2,
+    "bonus": 10,
+    "complete": 10,
+    "formlv": 3,
+    "other": 1,
+    "boss_as": 20,
+    "boss_datas": 30,
+    "boss_sephi": 40,
+    "boss_terra": 50,
+    "boss_final": 100,
+    "boss_other": 10,
+    "deaths": -10,
+    "collection_magic": 0,
+    "collection_page": 0,
+    "collection_pouches": 0,
+    "collection_proof": 0,
+    "collection_form": 0,
+    "collection_summon": 0,
+    "collection_ability": 0,
+    "collection_report": 0,
+    "collection_visit": 0
+  },
+  "hintableItems": [
+    "magic",
+    "form",
+    "summon",
+    "page",
+    "ability",
+    "visit",
+    "proof",
+    "report",
+    "keyblade",
+    "other"
+  ],
+  "dummy_forms": true,
+  "level_data": {
+    "Valor Level": {},
+    "Wisdom Level": {},
+    "Limit Level": {},
+    "Master Level": {
+      "4": 21
+    },
+    "Final Level": {},
+    "Level": {
+      "Sword": {
+        "25": 23
+      },
+      "Staff": {
+        "46": 23
+      },
+      "Shield": {
+        "32": 23
+      }
+    }
+  },
+  "startingInventory": [
+    82,
+    138,
+    158,
+    393,
+    94,
+    98,
+    102,
+    106,
+    564,
+    227,
+    230,
+    231,
+    226,
+    237,
+    233,
+    228,
+    229,
+    232,
+    236,
+    235,
+    234,
+    238,
+    54,
+    54,
+    55,
+    55,
+    59,
+    59,
+    60,
+    60,
+    61,
+    61,
+    62,
+    62,
+    72,
+    72,
+    73,
+    73,
+    74,
+    74,
+    369,
+    369,
+    375,
+    375,
+    375,
+    368,
+    460,
+    460,
+    366
+  ],
+  "Reports": {
+    "1": {
+      "JournalText": "Negative Combo is at Hollow Bastion - Postern AP Boost.\n\nExplosion is at Halloween Town - Graveyard Mythril Shard.\n\n"
+    },
+    "2": {
+      "JournalText": "Auto Master is at Land of Dragons - Throne Room Queen Recipe.\n\nFlash Step is at Form Levels - Valor Level 7.\n\n"
+    },
+    "3": {
+      "JournalText": "Combo Master is at Halloween Town - Graveyard Serenity Gem.\n\nAuto Limit is at Sora's Heart - Level Sw: 20 Sh: 28 St: 41.\n\n"
+    },
+    "4": {
+      "JournalText": "Trinity Limit is at Twilight Town - Sunset Terrace Mythril Crystal.\n\nFinishing Plus is at Land of Dragons - Checkpoint Hi-Potion.\n\n"
+    },
+    "5": {
+      "JournalText": "Auto Wisdom is at Twilight Town - Old Mansion Mythril Shard.\n\nFinishing Leap is at TWTNW - Xemnas 1 Bonus.\n\n"
+    },
+    "6": {
+      "JournalText": "Slapshot is at Port Royal - Grim Reaper 2.\n\nAerial Spiral is at Halloween Town - Oogie Boogie.\n\n"
+    },
+    "7": {
+      "JournalText": "Auto Valor is at Beast's Castle - The West Hall Power Shard.\n\nBerserk Charge is at Simulated Twilight Town - Mansion Foyer Potion (1).\n\n"
+    },
+    "8": {
+      "JournalText": "Auto Final is at Beast's Castle - BC Courtyard Hi-Potion.\n\nSlide Dash is at Simulated Twilight Town - Axel 2.\n\n"
+    },
+    "9": {
+      "JournalText": "Horizontal Slash is at Hollow Bastion - Crystal Fissure The Great Maw Map.\n\nScan is at Disney Castle - Minnie Escort.\n\n"
+    },
+    "10": {
+      "JournalText": "Guard Break is at Twilight Town - TT Central Station Hi-Potion.\n\nAerial Dive is at Olympus Coliseum - Hades.\n\n"
+    },
+    "11": {
+      "JournalText": "Magnet Burst is at Olympus Coliseum - The Lost Road Bright Shard.\n\nFinishing Plus is at Agrabah - Agrabah Mythril Stone (on Winner's Proof).\n\n"
+    },
+    "12": {
+      "JournalText": "Negative Combo is at 100 Acre - Piglet's House Mythril Gem.\n\nExperience Boost is at Halloween Town - Vexen Bonus (on Wishing Lamp).\n\n"
+    },
+    "13": {
+      "JournalText": "Experience Boost is at Hollow Bastion - Transport to Remembrance.\n\nBerserk Charge is at Agrabah - Palace Walls Skill Ring (on Guardian Soul).\n\n"
+    }
+  }
+}

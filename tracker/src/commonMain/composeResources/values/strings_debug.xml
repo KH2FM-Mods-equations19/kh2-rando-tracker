@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <string name="debug_menu">Debug</string>
+    <string name="debug_progression_menu">Progression</string>
+    <string name="debug_autotracking_console">Auto-tracking console</string>
+    <string name="debug_progress_flags_viewer">Progress flags viewer</string>
+
+</resources>

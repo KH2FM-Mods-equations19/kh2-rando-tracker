@@ -1,0 +1,538 @@
+{
+  "hintsType": "Shananas",
+  "generatorVersion": "3.1.0-beta4",
+  "settings": [
+    "ProgressionHints",
+    "ExcludeFrom50",
+    "better_stt",
+    "library",
+    "Dream Weapon Matters",
+    "Land of Dragons",
+    "Beast's Castle",
+    "Hollow Bastion",
+    "Cavern of Remembrance",
+    "Twilight Town",
+    "The World That Never Was",
+    "Space Paranoids",
+    "Atlantica",
+    "Port Royal",
+    "Olympus Coliseum",
+    "Olympus Cups",
+    "Hades Paradox Cup",
+    "Agrabah",
+    "Halloween Town",
+    "Pride Lands",
+    "Disney Castle / Timeless River",
+    "Hundred Acre Wood",
+    "Simulated Twilight Town",
+    "Absent Silhouettes",
+    "Sephiroth",
+    "Lingering Will (Terra)",
+    "Data Organization XIII",
+    "Form Levels",
+    "Garden of Assemblage",
+    "Critical Bonuses",
+    "Puzzle",
+    "Transport to Remembrance",
+    "Synthesis",
+    "PromiseCharm",
+    "extra_ics",
+    "dummy_forms"
+  ],
+  "checkValue": {
+    "proof": 5,
+    "form": 9,
+    "magic": 7,
+    "summon": 5,
+    "ability": 5,
+    "keyblade": 9,
+    "page": 5,
+    "report": 3,
+    "visit": 2,
+    "bonus": 10,
+    "complete": 10,
+    "formlv": 3,
+    "other": 1,
+    "boss_as": 20,
+    "boss_datas": 30,
+    "boss_sephi": 40,
+    "boss_terra": 50,
+    "boss_final": 100,
+    "boss_other": 10,
+    "deaths": -10,
+    "collection_magic": 0,
+    "collection_page": 0,
+    "collection_pouches": 0,
+    "collection_proof": 0,
+    "collection_form": 0,
+    "collection_summon": 0,
+    "collection_ability": 0,
+    "collection_report": 0,
+    "collection_visit": 0
+  },
+  "hintableItems": [
+    "magic",
+    "form",
+    "summon",
+    "page",
+    "ability",
+    "visit",
+    "proof",
+    "report",
+    "keyblade",
+    "other"
+  ],
+  "dummy_forms": true,
+  "ProgressionSettings": {
+    "LandofDragons": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      0,
+      3,
+      6
+    ],
+    "BeastsCastle": [
+      0,
+      2,
+      1,
+      2,
+      1,
+      3,
+      6
+    ],
+    "HollowBastion": [
+      0,
+      1,
+      0,
+      2,
+      1,
+      2,
+      2,
+      2,
+      5,
+      6
+    ],
+    "CavernofRemembrance": [
+      0,
+      4,
+      0,
+      4,
+      7
+    ],
+    "TwilightTown": [
+      0,
+      1,
+      1,
+      2,
+      2,
+      2,
+      6
+    ],
+    "TWTNW": [
+      0,
+      2,
+      3,
+      2,
+      2,
+      2,
+      7
+    ],
+    "SpaceParanoids": [
+      0,
+      1,
+      2,
+      2,
+      2,
+      4,
+      6
+    ],
+    "Atlantica": [
+      0,
+      5,
+      3
+    ],
+    "PortRoyal": [
+      0,
+      1,
+      1,
+      0,
+      1,
+      2,
+      1,
+      1,
+      3,
+      6
+    ],
+    "OlympusColiseum": [
+      0,
+      2,
+      0,
+      2,
+      0,
+      2,
+      2,
+      3,
+      3,
+      6
+    ],
+    "Agrabah": [
+      0,
+      1,
+      1,
+      1,
+      2,
+      1,
+      3,
+      4,
+      6
+    ],
+    "HalloweenTown": [
+      0,
+      1,
+      2,
+      2,
+      1,
+      1,
+      3,
+      3,
+      6
+    ],
+    "PrideLands": [
+      0,
+      1,
+      1,
+      2,
+      1,
+      3,
+      6
+    ],
+    "DisneyCastle": [
+      0,
+      1,
+      1,
+      2,
+      1,
+      2,
+      5,
+      6,
+      7
+    ],
+    "HundredAcreWood": [
+      0,
+      1,
+      1,
+      1,
+      2,
+      4
+    ],
+    "SimulatedTwilightTown": [
+      0,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      6
+    ],
+    "Drives": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    "Levels": [
+      0,
+      0,
+      1,
+      1,
+      2
+    ],
+    "HintCosts": [
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      7,
+      7,
+      7,
+      8,
+      8,
+      8
+    ],
+    "WorldCompleteBonus": [
+      0
+    ],
+    "ReportBonus": [
+      0
+    ],
+    "FinalXemnasReveal": [
+      0
+    ]
+  },
+  "level_data": {
+    "Valor Level": {
+      "5": 494
+    },
+    "Wisdom Level": {},
+    "Limit Level": {},
+    "Master Level": {
+      "7": 32
+    },
+    "Final Level": {},
+    "Level": {
+      "Sword": {
+        "10": 32,
+        "28": 22
+      },
+      "Staff": {
+        "4": 32,
+        "20": 22
+      },
+      "Shield": {
+        "2": 32,
+        "41": 22
+      }
+    }
+  },
+  "world": {
+    "Level": [
+      32,
+      22
+    ],
+    "Land of Dragons": [
+      543,
+      88
+    ],
+    "Beast's Castle": [
+      383,
+      24,
+      370,
+      498
+    ],
+    "Hollow Bastion": [
+      595,
+      32,
+      23,
+      490,
+      21,
+      462
+    ],
+    "Twilight Town": [
+      535,
+      31,
+      23,
+      25,
+      87
+    ],
+    "The World That Never Was": [
+      32,
+      21,
+      24,
+      485
+    ],
+    "Space Paranoids": [
+      484,
+      495
+    ],
+    "Atlantica": [],
+    "Port Royal": [
+      24,
+      524
+    ],
+    "Olympus Coliseum": [
+      415,
+      32,
+      159,
+      593,
+      481
+    ],
+    "Agrabah": [
+      88,
+      563,
+      416
+    ],
+    "Halloween Town": [
+      23
+    ],
+    "Pride Lands": [
+      488,
+      160,
+      29
+    ],
+    "Disney Castle / Timeless River": [
+      486,
+      87
+    ],
+    "Hundred Acre Wood": [
+      88
+    ],
+    "Simulated Twilight Town": [
+      22
+    ],
+    "Form Levels": [
+      494,
+      32
+    ],
+    "Creations": [
+      21,
+      42,
+      492,
+      27,
+      594,
+      362,
+      26,
+      87
+    ],
+    "Critical Bonuses": [
+      487,
+      544,
+      493,
+      22
+    ],
+    "Garden of Assemblage": [
+      537
+    ]
+  },
+  "Reports": {
+    "1": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Auto Final is in TWTNW.\n\nAerial Dive is in Twilight Town.\n\n"
+    },
+    "2": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Experience Boost is in Hollow Bastion.\n\nAuto Limit is in Space Paranoids.\n\n"
+    },
+    "3": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Flash Step is in Twilight Town.\n\nGuard Break is in Pride Lands.\n\n"
+    },
+    "4": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Aerial Spiral is in Port Royal.\n\nSlide Dash is in Agrabah.\n\n"
+    },
+    "5": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Scan is in Port Royal.\n\nExplosion is in Form Levels.\n\n"
+    },
+    "6": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Magnet Burst is in Pride Lands.\n\nAuto Valor is in Port Royal.\n\n"
+    },
+    "7": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Auto Master is in Form Levels.\n\nNegative Combo is in Olympus Coliseum.\n\n"
+    },
+    "8": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Finishing Plus is in Agrabah.\n\nHorizontal Slash is in Twilight Town.\n\n"
+    },
+    "9": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Berserk Charge is in Halloween Town.\n\nAuto Wisdom is in Sora's Heart.\n\n"
+    },
+    "10": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Combo Master is in Twilight Town.\n\nTrinity Limit is in Simulated Twilight Town.\n\n"
+    },
+    "11": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Berserk Charge is in Olympus Coliseum.\n\nExperience Boost is in TWTNW.\n\n"
+    },
+    "12": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Slapshot is in Halloween Town.\n\nNegative Combo is in Beast's Castle.\n\n"
+    },
+    "13": {
+      "FoundIn": "Garden of Assemblage",
+      "JournalText": "Finishing Leap is in Port Royal.\n\nFinishing Plus is in Disney Castle (on Follow the Wind).\n\n"
+    }
+  },
+  "world_order": [
+    "Olympus Coliseum",
+    "Port Royal",
+    "Agrabah",
+    "Pride Lands",
+    "Hollow Bastion",
+    "Creations",
+    "Form Levels",
+    "Simulated Twilight Town",
+    "Atlantica",
+    "Garden of Assemblage",
+    "Beast's Castle",
+    "Disney Castle / Timeless River",
+    "Land of Dragons",
+    "Space Paranoids",
+    "Level",
+    "Twilight Town",
+    "Critical Bonuses",
+    "Halloween Town",
+    "The World That Never Was",
+    "Hundred Acre Wood"
+  ],
+  "startingInventory": [
+    82,
+    138,
+    158,
+    393,
+    94,
+    98,
+    102,
+    106,
+    564,
+    237,
+    233,
+    236,
+    230,
+    228,
+    234,
+    229,
+    226,
+    232,
+    235,
+    238,
+    231,
+    227,
+    54,
+    54,
+    55,
+    55,
+    59,
+    59,
+    60,
+    60,
+    61,
+    61,
+    62,
+    62,
+    72,
+    72,
+    73,
+    73,
+    74,
+    74,
+    369,
+    369,
+    375,
+    375,
+    375,
+    368,
+    460,
+    460,
+    366
+  ]
+}

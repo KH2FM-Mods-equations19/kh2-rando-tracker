@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <string name="sora_levels">Sora's Heart (Levels)</string>
+    <string name="sora_levels_short">Sora's Heart</string>
+    <string name="simulated_twilight_town">Simulated Twilight Town</string>
+    <string name="simulated_twilight_town_short">STT</string>
+    <string name="hollow_bastion">Hollow Bastion</string>
+    <string name="olympus_coliseum">Olympus Coliseum</string>
+    <string name="land_of_dragons">Land of Dragons</string>
+    <string name="pride_lands">Pride Lands</string>
+    <string name="halloween_town">Halloween Town</string>
+    <string name="space_paranoids">Space Paranoids</string>
+    <string name="garden_of_assemblage">Garden of Assemblage</string>
+    <string name="drive_forms">Drive Forms</string>
+    <string name="twilight_town">Twilight Town</string>
+    <string name="beasts_castle">Beast's Castle</string>
+    <string name="agrabah">Agrabah</string>
+    <string name="hundred_acre_wood">Hundred Acre Wood</string>
+    <string name="hundred_acre_wood_short">100 Acre Wood</string>
+    <string name="disney_castle">Disney Castle</string>
+    <string name="port_royal">Port Royal</string>
+    <string name="world_that_never_was">The World That Never Was</string>
+    <string name="world_that_never_was_short">TWTNW</string>
+    <string name="atlantica">Atlantica</string>
+    <string name="creations">Creations</string>
+
+</resources>

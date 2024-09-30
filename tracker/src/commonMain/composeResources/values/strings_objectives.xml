@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <string name="objectives_none_to_display">No objectives to display</string>
+    <string name="objectives_completed">Objectives</string>
+
+    <string name="objective_stt_twilight_thorn">Defeat Twilight Thorn</string>
+    <string name="objective_stt_axel_1">Defeat Axel I</string>
+    <string name="objective_stt_setzer">Fight Setzer</string>
+    <string name="objective_stt_axel_2">Defeat Axel II</string>
+    <string name="objective_stt_data_roxas">Defeat Data Roxas</string>
+
+    <string name="objective_tt_fairies">Talk to the 3 Fairies</string>
+    <string name="objective_tt_sandlot">Defeat Sandlot Berserkers</string>
+    <string name="objective_tt_betwixt">Fight alongside Axel</string>
+    <string name="objective_tt_data_axel">Defeat Data Axel</string>
+
+    <string name="objective_hb_bailey">Defend the Bailey</string>
+    <string name="objective_hb_demyx">Defeat Demyx</string>
+    <string name="objective_hb_thousand_heartless">Stop the 1000 Heartless</string>
+    <string name="objective_hb_last_chest_cor">Reach the end of Cavern of Remembrance</string>
+    <string name="objective_hb_transport">Reach the end of Transport of Remembrance</string>
+    <string name="objective_hb_sephiroth">Defeat Sephiroth</string>
+    <string name="objective_hb_data_demyx">Defeat Data Demyx</string>
+
+    <string name="objective_lod_mountain">Climb the Mountain Trail</string>
+    <string name="objective_lod_cave">Fight the Enemies in Village Cave</string>
+    <string name="objective_lod_shan_yu">Defeat Shan Yu</string>
+    <string name="objective_lod_storm_rider">Defeat Stormrider</string>
+    <string name="objective_lod_data_xigbar">Defeat Data Xigbar</string>
+
+    <string name="objective_bc_thresholder">Defeat Thresholder</string>
+    <string name="objective_bc_beast">Help Beast</string>
+    <string name="objective_bc_dark_thorn">Defeat Dark Thorn</string>
+    <string name="objective_bc_xaldin">Defeat Xaldin</string>
+    <string name="objective_bc_data_xaldin">Defeat Data Xaldin</string>
+
+    <string name="objective_dc_minnie">Escort Queen Minnie</string>
+    <string name="objective_dc_windows">Fight through Windows of Time</string>
+    <string name="objective_dc_boat_pete">Stop Pete from Escaping</string>
+    <string name="objective_dc_pete">Defeat Future Pete</string>
+    <string name="objective_dc_as_marluxia">Defeat AS Marluxia</string>
+    <string name="objective_dc_data_marluxia">Defeat Data Marluxia</string>
+    <string name="objective_dc_lingering_will">Defeat Lingering Will</string>
+
+    <string name="objective_pr_minute_fight">Stall for time on Isla de Muerta</string>
+    <string name="objective_pr_interceptor_pirates">Defend the Interceptor from pirates</string>
+    <string name="objective_pr_interceptor_barrels">Stop the explosive barrels</string>
+    <string name="objective_pr_barbossa">Defeat Barbossa</string>
+    <string name="objective_pr_grim_reaper_1">Defeat Grim Reaper I</string>
+    <string name="objective_pr_grim_reaper_2">Defeat Grim Reaper II</string>
+    <string name="objective_pr_data_luxord">Defeat Data Luxord</string>
+
+    <string name="objective_ag_abu">Escort Abu</string>
+    <string name="objective_ag_treasure_room">Survive the Treasure Room Ambush</string>
+    <string name="objective_ag_elemental_lords">Defeat the Elemental Lords</string>
+    <string name="objective_ag_jafar">Defeat Genie Jafar</string>
+    <string name="objective_ag_as_lexaeus">Defeat AS Lexaeus</string>
+    <string name="objective_ag_data_lexaeus">Defeat Data Lexaeus</string>
+
+    <string name="objective_ht_prison_keeper">Defeat Prison Keeper</string>
+    <string name="objective_ht_oogie_boogie">Defeat Oogie Boogie</string>
+    <string name="objective_ht_children">Capture Lock Shock and Barrel</string>
+    <string name="objective_ht_stolen_presents">Find the stolen presents</string>
+    <string name="objective_ht_presents_minigame">Create decoy presents</string>
+    <string name="objective_ht_experiment">Defeat the Experiment</string>
+    <string name="objective_ht_as_vexen">Defeat AS Vexen</string>
+    <string name="objective_ht_data_vexen">Defeat Data Vexen</string>
+
+    <string name="objective_pl_simba">Reunite with Simba</string>
+    <string name="objective_pl_hyenas_1">Rescue Timon and Pumbaa</string>
+    <string name="objective_pl_scar">Defeat Scar</string>
+    <string name="objective_pl_hyenas_2">Get info about the ghost of Scar from Hyenas</string>
+    <string name="objective_pl_groundshaker">Defeat Groundshaker</string>
+    <string name="objective_pl_data_saix">Defeat Data Saix</string>
+
+    <string name="objective_sp_screens">Survive the Dataspace Attack</string>
+    <string name="objective_sp_hostile_program">Defeat Hostile Program</string>
+    <string name="objective_sp_solar_sailer">Ride the Solar Sailor</string>
+    <string name="objective_sp_mcp">Defeat MCP</string>
+    <string name="objective_sp_as_larxene">Defeat AS Larxene</string>
+    <string name="objective_sp_data_larxene">Defeat Data Larxene</string>
+
+    <string name="objective_twtnw_roxas">Defeat Roxas</string>
+    <string name="objective_twtnw_xigbar">Defeat Xigbar</string>
+    <string name="objective_twtnw_luxord">Defeat Luxord</string>
+    <string name="objective_twtnw_saix">Defeat Saix</string>
+    <string name="objective_twtnw_xemnas">Defeat Xemnas</string>
+    <string name="objective_twtnw_data_xemnas">Defeat Data Xemnas</string>
+
+    <string name="objective_oc_cerberus">Defeat Cerberus</string>
+    <string name="objective_oc_urns">Train with Phil</string>
+    <string name="objective_oc_pete">Defeat Pete at The Lock</string>
+    <string name="objective_oc_hydra">Defeat Hydra</string>
+    <string name="objective_oc_aurons_statue">Defeat the Ambush in Hades Chamber</string>
+    <string name="objective_oc_hades">Defeat Hades</string>
+    <string name="objective_oc_as_zexion">Defeat AS Zexion</string>
+    <string name="objective_oc_data_zexion">Defeat Data Zexion</string>
+
+    <string name="objective_oc_cups_pain_panic">Win the Pain and Panic Cup</string>
+    <string name="objective_oc_cups_cerberus">Win the Cerberus Cup</string>
+    <string name="objective_oc_cups_titan">Win the Titan Cup</string>
+    <string name="objective_oc_cups_goddess">Win the Goddess of Fate Cup</string>
+
+    <string name="objective_haw_spooky_cave">Rescue Pooh from the Spooky Cave</string>
+    <string name="objective_haw_starry_hill">Help Pooh out of the pot of hunny</string>
+
+    <string name="objective_at_tutorial">Relearn to swim</string>
+    <string name="objective_at_ursula">Defeat Ursula</string>
+    <string name="objective_at_new_day">Participate the New Day Musical</string>
+
+    <string name="objective_valor_3">Reach Valor Level 3</string>
+    <string name="objective_valor_5">Reach Valor Level 5</string>
+    <string name="objective_valor_7">Reach Valor Level 7</string>
+    <string name="objective_wisdom_3">Reach Wisdom Level 3</string>
+    <string name="objective_wisdom_5">Reach Wisdom Level 5</string>
+    <string name="objective_wisdom_7">Reach Wisdom Level 7</string>
+    <string name="objective_limit_3">Reach Limit Level 3</string>
+    <string name="objective_limit_5">Reach Limit Level 5</string>
+    <string name="objective_limit_7">Reach Limit Level 7</string>
+    <string name="objective_master_3">Reach Master Level 3</string>
+    <string name="objective_master_5">Reach Master Level 5</string>
+    <string name="objective_master_7">Reach Master Level 7</string>
+    <string name="objective_final_3">Reach Final Level 3</string>
+    <string name="objective_final_5">Reach Final Level 5</string>
+    <string name="objective_final_7">Reach Final Level 7</string>
+
+    <string name="objective_puzzle_awakening">Complete the Awakening Puzzle</string>
+    <string name="objective_puzzle_heart">Complete the Heart Puzzle</string>
+    <string name="objective_puzzle_duality">Complete the Duality Puzzle</string>
+    <string name="objective_puzzle_frontier">Complete the Frontier Puzzle</string>
+    <string name="objective_puzzle_daylight">Complete the Daylight Puzzle</string>
+    <string name="objective_puzzle_sunset">Complete the Sunset Puzzle</string>
+
+</resources>
+

@@ -1,0 +1,522 @@
+{
+  "hintsType": "Points",
+  "generatorVersion": "3.1.0-beta4",
+  "settings": [
+    "ProgressionHints",
+    "ExcludeFrom50",
+    "better_stt",
+    "Land of Dragons",
+    "Beast's Castle",
+    "Hollow Bastion",
+    "Twilight Town",
+    "The World That Never Was",
+    "Space Paranoids",
+    "Port Royal",
+    "Olympus Coliseum",
+    "Agrabah",
+    "Halloween Town",
+    "Pride Lands",
+    "Disney Castle / Timeless River",
+    "Hundred Acre Wood",
+    "Simulated Twilight Town",
+    "Form Levels",
+    "Garden of Assemblage",
+    "PromiseCharm",
+    "dummy_forms"
+  ],
+  "checkValue": {
+    "proof": 5,
+    "form": 9,
+    "magic": 7,
+    "summon": 5,
+    "ability": 5,
+    "keyblade": 0,
+    "page": 5,
+    "report": 0,
+    "visit": 2,
+    "bonus": 10,
+    "complete": 10,
+    "formlv": 3,
+    "other": 0,
+    "boss_as": 20,
+    "boss_datas": 30,
+    "boss_sephi": 40,
+    "boss_terra": 50,
+    "boss_final": 100,
+    "boss_other": 10,
+    "deaths": -10,
+    "collection_magic": 0,
+    "collection_page": 0,
+    "collection_pouches": 0,
+    "collection_proof": 0,
+    "collection_form": 0,
+    "collection_summon": 0,
+    "collection_ability": 0,
+    "collection_report": 0,
+    "collection_visit": 0
+  },
+  "hintableItems": [
+    "visit",
+    "proof",
+    "magic",
+    "form",
+    "summon",
+    "page",
+    "ability"
+  ],
+  "dummy_forms": true,
+  "ProgressionSettings": {
+    "LandofDragons": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      0,
+      3,
+      6
+    ],
+    "BeastsCastle": [
+      0,
+      2,
+      1,
+      2,
+      1,
+      3,
+      6
+    ],
+    "HollowBastion": [
+      0,
+      1,
+      0,
+      2,
+      1,
+      2,
+      2,
+      2,
+      5,
+      6
+    ],
+    "CavernofRemembrance": [
+      0,
+      4,
+      0,
+      4,
+      7
+    ],
+    "TwilightTown": [
+      0,
+      1,
+      1,
+      2,
+      2,
+      2,
+      6
+    ],
+    "TWTNW": [
+      0,
+      2,
+      3,
+      2,
+      2,
+      2,
+      7
+    ],
+    "SpaceParanoids": [
+      0,
+      1,
+      2,
+      2,
+      2,
+      4,
+      6
+    ],
+    "Atlantica": [
+      0,
+      5,
+      3
+    ],
+    "PortRoyal": [
+      0,
+      1,
+      1,
+      0,
+      1,
+      2,
+      1,
+      1,
+      3,
+      6
+    ],
+    "OlympusColiseum": [
+      0,
+      2,
+      0,
+      2,
+      0,
+      2,
+      2,
+      3,
+      3,
+      6
+    ],
+    "Agrabah": [
+      0,
+      1,
+      1,
+      1,
+      2,
+      1,
+      3,
+      4,
+      6
+    ],
+    "HalloweenTown": [
+      0,
+      1,
+      2,
+      2,
+      1,
+      1,
+      3,
+      3,
+      6
+    ],
+    "PrideLands": [
+      0,
+      1,
+      1,
+      2,
+      1,
+      3,
+      6
+    ],
+    "DisneyCastle": [
+      0,
+      1,
+      1,
+      2,
+      1,
+      2,
+      5,
+      6,
+      7
+    ],
+    "HundredAcreWood": [
+      0,
+      1,
+      1,
+      1,
+      2,
+      4
+    ],
+    "SimulatedTwilightTown": [
+      0,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      6
+    ],
+    "Drives": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    "Levels": [
+      0,
+      0,
+      1,
+      1,
+      2
+    ],
+    "HintCosts": [
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      7,
+      7,
+      7,
+      8
+    ],
+    "WorldCompleteBonus": [
+      0
+    ],
+    "ReportBonus": [
+      0
+    ],
+    "FinalXemnasReveal": [
+      0
+    ]
+  },
+  "level_data": {
+    "Valor Level": {
+      "4": 87
+    },
+    "Wisdom Level": {
+      "2": 25
+    },
+    "Limit Level": {
+      "5": 22,
+      "2": 32
+    },
+    "Master Level": {},
+    "Final Level": {},
+    "Level": {
+      "Sword": {
+        "32": 88,
+        "41": 88
+      },
+      "Staff": {
+        "32": 88,
+        "41": 88
+      },
+      "Shield": {
+        "32": 88,
+        "41": 88
+      }
+    }
+  },
+  "world": {
+    "Level": [
+      88,
+      88
+    ],
+    "Land of Dragons": [
+      23,
+      22,
+      524,
+      563
+    ],
+    "Beast's Castle": [
+      29,
+      87
+    ],
+    "Hollow Bastion": [
+      594,
+      593,
+      21,
+      159
+    ],
+    "Twilight Town": [
+      416,
+      26,
+      31,
+      32
+    ],
+    "The World That Never Was": [
+      24
+    ],
+    "Space Paranoids": [
+      383,
+      21
+    ],
+    "Atlantica": [],
+    "Port Royal": [
+      595,
+      24,
+      415
+    ],
+    "Olympus Coliseum": [
+      88,
+      32,
+      32,
+      160
+    ],
+    "Agrabah": [
+      24,
+      22,
+      32
+    ],
+    "Halloween Town": [
+      27
+    ],
+    "Pride Lands": [
+      23,
+      23,
+      21
+    ],
+    "Disney Castle / Timeless River": [],
+    "Hundred Acre Wood": [],
+    "Simulated Twilight Town": [
+      87
+    ],
+    "Form Levels": [
+      22,
+      32,
+      87,
+      25
+    ],
+    "Creations": [],
+    "Critical Bonuses": [],
+    "Garden of Assemblage": []
+  },
+  "world_order": [
+    "Hollow Bastion",
+    "Garden of Assemblage",
+    "Simulated Twilight Town",
+    "Olympus Coliseum",
+    "Halloween Town",
+    "Twilight Town",
+    "Land of Dragons",
+    "Space Paranoids",
+    "Level",
+    "Form Levels",
+    "Port Royal",
+    "Pride Lands",
+    "Hundred Acre Wood",
+    "Atlantica",
+    "Disney Castle / Timeless River",
+    "The World That Never Was",
+    "Agrabah",
+    "Critical Bonuses",
+    "Beast's Castle",
+    "Creations"
+  ],
+  "Reports": {
+    "1": {
+      "World": "Simulated Twilight Town",
+      "check": 87,
+      "Location": "Disney Castle / Timeless River",
+      "itemName": "Magnet Element",
+      "JournalText": ""
+    },
+    "2": {
+      "World": "Halloween Town",
+      "check": 27,
+      "Location": "Disney Castle / Timeless River",
+      "itemName": "Wisdom Form",
+      "JournalText": ""
+    },
+    "3": {
+      "World": "Pride Lands",
+      "check": 23,
+      "Location": "Halloween Town",
+      "itemName": "Thunder Element",
+      "JournalText": ""
+    },
+    "4": {
+      "World": "Level",
+      "check": 88,
+      "Location": "Beast's Castle",
+      "itemName": "Reflect Element",
+      "JournalText": ""
+    },
+    "5": {
+      "World": "Olympus Coliseum",
+      "check": 160,
+      "Location": "Hollow Bastion",
+      "itemName": "Feather Charm (Peter Pan)",
+      "JournalText": ""
+    },
+    "6": {
+      "World": "Beast's Castle",
+      "check": 29,
+      "Location": "Pride Lands",
+      "itemName": "Final Form",
+      "JournalText": ""
+    },
+    "7": {
+      "World": "Twilight Town",
+      "check": 31,
+      "Location": "Hollow Bastion",
+      "itemName": "Master Form",
+      "JournalText": ""
+    },
+    "8": {
+      "World": "Land of Dragons",
+      "check": 22,
+      "Location": "Olympus Coliseum",
+      "itemName": "Blizzard Element",
+      "JournalText": ""
+    },
+    "9": {
+      "World": "Form Levels",
+      "check": 25,
+      "Location": "Olympus Coliseum",
+      "itemName": "Ukulele Charm (Stitch)",
+      "JournalText": ""
+    },
+    "10": {
+      "World": "Port Royal",
+      "check": 24,
+      "Location": "Land of Dragons",
+      "itemName": "Cure Element",
+      "JournalText": ""
+    },
+    "11": {
+      "World": "Agrabah",
+      "check": 24,
+      "Location": "The World That Never Was",
+      "itemName": "Cure Element",
+      "JournalText": ""
+    },
+    "12": {
+      "World": "Space Paranoids",
+      "check": 21,
+      "Location": "Agrabah",
+      "itemName": "Fire Element",
+      "JournalText": ""
+    },
+    "13": {
+      "World": "The World That Never Was",
+      "check": 24,
+      "Location": "Port Royal",
+      "itemName": "Cure Element",
+      "JournalText": ""
+    }
+  },
+  "startingInventory": [
+    82,
+    138,
+    158,
+    393,
+    94,
+    98,
+    102,
+    106,
+    564,
+    54,
+    54,
+    55,
+    55,
+    59,
+    59,
+    60,
+    60,
+    61,
+    61,
+    62,
+    62,
+    72,
+    72,
+    73,
+    73,
+    74,
+    74,
+    369,
+    369,
+    375,
+    375,
+    375,
+    368,
+    460,
+    460,
+    366
+  ]
+}

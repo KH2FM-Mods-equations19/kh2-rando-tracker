@@ -1,0 +1,342 @@
+{
+  "hintsType": "Shananas",
+  "generatorVersion": "3.1.0-beta4",
+  "settings": [
+    "objectives",
+    "ExcludeFrom50",
+    "better_stt",
+    "Dream Weapon Matters",
+    "Land of Dragons",
+    "Beast's Castle",
+    "Hollow Bastion",
+    "Cavern of Remembrance",
+    "Twilight Town",
+    "The World That Never Was",
+    "Space Paranoids",
+    "Port Royal",
+    "Olympus Coliseum",
+    "Olympus Cups",
+    "Hades Paradox Cup",
+    "Agrabah",
+    "Halloween Town",
+    "Pride Lands",
+    "Disney Castle / Timeless River",
+    "Hundred Acre Wood",
+    "Simulated Twilight Town",
+    "Absent Silhouettes",
+    "Sephiroth",
+    "Lingering Will (Terra)",
+    "Data Organization XIII",
+    "Form Levels",
+    "Garden of Assemblage",
+    "Critical Bonuses",
+    "Puzzle",
+    "Transport to Remembrance",
+    "Synthesis",
+    "PromiseCharm",
+    "Anti-Form",
+    "dummy_forms"
+  ],
+  "checkValue": {
+    "proof": 5,
+    "form": 9,
+    "magic": 7,
+    "summon": 5,
+    "ability": 5,
+    "keyblade": 0,
+    "page": 5,
+    "report": 0,
+    "visit": 2,
+    "bonus": 10,
+    "complete": 10,
+    "formlv": 3,
+    "other": 0,
+    "boss_as": 20,
+    "boss_datas": 30,
+    "boss_sephi": 40,
+    "boss_terra": 50,
+    "boss_final": 100,
+    "boss_other": 10,
+    "deaths": -10,
+    "collection_magic": 0,
+    "collection_page": 0,
+    "collection_pouches": 0,
+    "collection_proof": 0,
+    "collection_form": 0,
+    "collection_summon": 0,
+    "collection_ability": 0,
+    "collection_report": 0,
+    "collection_visit": 0
+  },
+  "hintableItems": [
+    "visit",
+    "proof",
+    "magic",
+    "form",
+    "summon",
+    "page",
+    "ability"
+  ],
+  "dummy_forms": true,
+  "level_data": {
+    "Valor Level": {},
+    "Wisdom Level": {},
+    "Limit Level": {},
+    "Master Level": {
+      "2": 88
+    },
+    "Final Level": {},
+    "Level": {
+      "Sword": {
+        "44": 88,
+        "2": 24
+      },
+      "Staff": {
+        "36": 88,
+        "10": 24
+      },
+      "Shield": {
+        "48": 88,
+        "4": 24
+      }
+    }
+  },
+  "objective_list": [
+    "Defeat Oogie Boogie",
+    "Rescue Timon and Pumbaa",
+    "Defeat Data Xaldin",
+    "Defeat MCP",
+    "Defeat Cerberus",
+    "Defeat Axel I",
+    "Defeat Thresholder",
+    "Complete the Sunset Puzzle",
+    "Win the Pain and Panic Cup",
+    "Defeat Data Axel",
+    "Create decoy presents",
+    "Escort Queen Minnie",
+    "Reach the end of Cavern of Remembrance"
+  ],
+  "objective_locations": [
+    {
+      "category": "Stat Bonus",
+      "location_id": 19
+    },
+    {
+      "category": "Popup",
+      "location_id": 559
+    },
+    {
+      "category": "Popup",
+      "location_id": 561
+    },
+    {
+      "category": "Creation",
+      "location_id": 5
+    },
+    {
+      "category": "Item and Stat Bonus",
+      "location_id": 38
+    },
+    {
+      "category": "Stat Bonus",
+      "location_id": 49
+    },
+    {
+      "category": "Item Bonus",
+      "location_id": 5
+    },
+    {
+      "category": "Popup",
+      "location_id": 298
+    },
+    {
+      "category": "Item Bonus",
+      "location_id": 2
+    },
+    {
+      "category": "Popup",
+      "location_id": 513
+    },
+    {
+      "category": "Item Bonus",
+      "location_id": 73
+    },
+    {
+      "category": "Chest",
+      "location_id": 579
+    },
+    {
+      "category": "Item and Stat Bonus",
+      "location_id": 32
+    }
+  ],
+  "num_objectives_needed": 7,
+  "world": {
+    "Level": [
+      88,
+      24
+    ],
+    "Land of Dragons": [
+      524,
+      32
+    ],
+    "Beast's Castle": [
+      31,
+      563,
+      23
+    ],
+    "Hollow Bastion": [
+      32,
+      25,
+      87,
+      23,
+      22,
+      21,
+      32,
+      160
+    ],
+    "Twilight Town": [
+      21,
+      24,
+      29,
+      22
+    ],
+    "The World That Never Was": [],
+    "Space Paranoids": [],
+    "Atlantica": [],
+    "Port Royal": [],
+    "Olympus Coliseum": [
+      32,
+      23,
+      27,
+      26
+    ],
+    "Agrabah": [
+      88,
+      21,
+      22,
+      415
+    ],
+    "Halloween Town": [
+      383
+    ],
+    "Pride Lands": [
+      24
+    ],
+    "Disney Castle / Timeless River": [
+      87,
+      159,
+      593
+    ],
+    "Hundred Acre Wood": [
+      87,
+      30,
+      595
+    ],
+    "Simulated Twilight Town": [
+      594,
+      416
+    ],
+    "Form Levels": [
+      88
+    ],
+    "Creations": [],
+    "Critical Bonuses": [
+      32
+    ],
+    "Garden of Assemblage": []
+  },
+  "Reports": {
+    "1": {
+      "FoundIn": "Hollow Bastion",
+      "JournalText": "Flash Step is at Olympus Coliseum - Passage Hi-Potion.\n\nSlapshot is at TWTNW - The Brink of Despair Orichalcum+.\n\n"
+    },
+    "2": {
+      "FoundIn": "Hollow Bastion",
+      "JournalText": "Auto Final is at Form Levels - Wisdom Level 6.\n\nAuto Valor is at Form Levels - Wisdom Level 4.\n\n"
+    },
+    "3": {
+      "FoundIn": "The World That Never Was",
+      "JournalText": "Slide Dash is at Disney Castle - DC Courtyard Star Recipe.\n\nAuto Master is at Beast's Castle - Belle's Room Castle Map.\n\n"
+    },
+    "4": {
+      "FoundIn": "Pride Lands",
+      "JournalText": "Aerial Dive is at Olympus Coliseum - The Lost Road Ether.\n\nTrinity Limit is at Space Paranoids - Pit Cell Area Map.\n\n"
+    },
+    "5": {
+      "FoundIn": "Agrabah",
+      "JournalText": "Scan is at Twilight Town - Mansion Foyer Serenity Crystal.\n\nAuto Wisdom is at Simulated Twilight Town - Sunset Terrace Hi-Potion.\n\n"
+    },
+    "6": {
+      "FoundIn": "The World That Never Was",
+      "JournalText": "Negative Combo is at Pride Lands - Scar.\n\nMagnet Burst is at Pride Lands - Wastelands Mythril Shard.\n\n"
+    },
+    "7": {
+      "FoundIn": "Hollow Bastion",
+      "JournalText": "Finishing Plus is at Hollow Bastion - Restoration Site Moon Recipe.\n\nNegative Combo is at Port Royal - Powder Store AP Boost (2).\n\n"
+    },
+    "8": {
+      "FoundIn": "Simulated Twilight Town",
+      "JournalText": "Explosion is at 100 Acre - Spooky Cave AP Boost.\n\nGuard Break is at Port Royal - Rampart Dark Shard.\n\n"
+    },
+    "9": {
+      "FoundIn": "Pride Lands",
+      "JournalText": "Finishing Plus is at Land of Dragons - Bamboo Grove Ether.\n\nCombo Master is at Beast's Castle - The West Hall Mythril Shard (2).\n\n"
+    },
+    "10": {
+      "FoundIn": "Level",
+      "JournalText": "Finishing Leap is at Beast's Castle - Dark Thorn Bonus.\n\nAuto Limit is at Twilight Town - Tower Entryway Ether.\n\n"
+    },
+    "11": {
+      "FoundIn": "Agrabah",
+      "JournalText": "Aerial Spiral is at 100 Acre - Piglet's House Defense Boost.\n\nBerserk Charge is at Twilight Town - Betwixt and Between Bond of Flame (on Fatal Crest).\n\n"
+    },
+    "12": {
+      "FoundIn": "The World That Never Was",
+      "JournalText": "Berserk Charge is at Hollow Bastion - Ansem's Study Ukulele Charm.\n\nExperience Boost is at TWTNW - (Pre-Xemnas 1) Secret Ansem Report 11 (on Photon Debugger).\n\n"
+    },
+    "13": {
+      "FoundIn": "Port Royal",
+      "JournalText": "Horizontal Slash is at Form Levels - Valor Level 2.\n\nExperience Boost is on Final Form's Keyblade.\n\n"
+    }
+  },
+  "startingInventory": [
+    82,
+    138,
+    158,
+    393,
+    94,
+    98,
+    102,
+    106,
+    564,
+    54,
+    54,
+    55,
+    55,
+    59,
+    59,
+    60,
+    60,
+    61,
+    61,
+    62,
+    62,
+    72,
+    72,
+    73,
+    73,
+    74,
+    74,
+    369,
+    369,
+    375,
+    375,
+    375,
+    368,
+    460,
+    460,
+    366,
+    239
+  ]
+}

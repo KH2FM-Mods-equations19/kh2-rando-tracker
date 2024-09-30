@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <string name="prog_chests">Early Checks</string>
+
+    <string name="prog_levels_10">Level 10</string>
+    <string name="prog_levels_20">Level 20</string>
+    <string name="prog_levels_30">Level 30</string>
+    <string name="prog_levels_40">Level 40</string>
+    <string name="prog_levels_50">Level 50</string>
+
+    <string name="prog_drive_valor_2">Valor 2</string>
+    <string name="prog_drive_valor_3">Valor 3</string>
+    <string name="prog_drive_valor_4">Valor 4</string>
+    <string name="prog_drive_valor_5">Valor 5</string>
+    <string name="prog_drive_valor_6">Valor 6</string>
+    <string name="prog_drive_valor_7">Valor 7</string>
+
+    <string name="prog_drive_wisdom_2">Wisdom 2</string>
+    <string name="prog_drive_wisdom_3">Wisdom 3</string>
+    <string name="prog_drive_wisdom_4">Wisdom 4</string>
+    <string name="prog_drive_wisdom_5">Wisdom 5</string>
+    <string name="prog_drive_wisdom_6">Wisdom 6</string>
+    <string name="prog_drive_wisdom_7">Wisdom 7</string>
+
+    <string name="prog_drive_limit_2">Limit 2</string>
+    <string name="prog_drive_limit_3">Limit 3</string>
+    <string name="prog_drive_limit_4">Limit 4</string>
+    <string name="prog_drive_limit_5">Limit 5</string>
+    <string name="prog_drive_limit_6">Limit 6</string>
+    <string name="prog_drive_limit_7">Limit 7</string>
+
+    <string name="prog_drive_master_2">Master 2</string>
+    <string name="prog_drive_master_3">Master 3</string>
+    <string name="prog_drive_master_4">Master 4</string>
+    <string name="prog_drive_master_5">Master 5</string>
+    <string name="prog_drive_master_6">Master 6</string>
+    <string name="prog_drive_master_7">Master 7</string>
+
+    <string name="prog_drive_final_2">Final 2</string>
+    <string name="prog_drive_final_3">Final 3</string>
+    <string name="prog_drive_final_4">Final 4</string>
+    <string name="prog_drive_final_5">Final 5</string>
+    <string name="prog_drive_final_6">Final 6</string>
+    <string name="prog_drive_final_7">Final 7</string>
+
+    <string name="prog_stt_minigame">Part-Time Job</string>
+    <string name="prog_stt_twilight_thorn">Twilight Thorn (Boss)</string>
+    <string name="prog_stt_axel_1">Axel 1 (Boss)</string>
+    <string name="prog_stt_struggle">Beat Setzer</string>
+    <string name="prog_stt_computer_room">Mansion Computer Room</string>
+    <string name="prog_stt_axel_2">Axel 2 (Boss)</string>
+    <string name="prog_stt_data_roxas">Roxas (Data)</string>
+
+    <string name="prog_hb_chests">Early Checks</string>
+    <string name="prog_hb_bailey">Bailey Gate Fight</string>
+    <string name="prog_hb_ansem_study">Ansem's Study</string>
+    <string name="prog_hb_corridor">Corridor Fight</string>
+    <string name="prog_hb_dancers">Restoration Site Fight</string>
+    <string name="prog_hb_hb_demyx">Demyx (Boss)</string>
+    <string name="prog_hb_final_fantasy">Final Fantasy Fights</string>
+    <string name="prog_hb_1000_heartless">1000 Heartless</string>
+    <string name="prog_hb_sephiroth">Sephiroth (Boss)</string>
+    <string name="prog_hb_data_demyx">Demyx (Data)</string>
+    <string name="prog_hb_sephi_demyx">Sephiroth and Demyx</string>
+
+    <string name="prog_oc_cerberus">Cerberus (Boss)</string>
+    <string name="prog_oc_urns">Phil's Training</string>
+    <string name="prog_oc_demyx">Demyx Fight</string>
+    <string name="prog_oc_pete">Pete Fight</string>
+    <string name="prog_oc_hydra">Hydra (Boss)</string>
+    <string name="prog_oc_auron_statue">Hades' Chamber Fight</string>
+    <string name="prog_oc_hades">Hades (Boss)</string>
+    <string name="prog_oc_zexion">Zexion (AS)</string>
+    <string name="prog_oc_zexion_data">Zexion (Data)</string>
+    <string name="prog_oc_cups_pain_panic">Pain and Panic Cup</string>
+    <string name="prog_oc_cups_cerberus">Cerberus Cup</string>
+    <string name="prog_oc_cups_titan">Titan Cup</string>
+    <string name="prog_oc_cups_goddess">Goddess of Fate Cup</string>
+
+    <string name="prog_lod_missions">Mission 3 (The Search)</string>
+    <string name="prog_lod_mountain">Mountain Climb</string>
+    <string name="prog_lod_cave">Town Cave Fight</string>
+    <string name="prog_lod_summit">Summit Fight</string>
+    <string name="prog_lod_shan_yu">Shan Yu (Boss)</string>
+    <string name="prog_lod_throne_room">Throne Room</string>
+    <string name="prog_lod_storm_rider">Storm Rider (Boss)</string>
+    <string name="prog_lod_data_xigbar">Xigbar (Data)</string>
+
+    <string name="prog_pl_simba">Met Simba</string>
+    <string name="prog_pl_hyenas_1">Hyenas Fight (1st Visit)</string>
+    <string name="prog_pl_scar">Scar (Boss)</string>
+    <string name="prog_pl_hyenas_2">Hyenas Fight (2nd Visit)</string>
+    <string name="prog_pl_ground_shaker">Ground Shaker (Boss)</string>
+    <string name="prog_pl_data_saix">Saix (Data)</string>
+
+    <string name="prog_ht_candy_cane_lane">Candy Cane Lane Fight</string>
+    <string name="prog_ht_prison_keeper">Prison Keeper (Boss)</string>
+    <string name="prog_ht_oogie_boogie">Oogie Boogie (Boss)</string>
+    <string name="prog_ht_children">Lock, Shock, and Barrel</string>
+    <string name="prog_ht_stolen_presents">Retrieved Stolen Presents</string>
+    <string name="prog_ht_presents">Made Decoy Presents</string>
+    <string name="prog_ht_experiment">The Experiment (Boss)</string>
+    <string name="prog_ht_vexen">Vexen (AS)</string>
+    <string name="prog_ht_vexen_data">Vexen (Data)</string>
+
+    <string name="prog_sp_screens">Dataspace Fight</string>
+    <string name="prog_sp_hostile_program">Hostile Program (Boss)</string>
+    <string name="prog_sp_solar_sailer">Solar Sailer</string>
+    <string name="prog_sp_mcp">MCP (Boss)</string>
+    <string name="prog_sp_larxene">Larxene (AS)</string>
+    <string name="prog_sp_larxene_data">Larxene (Data)</string>
+
+    <string name="prog_goa_fight_1">Forced Fight 1</string>
+    <string name="prog_goa_valves">Steam Valves (CoR Skip)</string>
+    <string name="prog_goa_fight_2">Forced Fight 2</string>
+    <string name="prog_goa_last_chest">Last Chest of Cavern</string>
+    <string name="prog_goa_transport">Transport to Rememberance</string>
+
+    <string name="prog_tt_station">Train Station Fight</string>
+    <string name="prog_tt_mysterious_tower">Mysterious Tower</string>
+    <string name="prog_tt_sandlot">Sandlot Fight</string>
+    <string name="prog_tt_mansion">Mansion Gate Fight</string>
+    <string name="prog_tt_betwixt_and_between">Betwixt And Between</string>
+    <string name="prog_tt_data_axel">Axel (Data)</string>
+
+    <string name="prog_bc_thresholder">Thresholder (Boss)</string>
+    <string name="prog_bc_beast">Beast Fight</string>
+    <string name="prog_bc_dark_thorn">Dark Thorn (Boss)</string>
+    <string name="prog_bc_dragoons">Dragoons Forced Fight</string>
+    <string name="prog_bc_xaldin">Xaldin (Boss)</string>
+    <string name="prog_bc_data_xaldin">Xaldin (Data)</string>
+
+    <string name="prog_ag_abu">Abu Minigame</string>
+    <string name="prog_ag_chasm">Chasm of Challenges</string>
+    <string name="prog_ag_treasure_room">Treasure Room Fight</string>
+    <string name="prog_ag_lords">Twin Lords (Boss)</string>
+    <string name="prog_ag_carpet">Carpet Magic Minigame</string>
+    <string name="prog_ag_genie_jafar">Genie Jafar (Boss)</string>
+    <string name="prog_ag_lexaeus">Lexaeus (AS)</string>
+    <string name="prog_ag_lexaeus_data">Lexaeus (Data)</string>
+
+    <string name="prog_haw_piglet">Entered Piglet's House</string>
+    <string name="prog_haw_rabbit">Entered Rabbit's House</string>
+    <string name="prog_haw_kanga">Entered Kanga's House</string>
+    <string name="prog_haw_spooky_cave">Entered Spooky Cave</string>
+    <string name="prog_haw_starry_hill">Entered Starry Hill</string>
+
+    <string name="prog_dc_minnie">Minnie Escort</string>
+    <string name="prog_dc_old_pete">Past Pete Fight</string>
+    <string name="prog_dc_windows">Windows of Time</string>
+    <string name="prog_dc_boat_pete">Steamboat Fight</string>
+    <string name="prog_dc_dc_pete">Pete (Boss)</string>
+    <string name="prog_dc_marluxia">Marluxia (AS)</string>
+    <string name="prog_dc_marluxia_data">Marluxia (Data)</string>
+    <string name="prog_dc_lingering_will">Lingering Will (Boss)</string>
+    <string name="prog_dc_marluxia_lingering_will">Marluxia (AS) and Lingering Will</string>
+    <string name="prog_dc_marluxia_data_lingering_will">Marluxia (Data) and Lingering Will</string>
+
+    <string name="prog_pr_town">Town Fight</string>
+    <string name="prog_pr_1_minute">1 Minute Isle Fight</string>
+    <string name="prog_pr_medallions">Interceptor Medallion Fight</string>
+    <string name="prog_pr_barrels">Interceptor Barrels</string>
+    <string name="prog_pr_barbossa">Barbossa (Boss)</string>
+    <string name="prog_pr_grim_reaper_1">Grim Reaper 1 (Boss)</string>
+    <string name="prog_pr_gambler">1st Gambler Medallion</string>
+    <string name="prog_pr_grim_reaper">Grim Reaper 2 (Boss)</string>
+    <string name="prog_pr_data_luxord">Luxord (Data)</string>
+
+    <string name="prog_at_tutorial">Music Tutorial</string>
+    <string name="prog_at_ursula">Ursula's Revenge</string>
+    <string name="prog_at_new_day">A New Day is Dawning</string>
+
+    <string name="prog_twtnw_roxas">Roxas (Boss)</string>
+    <string name="prog_twtnw_xigbar">Xigbar (Boss)</string>
+    <string name="prog_twtnw_luxord">Luxord (Boss)</string>
+    <string name="prog_twtnw_saix">Saix (Boss)</string>
+    <string name="prog_twtnw_xemnas_1">Xemnas 1 (Boss)</string>
+    <string name="prog_twtnw_data_xemnas">Xemnas (Data)</string>
+
+    <string name="prog_puz_awakening">Awakening Puzzle</string>
+    <string name="prog_puz_heart">Heart Puzzle</string>
+    <string name="prog_puz_duality">Duality Puzzle</string>
+    <string name="prog_puz_frontier">Frontier Puzzle</string>
+    <string name="prog_puz_daylight">Daylight Puzzle</string>
+    <string name="prog_puz_sunset">Sunset Puzzle</string>
+
+</resources>

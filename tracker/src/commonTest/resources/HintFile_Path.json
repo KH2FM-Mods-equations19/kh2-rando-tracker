@@ -1,0 +1,358 @@
+{
+  "hintsType": "Path",
+  "generatorVersion": "3.1.0-beta4",
+  "settings": [
+    "ExcludeFrom50",
+    "better_stt",
+    "Land of Dragons",
+    "Beast's Castle",
+    "Hollow Bastion",
+    "Cavern of Remembrance",
+    "Twilight Town",
+    "The World That Never Was",
+    "Space Paranoids",
+    "Port Royal",
+    "Olympus Coliseum",
+    "Agrabah",
+    "Halloween Town",
+    "Pride Lands",
+    "Disney Castle / Timeless River",
+    "Hundred Acre Wood",
+    "Simulated Twilight Town",
+    "Absent Silhouettes",
+    "Sephiroth",
+    "Data Organization XIII",
+    "Form Levels",
+    "Garden of Assemblage",
+    "Critical Bonuses",
+    "PromiseCharm",
+    "extra_ics",
+    "dummy_forms"
+  ],
+  "checkValue": {
+    "proof": 5,
+    "form": 9,
+    "magic": 7,
+    "summon": 5,
+    "ability": 5,
+    "keyblade": 0,
+    "page": 5,
+    "report": 3,
+    "visit": 9,
+    "bonus": 5,
+    "complete": 15,
+    "formlv": 3,
+    "other": 7,
+    "boss_as": 10,
+    "boss_datas": 20,
+    "boss_sephi": 30,
+    "boss_terra": 50,
+    "boss_final": 100,
+    "boss_other": 5,
+    "deaths": 0,
+    "collection_magic": 0,
+    "collection_page": 0,
+    "collection_pouches": 0,
+    "collection_proof": 0,
+    "collection_form": 0,
+    "collection_summon": 0,
+    "collection_ability": 0,
+    "collection_report": 0,
+    "collection_visit": 0
+  },
+  "hintableItems": [
+    "magic",
+    "form",
+    "summon",
+    "page",
+    "ability",
+    "visit",
+    "proof",
+    "report",
+    "other"
+  ],
+  "dummy_forms": true,
+  "level_data": {
+    "Valor Level": {
+      "7": 21
+    },
+    "Wisdom Level": {
+      "5": 55
+    },
+    "Limit Level": {
+      "6": 232,
+      "2": 460
+    },
+    "Master Level": {},
+    "Final Level": {},
+    "Level": {
+      "Sword": {
+        "17": 22,
+        "25": 32
+      },
+      "Staff": {
+        "17": 22,
+        "25": 32
+      },
+      "Shield": {
+        "17": 22,
+        "25": 32
+      }
+    }
+  },
+  "world": {
+    "Level": [
+      22,
+      32
+    ],
+    "Land of Dragons": [],
+    "Beast's Castle": [
+      159,
+      237,
+      32,
+      383,
+      62,
+      375,
+      563,
+      235
+    ],
+    "Hollow Bastion": [
+      24,
+      27,
+      72,
+      230,
+      87,
+      234,
+      595,
+      25
+    ],
+    "Twilight Town": [
+      535,
+      594,
+      59,
+      160,
+      54,
+      32
+    ],
+    "The World That Never Was": [
+      74,
+      23,
+      227
+    ],
+    "Space Paranoids": [
+      22
+    ],
+    "Atlantica": [],
+    "Port Royal": [
+      22,
+      23,
+      236,
+      31,
+      593,
+      88
+    ],
+    "Olympus Coliseum": [
+      32,
+      21,
+      32,
+      229,
+      368,
+      416,
+      88
+    ],
+    "Agrabah": [
+      29,
+      88,
+      87,
+      362,
+      228
+    ],
+    "Halloween Town": [
+      231,
+      24
+    ],
+    "Pride Lands": [
+      61,
+      375,
+      415,
+      23
+    ],
+    "Disney Castle / Timeless River": [
+      233,
+      87,
+      21
+    ],
+    "Hundred Acre Wood": [
+      226,
+      24,
+      26
+    ],
+    "Simulated Twilight Town": [
+      238
+    ],
+    "Form Levels": [
+      232,
+      55,
+      460,
+      21
+    ],
+    "Creations": [],
+    "Critical Bonuses": [
+      60,
+      73
+    ],
+    "Garden of Assemblage": [
+      369
+    ]
+  },
+  "Reports": {
+    "11": {
+      "HintedWorld": "Beast's Castle",
+      "Location": "Port Royal",
+      "ProofPath": [
+        "Connection",
+        "Peace",
+        "Nonexistence"
+      ],
+      "Text": "Beast's Castle has a path to all lights.",
+      "JournalText": "Negative Combo is at Hollow Bastion - Corridors AP Boost.\n\n"
+    },
+    "3": {
+      "HintedWorld": "Hollow Bastion",
+      "Location": "Agrabah",
+      "ProofPath": [
+        "Connection",
+        "Peace"
+      ],
+      "Text": "Hollow Bastion is on the path to Connection and Peace.",
+      "JournalText": "Auto Master is at Hollow Bastion - CoR Engine Chamber Remembrance Crystal.\n\nAerial Dive is at Disney Castle - Waterway Mythril Stone.\n\n"
+    },
+    "4": {
+      "HintedWorld": "Olympus Coliseum",
+      "Location": "Olympus Coliseum",
+      "ProofPath": [
+        "Peace"
+      ],
+      "Text": "Olympus Coliseum is on the path to Peace.",
+      "JournalText": "Guard Break is at Twilight Town - Tram Common AP Boost.\n\nBerserk Charge is at Land of Dragons - Throne Room AP Boost.\n\n"
+    },
+    "12": {
+      "HintedWorld": "Twilight Town",
+      "Location": "Beast's Castle",
+      "ProofPath": [
+        "Connection",
+        "Peace"
+      ],
+      "Text": "Twilight Town is on the path to Connection and Peace.",
+      "JournalText": "Auto Limit is at Hollow Bastion - Restoration Site AP Boost.\n\n"
+    },
+    "6": {
+      "HintedWorld": "Port Royal",
+      "Location": "Halloween Town",
+      "ProofPath": [
+        "Peace"
+      ],
+      "Text": "Port Royal is on the path to Peace.",
+      "JournalText": "Slide Dash is at TWTNW - Fragment Crossing AP Boost.\n\nAuto Valor is at TWTNW - The Brink of Despair Dark City Map.\n\n"
+    },
+    "9": {
+      "HintedWorld": "Agrabah",
+      "Location": "Hollow Bastion",
+      "ProofPath": [
+        "Connection"
+      ],
+      "Text": "Agrabah is on the path to Connection.",
+      "JournalText": "Finishing Leap is at Land of Dragons - Throne Room Torn Pages.\n\nCombo Master is at Halloween Town - Graveyard Mythril Shard (on Follow the Wind).\n\n"
+    },
+    "8": {
+      "HintedWorld": "Pride Lands",
+      "Location": "Disney Castle / Timeless River",
+      "ProofPath": [
+        "Nonexistence"
+      ],
+      "Text": "Pride Lands is on the path to Nonexistence.",
+      "JournalText": "Finishing Plus is at Pride Lands - Pride Rock Mythril Stone.\n\nExperience Boost is at Form Levels - Valor Level 5 (on Circle of Life).\n\n"
+    },
+    "1": {
+      "HintedWorld": "Form Levels",
+      "Location": "Hundred Acre Wood",
+      "ProofPath": [
+        "Peace"
+      ],
+      "Text": "Form Levels is on the path to Peace.",
+      "JournalText": "Slapshot is at Twilight Town - Mansion Foyer Mythril Stone.\n\nExplosion is at Sora's Heart - Level 12.\n\n"
+    },
+    "7": {
+      "HintedWorld": "Disney Castle / Timeless River",
+      "Location": "Form Levels",
+      "ProofPath": [
+        "Connection",
+        "Peace"
+      ],
+      "Text": "Disney Castle is on the path to Connection and Peace.",
+      "JournalText": "Horizontal Slash is at Beast's Castle - Belle's Room Mega-Recipe.\n\nExperience Boost is at Olympus Coliseum - The Lock Mythril Shard (on Pureblood).\n\n"
+    },
+    "5": {
+      "HintedWorld": "Hundred Acre Wood",
+      "Location": "Hollow Bastion",
+      "ProofPath": [
+        "Peace",
+        "Nonexistence"
+      ],
+      "Text": "100 Acre is on the path to Nonexistence and Peace.",
+      "JournalText": "Aerial Spiral is at Twilight Town - Underground Concourse Mythril Gem.\n\nMagnet Burst is at Form Levels - Wisdom Level 4.\n\n"
+    },
+    "2": {
+      "HintedWorld": "Level",
+      "Location": "The World That Never Was",
+      "ProofPath": [
+        "Peace"
+      ],
+      "Text": "Sora's Heart is on the path to Peace.",
+      "JournalText": "Trinity Limit is at Simulated Twilight Town - STT Central Station Hi-Potion.\n\nAuto Final is at Pride Lands - Wastelands Serenity Gem.\n\n"
+    },
+    "13": {
+      "HintedWorld": "Halloween Town",
+      "Location": "Simulated Twilight Town",
+      "ProofPath": [
+        "Peace"
+      ],
+      "Text": "Halloween Town is on the path to Peace.",
+      "JournalText": "Flash Step is at Form Levels - Valor Level 4.\n\n"
+    },
+    "10": {
+      "HintedWorld": "Space Paranoids",
+      "Location": "Beast's Castle",
+      "ProofPath": [
+        "Peace"
+      ],
+      "Text": "Space Paranoids is on the path to Peace.",
+      "JournalText": "Auto Wisdom is at Form Levels - Final Level 4.\n\nExperience Boost is at Agrabah - Agrabah Hi-Potion (on Star Seeker).\n\n"
+    }
+  },
+  "startingInventory": [
+    524,
+    537,
+    370,
+    462,
+    82,
+    138,
+    158,
+    102,
+    94,
+    564,
+    72,
+    59,
+    460,
+    369,
+    60,
+    55,
+    54,
+    61,
+    62,
+    74,
+    375,
+    73,
+    366
+  ]
+}

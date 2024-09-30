@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <string name="extended_window_title">Extended information</string>
+
+    <string name="extended_journal_title">Journal</string>
+    <string name="extended_misc_title">Misc</string>
+    <string name="extended_misc_next_level_check">Next level check</string>
+    <string name="extended_misc_drive_gauge_current_max">Drive Gauge current / maximum</string>
+    <string name="extended_misc_munny">Munny</string>
+    <string name="extended_misc_proof_information">Proof information</string>
+    <string name="extended_misc_proof_information_none">No proofs</string>
+
+    <string name="extended_window_song_label">Song information</string>
+    <string name="extended_no_game_state">No seed is loaded</string>
+    <string name="extended_no_music_state">No song information</string>
+    <string name="extended_song">Song</string>
+
+    <string name="extended_settings_show_on_startup">Automatically open on startup</string>
+    <string name="extended_settings_show_song_information">Display song information</string>
+    <string name="extended_settings_song_folder_as_group">Song folder as group name</string>
+
+</resources>
