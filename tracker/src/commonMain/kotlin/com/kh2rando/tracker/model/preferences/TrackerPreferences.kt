@@ -65,6 +65,15 @@ class TrackerPreferences(private val dataStore: DataStore<Preferences>) {
   )
 
   /**
+   * Whether or not to automatically start auto tracking.
+   */
+  val autoTrackingAutoStart = BooleanPreference(
+    dataStore,
+    key = booleanPreferencesKey("tracker.autoTrackingAutoStart"),
+    defaultValue = false,
+  )
+
+  /**
    * Whether or not to try to load custom image files.
    */
   val useCustomImages = BooleanPreference(

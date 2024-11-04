@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -28,6 +29,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
@@ -46,14 +48,15 @@ import com.kh2rando.tracker.generated.resources.extended_song
 import com.kh2rando.tracker.generated.resources.location_symphony_of_sorcery
 import com.kh2rando.tracker.model.DriveFormsState
 import com.kh2rando.tracker.model.Location
+import com.kh2rando.tracker.model.LocationCounterState
 import com.kh2rando.tracker.model.LocationLayout
 import com.kh2rando.tracker.model.MusicState
 import com.kh2rando.tracker.model.SoraState
 import com.kh2rando.tracker.model.gamestate.FullGameState
-import com.kh2rando.tracker.model.gamestate.LocationStateApi
 import com.kh2rando.tracker.model.item.MunnyPouch
 import com.kh2rando.tracker.model.preferences.TrackerPreferences
 import com.kh2rando.tracker.model.preferences.collectAsState
+import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -184,7 +187,7 @@ private fun MainExtendedWindowContent(
       ProofInfoArea(
         enabledLocations = gameState.seed.settings.enabledLocations,
         locationLayout = locationLayout,
-        locationStateProvider = { location -> gameState.stateForLocation(location) },
+        locationStatesProvider = { location -> gameState.locationUiStates.getValue(location) },
         onToggleUserProofMark = { location, userProofMark -> gameState.toggleUserProofMark(location, userProofMark) },
         modifier = Modifier.fillMaxWidth().weight(1.0f)
       )
@@ -196,7 +199,7 @@ private fun MainExtendedWindowContent(
 private fun ProofInfoArea(
   enabledLocations: Set<Location>,
   locationLayout: LocationLayout,
-  locationStateProvider: (Location) -> LocationStateApi,
+  locationStatesProvider: (Location) -> StateFlow<LocationUiState>,
   onToggleUserProofMark: (Location, UserProofMark) -> Unit,
   modifier: Modifier = Modifier,
 ) {
@@ -204,60 +207,84 @@ private fun ProofInfoArea(
     modifier = modifier,
     horizontalArrangement = Arrangement.spacedBy(4.dp),
   ) {
-    Column(
+    ProofInfoColumn(
+      locations = locationLayout.leftLocations.filter { it in enabledLocations },
+      locationStatesProvider = locationStatesProvider,
+      onToggleUserProofMark = onToggleUserProofMark,
       modifier = Modifier.weight(1.0f),
-      verticalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
-      locationLayout.leftLocations.asSequence().filter { it in enabledLocations }.forEach { location ->
-        val locationState = locationStateProvider(location)
-        LocationProofInfoArea(
-          locationState,
-          onToggleUserProofMark = { userProofMark -> onToggleUserProofMark(location, userProofMark) },
-          modifier = Modifier.fillMaxWidth()
-        )
-      }
-    }
+    )
+    ProofInfoColumn(
+      locations = locationLayout.rightLocations.filter { it in enabledLocations },
+      locationStatesProvider = locationStatesProvider,
+      onToggleUserProofMark = onToggleUserProofMark,
+      modifier = Modifier.weight(1.0f),
+    )
+  }
+}
 
-    Column(
-      modifier = Modifier.weight(1.0f),
-      verticalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
-      locationLayout.rightLocations.asSequence().filter { it in enabledLocations }.forEach { location ->
-        val locationState = locationStateProvider(location)
-        LocationProofInfoArea(
-          locationState,
-          onToggleUserProofMark = { userProofMark -> onToggleUserProofMark(location, userProofMark) },
-          modifier = Modifier.fillMaxWidth()
-        )
-      }
+@Composable
+private fun ProofInfoColumn(
+  locations: List<Location>,
+  locationStatesProvider: (Location) -> StateFlow<LocationUiState>,
+  onToggleUserProofMark: (Location, UserProofMark) -> Unit,
+  modifier: Modifier = Modifier,
+) {
+  Column(
+    modifier = modifier,
+    verticalArrangement = Arrangement.spacedBy(4.dp),
+  ) {
+    locations.forEach { location ->
+      val locationState = locationStatesProvider(location)
+      LocationProofInfoArea(
+        locationState,
+        onToggleUserProofMark = { userProofMark -> onToggleUserProofMark(location, userProofMark) },
+        modifier = Modifier.fillMaxWidth()
+      )
     }
   }
 }
 
 @Composable
 private fun LocationProofInfoArea(
-  locationState: LocationStateApi,
+  locationStates: StateFlow<LocationUiState>,
   onToggleUserProofMark: (UserProofMark) -> Unit,
   modifier: Modifier = Modifier,
 ) {
+  val locationState by locationStates.collectAsState()
   val location = locationState.location
-  val userProofMarks by locationState.userProofMarks.collectAsState()
-  Surface(color = MaterialTheme.colorScheme.surfaceContainer) {
+  val userProofMarks = locationState.userProofMarks
+  val completed = locationState.counterState == LocationCounterState.Completed
+  val noProofs = UserProofMark.NoProofs in userProofMarks
+  val colorScheme = MaterialTheme.colorScheme
+  Surface(color = colorScheme.surfaceContainer) {
     Row(
       modifier = modifier.heightIn(max = 48.dp).padding(4.dp),
       verticalAlignment = Alignment.CenterVertically,
     ) {
-      CustomizableIcon(
-        location,
-        contentDescription = location.localizedName,
-        modifier = Modifier.weight(1.0f),
-      )
+      Box(Modifier.weight(1.0f)) {
+        CustomizableIcon(
+          location,
+          contentDescription = location.localizedName,
+          modifier = Modifier.align(Alignment.Center),
+          alpha = if (noProofs || completed) GhostAlpha else DefaultAlpha,
+        )
+
+        if (completed) {
+          CompletedIndicator(Modifier.fillMaxHeight(0.5f).align(Alignment.BottomEnd))
+        }
+      }
+
       for (userProofMark in UserProofMark.entries) {
         UserProofMark(
           userProofMark,
           selected = userProofMark in userProofMarks,
+          tintOverride = if (noProofs && userProofMark != UserProofMark.NoProofs) {
+            colorScheme.disabledItemTint
+          } else {
+            null
+          },
           onToggleUserProofMark = onToggleUserProofMark,
-          modifier = Modifier.weight(1.0f)
+          modifier = Modifier.weight(1.0f),
         )
       }
     }
@@ -269,13 +296,15 @@ private fun LocationProofInfoArea(
 private fun UserProofMark(
   userProofMark: UserProofMark,
   selected: Boolean,
+  tintOverride: Color?,
   onToggleUserProofMark: (UserProofMark) -> Unit,
   modifier: Modifier = Modifier,
 ) {
   CustomizableIcon(
-    userProofMark.icon,
+    userProofMark,
     contentDescription = stringResource(userProofMark.displayString),
-    alpha = if (selected) DefaultAlpha else 0.15f,
+    alpha = if (selected || tintOverride != null) DefaultAlpha else 0.15f,
+    tintColorOverride = tintOverride,
     modifier = modifier
       .clickable { onToggleUserProofMark(userProofMark) }
       .onPointerEvent(PointerEventType.Scroll) { event ->

@@ -234,7 +234,7 @@ private fun AvailableItemCell(
               OutlinedText(
                 revealedButNotAcquiredCount.toString(),
                 style = typography.titleMedium.shrinkableToFitHeight(availableHeight),
-                color = colorScheme.uiDarkGreen,
+                color = colorScheme.onPrimary,
                 outlineColor = LocalContentColor.current,
                 outlineStroke = Stroke(4.0f, join = StrokeJoin.Round),
                 fontFamily = khMenuFontFamily(),

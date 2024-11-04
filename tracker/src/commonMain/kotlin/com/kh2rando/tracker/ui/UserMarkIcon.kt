@@ -19,6 +19,7 @@ import com.kh2rando.tracker.generated.resources.user_mark_nonexistence
 import com.kh2rando.tracker.generated.resources.user_mark_peace
 import com.kh2rando.tracker.model.HasCustomizableIcon
 import com.kh2rando.tracker.model.item.Proof
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.imageResource
 
@@ -104,29 +105,44 @@ enum class UserMarkIcon {
 
 }
 
-enum class UserProofMark(
-  val icon: HasCustomizableIcon,
-  val displayString: StringResource,
-) {
+enum class UserProofMark(val displayString: StringResource) : HasCustomizableIcon {
 
-  NoProofs(
-    icon = SystemIcon.Prohibition,
-    displayString = Res.string.extended_misc_proof_information_none,
-  ),
+  NoProofs(displayString = Res.string.extended_misc_proof_information_none) {
+    override val defaultIcon: DrawableResource
+      get() = Res.drawable.system_crossworld
+    override val defaultIconTint: Color
+      get() = Color.Unspecified
+    override val customIconPath: List<String>
+      get() = SystemIcon.Prohibition.customIconPath
+    override val customIconIdentifier: String
+      get() = SystemIcon.Prohibition.customIconIdentifier
+  },
 
-  Connection(
-    icon = Proof.ProofOfConnection,
-    displayString = Res.string.proof_of_connection,
-  ),
+  Connection(displayString = Res.string.proof_of_connection) {
+    override val defaultIcon: DrawableResource
+      get() = Res.drawable.user_mark_connection
+    override val customIconPath: List<String>
+      get() = Proof.ProofOfConnection.customIconPath
+    override val customIconIdentifier: String
+      get() = Proof.ProofOfConnection.customIconIdentifier
+  },
 
-  Nonexistence(
-    icon = Proof.ProofOfNonexistence,
-    displayString = Res.string.proof_of_nonexistence,
-  ),
+  Nonexistence(displayString = Res.string.proof_of_nonexistence) {
+    override val defaultIcon: DrawableResource
+      get() = Res.drawable.user_mark_nonexistence
+    override val customIconPath: List<String>
+      get() = Proof.ProofOfNonexistence.customIconPath
+    override val customIconIdentifier: String
+      get() = Proof.ProofOfNonexistence.customIconIdentifier
+  },
 
-  Peace(
-    icon = Proof.ProofOfPeace,
-    displayString = Res.string.proof_of_peace,
-  ),
+  Peace(displayString = Res.string.proof_of_peace) {
+    override val defaultIcon: DrawableResource
+      get() = Res.drawable.user_mark_peace
+    override val customIconPath: List<String>
+      get() = Proof.ProofOfPeace.customIconPath
+    override val customIconIdentifier: String
+      get() = Proof.ProofOfPeace.customIconIdentifier
+  },
 
 }

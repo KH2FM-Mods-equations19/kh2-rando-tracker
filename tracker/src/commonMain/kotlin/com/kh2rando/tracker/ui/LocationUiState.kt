@@ -38,6 +38,7 @@ data class LocationUiState(
   val lockedVisitCount: Int = 0,
   val counterState: LocationCounterState = LocationCounterState.None,
   val completedProgressCheckpoints: ImmutableSet<ProgressCheckpoint> = persistentSetOf(),
+  val userProofMarks: ImmutableSet<UserProofMark> = persistentSetOf(),
   val userMarkCount: Int = 0,
   val auxiliaryHintInfo: LocationAuxiliaryHintInfo = LocationAuxiliaryHintInfo.NotApplicableToHintSystem,
 ) {

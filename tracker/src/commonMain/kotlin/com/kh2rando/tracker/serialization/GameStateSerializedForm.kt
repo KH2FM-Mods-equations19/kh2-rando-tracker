@@ -20,6 +20,7 @@ data class GameStateSerializedForm(
   val ansemReportStrikes: List<Int>,
   val deaths: Int,
   val manuallyCompletedObjectives: Set<Objective>,
+  val objectivesMarkedSecondary: Set<Objective>,
 ) {
 
   fun toBaseGameState(): BaseGameState {
@@ -28,6 +29,7 @@ data class GameStateSerializedForm(
       ansemReportStrikes = ansemReportStrikes.toImmutableList(),
       deaths = deaths,
       manuallyCompletedObjectives = manuallyCompletedObjectives.toImmutableSet(),
+      objectivesMarkedSecondary = objectivesMarkedSecondary.toImmutableSet(),
     )
 
     for (serializedLocation in locations) {

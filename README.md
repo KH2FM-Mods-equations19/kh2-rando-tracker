@@ -32,6 +32,7 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
             - If using randomized music from the seed generator, displays the replacement song
               name (and
               optionally a song group)
+    - Option to start auto-tracking automatically
 - Tracker Progress saving
     - Manually
     - Automatically on a timer
@@ -50,15 +51,12 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 
 ## Planned
 
-- Customization
-    - Colors for certain components
-    - Fonts?
-- Automatic connect/reconnect for auto-tracking
-- Custom icons for location scroll-wheel marking
-- Icons and/or colors for marking objectives
+- Additional customization options
+- Indicator for "last revealed location"
 
 ## Not planned at this time (may reconsider at some point)
 
+- Automatic reconnect for auto-tracking after connection loss
 - Randomized bosses/enemies hinting
 - Explicit Reverse Rando support
 - Auto tracking for puzzle objective completion
@@ -70,9 +68,9 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 
 ## Changelog
 
-### 1.9.0
+### 1.9.1
 
-Initial public (re)release.
+- Initial public (re)release.
 
 ## Acknowledgements
 

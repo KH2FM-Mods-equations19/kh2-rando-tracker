@@ -14,6 +14,7 @@ import com.kh2rando.tracker.generated.resources.debug_progression_menu
 import com.kh2rando.tracker.generated.resources.menu_about_tracker
 import com.kh2rando.tracker.generated.resources.menu_auto_math
 import com.kh2rando.tracker.generated.resources.menu_auto_save_progress
+import com.kh2rando.tracker.generated.resources.menu_auto_tracking_auto_start
 import com.kh2rando.tracker.generated.resources.menu_extended_window
 import com.kh2rando.tracker.generated.resources.menu_layout_classic
 import com.kh2rando.tracker.generated.resources.menu_layout_goa
@@ -109,6 +110,15 @@ fun MenuBarScope.SettingsMenu(preferences: TrackerPreferences) {
         }
       )
     }
+
+    val autoTrackingAutoStart by preferences.autoTrackingAutoStart.collectAsState()
+    CheckboxItem(
+      stringResource(Res.string.menu_auto_tracking_auto_start),
+      checked = autoTrackingAutoStart,
+      onCheckedChange = { newValue ->
+        scope.launch { preferences.autoTrackingAutoStart.save(newValue) }
+      }
+    )
 
     val autoSaveProgress by preferences.autoSaveTrackerProgress.collectAsState()
     CheckboxItem(

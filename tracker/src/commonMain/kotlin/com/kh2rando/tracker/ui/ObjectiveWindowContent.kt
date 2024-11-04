@@ -8,13 +8,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -24,12 +22,15 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.DefaultAlpha
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.kh2rando.tracker.generated.resources.Res
-import com.kh2rando.tracker.generated.resources.desc_location_complete
 import com.kh2rando.tracker.generated.resources.objectives_completed
 import com.kh2rando.tracker.generated.resources.objectives_none_to_display
 import com.kh2rando.tracker.model.ColorToken
@@ -82,6 +83,7 @@ private fun Objectives(
   }
 
   val manuallyCompletedObjectives by gameState.manuallyCompletedObjectives.collectAsState()
+  val objectivesMarkedSecondary by gameState.objectivesMarkedSecondary.collectAsState()
   val allCompletedProgress by gameState.allCompletedProgressCheckpoints.collectAsState(emptySet())
   fun Objective.isMet(): Boolean {
     return manuallyCompletedObjectives.contains(this) || allCompletedProgress.contains(checkpoint)
@@ -121,6 +123,8 @@ private fun Objectives(
           ColorToken.Green.color.copy(alpha = 0.5f)
         } else if (isMet) {
           ColorToken.Red.color.copy(alpha = 0.5f)
+        } else if (objective in objectivesMarkedSecondary) {
+          MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
         } else {
           Color.Transparent
         }
@@ -129,6 +133,7 @@ private fun Objectives(
           objective = objective,
           isMet = isMet,
           onClick = { gameState.manuallyToggleObjective(objective) },
+          onScrollWheel = { gameState.toggleObjectiveSecondary(objective) },
           modifier = Modifier
             .background(background)
             .border(1.dp, MaterialTheme.colorScheme.outline)
@@ -140,16 +145,28 @@ private fun Objectives(
 }
 
 @Composable
+@OptIn(ExperimentalComposeUiApi::class)
 private fun ObjectiveCell(
   objective: Objective,
   isMet: Boolean,
   onClick: () -> Unit,
+  onScrollWheel: () -> Unit,
   modifier: Modifier = Modifier,
 ) {
   val checkpoint = objective.checkpoint
   val objectiveText = stringResource(objective.description)
+  val alpha = if (isMet) 0.5f else DefaultAlpha
 
-  Box(modifier = modifier.clickable(onClick = onClick)) {
+  Box(
+    modifier = modifier
+      .clickable(onClick = onClick)
+      .onPointerEvent(PointerEventType.Scroll) { event ->
+        val scrollDeltaY = event.changes.first().scrollDelta.y
+        if (scrollDeltaY != 0.0f) {
+          onScrollWheel()
+        }
+      },
+  ) {
     if (checkpoint is DriveFormProgress) {
       if (checkpoint.findCustomIconFile() == null) {
         IconBadgeCell(
@@ -159,7 +176,7 @@ private fun ObjectiveCell(
         )
       } else {
         SimpleTooltipArea(tooltipText = objectiveText) {
-          CustomizableIcon(icon = checkpoint, contentDescription = objectiveText)
+          CustomizableIcon(icon = checkpoint, contentDescription = objectiveText, alpha = alpha)
         }
       }
     } else if (checkpoint is SoraLevelProgress) {
@@ -171,22 +188,17 @@ private fun ObjectiveCell(
         )
       } else {
         SimpleTooltipArea(tooltipText = objectiveText) {
-          CustomizableIcon(icon = checkpoint, contentDescription = objectiveText)
+          CustomizableIcon(icon = checkpoint, contentDescription = objectiveText, alpha = alpha)
         }
       }
     } else {
       SimpleTooltipArea(tooltipText = objectiveText) {
-        CustomizableIcon(icon = checkpoint, contentDescription = objectiveText)
+        CustomizableIcon(icon = checkpoint, contentDescription = objectiveText, alpha = alpha)
       }
     }
 
     if (isMet) {
-      Icon(
-        Icons.Filled.CheckCircle,
-        contentDescription = stringResource(Res.string.desc_location_complete),
-        tint = ColorToken.LightBlue.color,
-        modifier = Modifier.align(Alignment.TopEnd),
-      )
+      CompletedIndicator(modifier = Modifier.heightIn(max = 32.dp).align(Alignment.TopEnd))
     }
   }
 }

@@ -21,9 +21,12 @@ import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.graphics.isSpecified
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.kh2rando.tracker.generated.resources.Res
+import com.kh2rando.tracker.generated.resources.desc_location_complete
 import com.kh2rando.tracker.model.ColorToken
 import com.kh2rando.tracker.model.HasColorToken
 import com.kh2rando.tracker.model.HasCustomizableIcon
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Alpha value for "ghost" entities.
@@ -31,6 +34,18 @@ import com.kh2rando.tracker.model.HasCustomizableIcon
 const val GhostAlpha: Float = 0.25f
 
 val TrackerDarkColorScheme: ColorScheme = darkColorScheme(
+  primary = Color(0xFF9BCBFB),
+  onPrimary = Color(0xFF003353),
+  primaryContainer = Color(0xFF0E4A73),
+  onPrimaryContainer = Color(0xFFCEE5FF),
+  secondary = Color(0xFFB9C8DA),
+  onSecondary = Color(0xFF233240),
+  secondaryContainer = Color(0xFF3A4857),
+  onSecondaryContainer = Color(0xFFD5E4F7),
+  tertiary = Color(0xFFD3BFE6),
+  onTertiary = Color(0xFF382A49),
+  tertiaryContainer = Color(0xFF4F4061),
+  onTertiaryContainer = Color(0xFFEEDBFF),
   surface = Color(0xFF202020),
   surfaceContainerLowest = Color(0xFF000000),
   surfaceContainerLow = Color(0xFF101010),
@@ -72,9 +87,6 @@ val HasColorToken.color: Color
 fun Color.tintFilterOrNull(): ColorFilter? {
   return if (isSpecified) ColorFilter.tint(this) else null
 }
-
-val ColorScheme.uiDarkGreen: Color
-  get() = Color(0xFF2A732E)
 
 @Composable
 fun SmallHeader(text: String, modifier: Modifier = Modifier) {
@@ -139,4 +151,13 @@ fun IconBadgeCell(
       }
     }
   }
+}
+
+@Composable
+fun CompletedIndicator(modifier: Modifier = Modifier) {
+  CustomizableIcon(
+    SystemIcon.Complete,
+    contentDescription = stringResource(Res.string.desc_location_complete),
+    modifier = modifier,
+  )
 }

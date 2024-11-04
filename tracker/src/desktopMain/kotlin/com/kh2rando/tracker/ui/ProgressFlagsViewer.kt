@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -26,7 +25,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.kh2rando.tracker.auto.GameProcessFinder
 import com.kh2rando.tracker.auto.ProgressReader
-import com.kh2rando.tracker.model.ColorToken
 import com.kh2rando.tracker.model.Location
 import com.kh2rando.tracker.model.progress.AgrabahProgress
 import com.kh2rando.tracker.model.progress.AtlanticaProgress
@@ -75,7 +73,7 @@ fun ProgressFlagsViewerContent(
         ) {
           Text(flag.toString(), textAlign = TextAlign.End)
           if (value) {
-            Icon(Icons.Default.CheckCircle, contentDescription = null, tint = ColorToken.Green.color)
+            CompletedIndicator()
           } else {
             Icon(Icons.Default.Clear, contentDescription = null)
           }

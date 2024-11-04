@@ -259,6 +259,20 @@ fun main(args: Array<String>) {
             }
           }
 
+          val autoTrackingAutoStart by preferences.autoTrackingAutoStart.collectAsState()
+          LaunchedEffect(gameState, autoTrackingAutoStart) {
+            if (gameState != null && autoTrackingAutoStart) {
+              startAutoTracking(
+                gameState = gameState,
+                coroutineScope = applicationCoroutineScope,
+                onTrackingStateChange = { autoTrackingState = it },
+                onScanFinished = { duration ->
+                  trackerStateViewModel.publishAutoTrackerScanTime(duration)
+                }
+              )
+            }
+          }
+
           val autoSaveProgress by preferences.autoSaveTrackerProgress.collectAsState()
           LaunchedEffect(gameState, autoSaveProgress) {
             if (gameState != null && autoSaveProgress) {

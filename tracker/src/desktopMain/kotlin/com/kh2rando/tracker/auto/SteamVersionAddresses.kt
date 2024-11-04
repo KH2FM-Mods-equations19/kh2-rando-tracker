@@ -37,17 +37,17 @@ class SteamGlobal10010 : GameAddresses(
   localizationVersion = GameLocalizationVersion.Global,
   versionCheckAddress = Address(0x660EF4),
   versionCheckExpectedValue = 106,
-  now = Address(0x717008), // TODO: Double check this because it's the same one listed for 1.0.0.9
+  now = Address(0x717008),
   save = Address(0x9A98B0),
   sys3Pointer = Address(0x2AE5E50),
   btl0Pointer = Address(0x2AE5E58),
   btlEnd = Address(0x2A0FCE0),
   slot1 = Address(0x2A23598),
-  menu = Address(0x7435D0), // TODO: Double check this because it's the same one listed for 1.0.0.9
-  abilityToPause = Address(0xABB878), // TODO: GoA ROM has this at 0x0ABB828
+  menu = Address(0x7435D0),
+  abilityToPause = Address(0xABB878),
   battleStatus = Address(0x2A11404),
   backgroundMusic = Address(0xABAD44),
-//  filePointer = Address(),
+//  filePointer = Address(0x29F3458),
 ) {
 
   override fun toString(): String = "Steam Global 1.0.0.10"

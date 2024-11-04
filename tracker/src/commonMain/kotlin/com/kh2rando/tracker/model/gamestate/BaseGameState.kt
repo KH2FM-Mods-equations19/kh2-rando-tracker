@@ -41,6 +41,7 @@ class BaseGameState(
   ansemReportStrikes: List<Int> = List(13) { 0 },
   deaths: Int = 0,
   manuallyCompletedObjectives: Set<Objective> = emptySet(),
+  objectivesMarkedSecondary: Set<Objective> = emptySet(),
 ) : BaseGameStateApi, BaseGameStateUpdateApi {
 
   private val _soraState = MutableStateFlow(SoraState.Unspecified)
@@ -101,6 +102,11 @@ class BaseGameState(
     MutableStateFlow(manuallyCompletedObjectives.toPersistentSet())
   override val manuallyCompletedObjectives: StateFlow<ImmutableSet<Objective>>
     get() = _manuallyCompletedObjectives
+
+  private val _objectivesMarkedSecondary: MutableStateFlow<PersistentSet<Objective>> =
+    MutableStateFlow(objectivesMarkedSecondary.toPersistentSet())
+  override val objectivesMarkedSecondary: StateFlow<ImmutableSet<Objective>>
+    get() = _objectivesMarkedSecondary
 
   private val _ansemReportStrikes: MutableStateFlow<PersistentList<Int>> =
     MutableStateFlow(ansemReportStrikes.toPersistentList())
@@ -220,6 +226,16 @@ class BaseGameState(
 
   override fun manuallyToggleObjective(objective: Objective) {
     _manuallyCompletedObjectives.update { previous ->
+      if (objective in previous) {
+        previous - objective
+      } else {
+        previous + objective
+      }
+    }
+  }
+
+  override fun toggleObjectiveSecondary(objective: Objective) {
+    _objectivesMarkedSecondary.update { previous ->
       if (objective in previous) {
         previous - objective
       } else {

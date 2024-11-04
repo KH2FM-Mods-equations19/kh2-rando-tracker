@@ -4,6 +4,7 @@
     <string name="app_title">KH2 Rando Tracker</string>
     <string name="menu_tracker">Tracker</string>
     <string name="menu_start_auto_tracking">Start auto-tracking</string>
+    <string name="menu_auto_tracking_auto_start">Automatically start auto-tracking</string>
     <string name="menu_save_progress">Save progress</string>
     <string name="menu_extended_window">Extended information window</string>
     <string name="menu_objective_window">Objective window</string>

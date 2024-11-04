@@ -15,6 +15,7 @@ import com.kh2rando.tracker.generated.resources.status_pc_connected
 import com.kh2rando.tracker.generated.resources.status_pc_detected
 import com.kh2rando.tracker.generated.resources.status_searching
 import com.kh2rando.tracker.generated.resources.system_block
+import com.kh2rando.tracker.generated.resources.system_mickey
 import com.kh2rando.tracker.model.ColorToken
 import com.kh2rando.tracker.model.HasColorToken
 import com.kh2rando.tracker.model.HasCustomizableIcon
@@ -162,6 +163,17 @@ enum class SystemIcon : HasCustomizableIcon, HasColorToken {
       get() = listOf("System", "stats")
     override val customIconIdentifier: String
       get() = "emblem"
+    override val colorToken: ColorToken
+      get() = ColorToken.Orange
+  },
+
+  Complete {
+    override val defaultIcon: DrawableResource
+      get() = Res.drawable.system_mickey
+    override val customIconPath: List<String>
+      get() = listOf("System")
+    override val customIconIdentifier: String
+      get() = "complete"
     override val colorToken: ColorToken
       get() = ColorToken.Orange
   },

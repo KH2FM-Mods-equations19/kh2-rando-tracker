@@ -101,6 +101,11 @@ interface BaseGameStateApi {
   val manuallyCompletedObjectives: StateFlow<ImmutableSet<Objective>>
 
   /**
+   * Objectives that have been marked with their secondary indication.
+   */
+  val objectivesMarkedSecondary: StateFlow<ImmutableSet<Objective>>
+
+  /**
    * Returns a [LocationStateApi] giving access to some of the state of the given [location].
    */
   fun stateForLocation(location: Location): LocationStateApi
@@ -240,6 +245,11 @@ interface BaseGameStateUpdateApi : BaseGameStateApi {
    * auto-tracking.
    */
   fun manuallyToggleObjective(objective: Objective)
+
+  /**
+   * Toggles the secondary indication for [objective].
+   */
+  fun toggleObjectiveSecondary(objective: Objective)
 
   /**
    * Determines what changes need to be applied based on two [AutoTrackerSnapshot]s, and applies those changes to this

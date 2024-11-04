@@ -25,7 +25,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.Icon
@@ -60,13 +59,13 @@ import androidx.compose.ui.unit.coerceAtLeast
 import androidx.compose.ui.unit.dp
 import com.kh2rando.tracker.generated.resources.Res
 import com.kh2rando.tracker.generated.resources.ansem_report
-import com.kh2rando.tracker.generated.resources.desc_location_complete
 import com.kh2rando.tracker.generated.resources.desc_locked_visit
 import com.kh2rando.tracker.generated.resources.desc_no_path_to_light
 import com.kh2rando.tracker.generated.resources.hint_count_adjusted_by_reveals
 import com.kh2rando.tracker.generated.resources.hint_hinted_hint
 import com.kh2rando.tracker.generated.resources.max_form_level_text
 import com.kh2rando.tracker.generated.resources.max_form_level_tooltip
+import com.kh2rando.tracker.generated.resources.proof_blank
 import com.kh2rando.tracker.model.ColorToken
 import com.kh2rando.tracker.model.GameId
 import com.kh2rando.tracker.model.HasCustomizableIcon
@@ -247,7 +246,6 @@ private fun LocationRow(
   val isUserSelectedLocation = locationUiState.isUserSelectedLocation
   LocationRowContent(
     isUserSelectedLocation = isUserSelectedLocation,
-    isDetectedLocation = locationUiState.isAutoDetectedLocation,
     headerContent = {
       val counterState = locationUiState.counterState
 
@@ -262,7 +260,33 @@ private fun LocationRow(
         counterState = counterState,
         counterContent = { CounterArea(counterState = counterState) },
         userMarkContent = {
-          AnimatedContent(locationUiState.userMarkIcon) { icon -> icon.Content(Modifier) }
+          val userProofMarks = locationUiState.userProofMarks
+          val markedProofCount = userProofMarks.size
+          if (markedProofCount == 0) {
+            AnimatedContent(locationUiState.userMarkIcon) { icon -> icon.Content(Modifier) }
+          } else {
+            BoxWithConstraints(contentAlignment = Alignment.Center) {
+              if (markedProofCount > 1) {
+                Image(
+                  imageResource(Res.drawable.proof_blank),
+                  contentDescription = null,
+                  alpha = 0.8f,
+                )
+                CounterText(
+                  markedProofCount.toString(),
+                  maximumHeight = maxHeight / 2,
+                  color = LocalContentColor.current.copy(alpha = 0.8f),
+                )
+              } else {
+                val proofMark = userProofMarks.first()
+                CustomizableIcon(
+                  icon = proofMark,
+                  contentDescription = stringResource(proofMark.displayString),
+                  alpha = 0.8f,
+                )
+              }
+            }
+          }
         },
         onLocationClick = { locationUiState.toggleUserSelection() },
         onScrollLocationMark = { delta ->
@@ -351,7 +375,6 @@ private fun ProgressCheckpointIndicator(
 @Composable
 private fun LocationRowContent(
   isUserSelectedLocation: Boolean,
-  isDetectedLocation: Boolean,
   headerContent: @Composable () -> Unit,
   hintsAreaContent: @Composable () -> Unit,
   locationItemsContent: @Composable () -> Unit,
@@ -405,7 +428,6 @@ private fun LocationRowContent(
           drawRect(color = dropIndicationColor, alpha = 0.2f)
         }
       },
-    color = if (isDetectedLocation) colorScheme.surfaceContainerHigh else colorScheme.surfaceContainer
   ) {
     Row(verticalAlignment = Alignment.CenterVertically) {
       headerContent()
@@ -544,12 +566,7 @@ private fun BoxWithConstraintsScope.CounterArea(
       }
 
       LocationCounterState.Completed -> {
-        Icon(
-          Icons.Filled.CheckCircle,
-          contentDescription = stringResource(Res.string.desc_location_complete),
-          tint = ColorToken.LightBlue.color,
-          modifier = modifier
-        )
+        CompletedIndicator(modifier)
       }
     }
   }
@@ -768,7 +785,7 @@ private fun DragAndDropEvent.parseGameId(): GameId? {
 }
 
 private fun ColorScheme.colorForSelectedOrNot(selectedLocation: Boolean, defaultColor: Color): Color {
-  return if (selectedLocation) uiDarkGreen else defaultColor
+  return if (selectedLocation) secondaryContainer else defaultColor
 }
 
 private fun locationRowWeight(thisLocationItemRowCount: Int): Float {

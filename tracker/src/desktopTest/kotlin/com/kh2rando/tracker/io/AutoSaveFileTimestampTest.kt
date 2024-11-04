@@ -3,14 +3,14 @@ package com.kh2rando.tracker.io
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.Month
-import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class AutoSaveFileTimestampTest {
 
-  private val zone = ZoneId.of("America/Chicago")
+  private val zone = ZoneOffset.UTC
 
   @Test
   fun `scenario that was broken at one time`() {
@@ -20,7 +20,7 @@ class AutoSaveFileTimestampTest {
       zone,
     )
     val result = TrackerFileHandler.autoSaveFileTimestamp(testTime)
-    assertEquals(expected = "20241025-003501", actual = result)
+    assertEquals(expected = "20241025-02101000", actual = result)
   }
 
   @Test
@@ -31,7 +31,7 @@ class AutoSaveFileTimestampTest {
       zone,
     )
     val result = TrackerFileHandler.autoSaveFileTimestamp(testTime)
-    assertEquals(expected = "20241024-235959", actual = result)
+    assertEquals(expected = "20241024-86399000", actual = result)
   }
 
   @Test
@@ -42,7 +42,7 @@ class AutoSaveFileTimestampTest {
       zone,
     )
     val result = TrackerFileHandler.autoSaveFileTimestamp(testTime)
-    assertEquals(expected = "20241025-000000", actual = result)
+    assertEquals(expected = "20241025-00000000", actual = result)
   }
 
 }

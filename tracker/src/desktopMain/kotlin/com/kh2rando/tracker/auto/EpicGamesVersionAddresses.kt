@@ -42,12 +42,12 @@ class EpicGlobal10010 : GameAddresses(
   sys3Pointer = Address(0x2AE58D0),
   btl0Pointer = Address(0x2AE58D8),
   btlEnd = Address(0x2A0F760),
-  slot1 = Address(0x2A23018),
+  slot1 = Address(0x2A22318),
   menu = Address(0x743350),
   abilityToPause = Address(0xABB2F8),
   battleStatus = Address(0x2A10E84),
   backgroundMusic = Address(0xABA7C4),
-//  filePointer = Address(),
+//  filePointer = Address(0x29F2D18),
 ) {
 
   override fun toString(): String = "Epic Games Global 1.0.0.10"

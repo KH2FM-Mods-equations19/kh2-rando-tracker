@@ -26,8 +26,10 @@ import kotlinx.serialization.encodeToByteArray
 import okio.Path
 import okio.Path.Companion.toOkioPath
 import okio.buffer
+import okio.gzip
 import okio.use
 import java.io.File
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.zip.ZipFile
@@ -127,8 +129,10 @@ class TrackerFileHandler(private val ioDispatcher: CoroutineDispatcher) {
    */
   suspend fun readTrackerProgressFile(file: File): GameStateSerializedForm {
     return withContext(ioDispatcher) {
-      file.inputStream().use { stream ->
-        Cbor.decodeFromByteArray(stream.readAllBytes())
+      TrackerFileSystem.fileSystem.source(file.toOkioPath()).use { source ->
+        source.gzip().buffer().use { buffer ->
+          Cbor.decodeFromByteArray(buffer.readByteArray())
+        }
       }
     }
   }
@@ -136,9 +140,9 @@ class TrackerFileHandler(private val ioDispatcher: CoroutineDispatcher) {
   /**
    * Writes [gameState] to the specified tracker progress file.
    */
-  fun writeTrackerProgressFile(path: Path, gameState: GameStateSerializedForm) {
+  private fun writeTrackerProgressFile(path: Path, gameState: GameStateSerializedForm) {
     TrackerFileSystem.fileSystem.sink(path).use { sink ->
-      sink.buffer().use { buffer ->
+      sink.gzip().buffer().use { buffer ->
         val bytes = Cbor.encodeToByteArray(gameState)
         buffer.write(bytes)
       }
@@ -179,7 +183,7 @@ class TrackerFileHandler(private val ioDispatcher: CoroutineDispatcher) {
     fileSystem.listOrNull(TrackerFileSystem.autoSavesDirectory).orEmpty()
       .filter { it.name.substringAfterLast(".") == TRACKER_FILE_EXTENSION }
       .sortedByDescending { it.name }
-      .drop(2)
+      .drop(50)
       .forEach(fileSystem::delete)
   }
 
@@ -187,7 +191,8 @@ class TrackerFileHandler(private val ioDispatcher: CoroutineDispatcher) {
 
     const val TRACKER_FILE_EXTENSION = "kh2tracker"
 
-    private val trackerTimestampFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")
+    private val trackerTimestampFormatter: DateTimeFormatter =
+      DateTimeFormatter.ofPattern("yyyyMMdd-AAAAAAAA").withZone(ZoneOffset.UTC)
 
     private val autoSaveInterval: Duration
       get() = 1.minutes

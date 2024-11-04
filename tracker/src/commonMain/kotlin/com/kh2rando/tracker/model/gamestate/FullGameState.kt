@@ -105,6 +105,7 @@ class FullGameState(
         revealedItemLists.getValue(location),
         counterStates.getValue(location),
         locationState.completedProgressCheckpoints,
+        locationState.userProofMarks,
         locationState.userMarkCounts,
         auxiliaryHintInfos.getValue(location),
       ) {
@@ -115,6 +116,7 @@ class FullGameState(
           locationRevealedItems,
           counterState,
           completedProgressCheckpoints,
+          userProofMarks,
           userMarkCount,
           auxiliaryHintInfo,
         ->
@@ -138,6 +140,7 @@ class FullGameState(
           },
           counterState = counterState,
           completedProgressCheckpoints = completedProgressCheckpoints,
+          userProofMarks = userProofMarks,
           userMarkCount = userMarkCount,
           auxiliaryHintInfo = auxiliaryHintInfo
         )
@@ -180,6 +183,7 @@ class FullGameState(
       ansemReportStrikes = ansemReportStrikes.value,
       deaths = deaths.value,
       manuallyCompletedObjectives = manuallyCompletedObjectives.value,
+      objectivesMarkedSecondary = objectivesMarkedSecondary.value,
     )
   }
 
