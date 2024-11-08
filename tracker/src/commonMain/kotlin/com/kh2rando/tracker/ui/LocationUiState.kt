@@ -33,6 +33,7 @@ data class LocationUiState(
   val location: Location,
   val isUserSelectedLocation: Boolean = false,
   val isAutoDetectedLocation: Boolean = false,
+  val isLastRevealedHintLocation: Boolean = false,
   val acquiredItems: ImmutableSet<UniqueItem> = persistentSetOf(),
   val revealedItems: ImmutableList<ItemPrototype> = persistentListOf(),
   val lockedVisitCount: Int = 0,

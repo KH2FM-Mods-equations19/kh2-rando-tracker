@@ -76,10 +76,12 @@ class MusicReader(
       locationState: LocationReader.LocationState,
     ): Int {
       return when (rawSongId) {
+        // (If we don't know the localization for sure, we're assuming Global - sorry JP players...)
+
         // Under the Sea (English vs. JP)
         0x6A -> {
           when (localizationVersion) {
-            GameLocalizationVersion.Global -> 0x1FA
+            GameLocalizationVersion.Global, GameLocalizationVersion.Unknown -> 0x1FA
             GameLocalizationVersion.JP -> rawSongId
           }
         }
@@ -87,7 +89,7 @@ class MusicReader(
         // Ursula's Revenge (English vs. JP)
         0x6B -> {
           when (localizationVersion) {
-            GameLocalizationVersion.Global -> 0x1FB
+            GameLocalizationVersion.Global, GameLocalizationVersion.Unknown -> 0x1FB
             GameLocalizationVersion.JP -> rawSongId
           }
         }
@@ -95,7 +97,7 @@ class MusicReader(
         // Part of Your World (English vs. JP)
         0x6C -> {
           when (localizationVersion) {
-            GameLocalizationVersion.Global -> 0x1FC
+            GameLocalizationVersion.Global, GameLocalizationVersion.Unknown -> 0x1FC
             GameLocalizationVersion.JP -> rawSongId
           }
         }
@@ -103,7 +105,7 @@ class MusicReader(
         // A New Day is Dawning (English vs. JP)
         0x6D -> {
           when (localizationVersion) {
-            GameLocalizationVersion.Global -> 0x1FD
+            GameLocalizationVersion.Global, GameLocalizationVersion.Unknown -> 0x1FD
             GameLocalizationVersion.JP -> rawSongId
           }
         }
@@ -111,7 +113,7 @@ class MusicReader(
         // Swim This Way (English vs. JP)
         0x71 -> {
           when (localizationVersion) {
-            GameLocalizationVersion.Global -> 0x201
+            GameLocalizationVersion.Global, GameLocalizationVersion.Unknown -> 0x201
             GameLocalizationVersion.JP -> rawSongId
           }
         }

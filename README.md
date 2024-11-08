@@ -30,8 +30,7 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
         - Next level check indicator, current and maximum drive gauge, munny
         - Currently playing song information
             - If using randomized music from the seed generator, displays the replacement song
-              name (and
-              optionally a song group)
+              name (and optionally a song group)
     - Option to start auto-tracking automatically
 - Tracker Progress saving
     - Manually
@@ -44,15 +43,14 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
     - Mark each location as having no proofs, or any combination of the three
 - Game Versions
     - Epic Games Global 1.0.0.9
-    - Epic Games Global 1.0.0.10 (untested)
+    - Epic Games Global 1.0.0.10
     - Steam Global 1.0.0.9 (untested)
-    - Steam Global 1.0.0.10 (untested)
+    - Steam Global 1.0.0.10
     - Steam JP 1.0.0.9 (untested)
 
 ## Planned
 
 - Additional customization options
-- Indicator for "last revealed location"
 
 ## Not planned at this time (may reconsider at some point)
 
@@ -68,7 +66,7 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 
 ## Changelog
 
-### 1.9.1
+### 1.9.2
 
 - Initial public (re)release.
 

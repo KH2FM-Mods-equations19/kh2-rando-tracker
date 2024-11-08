@@ -139,9 +139,15 @@ fun LocationsLayout(
 ) {
   BoxWithConstraints(modifier.fillMaxSize()) {
     val availableSize = (maxWidth / 2 - LocationHeaderWidthDp.dp).coerceAtLeast(0.dp)
-    var itemsPerRow = 5
-    if (availableSize > (36.dp * 7)) {
-      itemsPerRow = 7
+    val baselineSize = 36.dp
+    val itemsPerRow = if (availableSize > (baselineSize * 8)) {
+      8
+    } else if (availableSize > (baselineSize * 7)) {
+      7
+    } else if (availableSize > (baselineSize * 6)) {
+      6
+    } else {
+      5
     }
 
     val seedSettings = gameState.seed.settings
@@ -215,8 +221,7 @@ private fun LocationsColumn(
   Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(1.dp)) {
     for (location in locations) {
       val locationUiState by locationUiStates(location).collectAsState()
-      // TODO: Try to be dynamic about itemsPerRow
-      val itemsArrangement = LocationItemsArrangement(locationUiState, itemsPerRow = 5)
+      val itemsArrangement = LocationItemsArrangement(locationUiState, itemsPerRow = itemsPerRow)
       val weight = locationRowWeight(thisLocationItemRowCount = itemsArrangement.itemRowCount)
       LocationRow(
         location = location,
@@ -252,7 +257,7 @@ private fun LocationRow(
       LocationHeader(
         location = location,
         locationIconSupplier = locationIconSupplier,
-        selectedLocation = isUserSelectedLocation,
+        isSelectedLocation = isUserSelectedLocation,
         lockedVisitContent = {
           LockArea(lockCount = locationUiState.lockedVisitCount)
         },
@@ -306,6 +311,7 @@ private fun LocationRow(
     locationItemsContent = {
       LocationItemsArea(
         isDetectedLocation = locationUiState.isAutoDetectedLocation,
+        isLastRevealedHintLocation = locationUiState.isLastRevealedHintLocation,
         itemsPerRow = itemsPerRow,
         itemsArrangement = itemsArrangement,
         reportHintInfoProvider = reportHintInfoProvider,
@@ -358,7 +364,7 @@ private fun DriveFormMaximumLevelIndicator(maximumLevel: Int, modifier: Modifier
 @Composable
 private fun ProgressCheckpointIndicator(
   progress: LocationProgressIndicator?,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
 ) {
   if (progress != null) {
     val displayString = stringResource(progress.displayString)
@@ -441,7 +447,7 @@ private fun LocationRowContent(
 private fun LocationHeader(
   location: Location,
   locationIconSupplier: @Composable (Location) -> HasCustomizableIcon,
-  selectedLocation: Boolean,
+  isSelectedLocation: Boolean,
   lockedVisitContent: @Composable () -> Unit,
   progressContent: @Composable () -> Unit,
   counterState: LocationCounterState,
@@ -468,7 +474,7 @@ private fun LocationHeader(
         }
       },
     // Using surface explicitly here on top of a surfaceContainer is a little hacky but it helps visually
-    color = colorScheme.colorForSelectedOrNot(selectedLocation, defaultColor = colorScheme.surface)
+    color = colorScheme.colorForSelectedOrNot(isSelectedLocation, defaultColor = colorScheme.surface)
   ) {
     Box(modifier = Modifier.padding(1.dp)) {
       // Bottom layer - just the image
@@ -675,6 +681,7 @@ private fun PathHintsArea(hintInfo: HintInfo.PathToProofs, modifier: Modifier = 
 @Composable
 private fun LocationItemsArea(
   isDetectedLocation: Boolean,
+  isLastRevealedHintLocation: Boolean,
   itemsPerRow: Int,
   itemsArrangement: LocationItemsArrangement,
   reportHintInfoProvider: (AnsemReport) -> HintInfo?,
@@ -683,9 +690,17 @@ private fun LocationItemsArea(
 ) {
   val colorScheme = MaterialTheme.colorScheme
 
+  val surfaceColor = if (isDetectedLocation) {
+    colorScheme.surfaceContainerHigh
+  } else if (isLastRevealedHintLocation) {
+    colorScheme.tertiaryContainer.copy(alpha = 0.75f)
+  } else {
+    colorScheme.surfaceContainer
+  }
+
   Surface(
     modifier = modifier.fillMaxSize(),
-    color = if (isDetectedLocation) colorScheme.surfaceContainerHigh else colorScheme.surfaceContainer
+    color = surfaceColor
   ) {
     Column {
       for (chunk in itemsArrangement.arrangedItems) {

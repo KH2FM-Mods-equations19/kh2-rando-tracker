@@ -5,6 +5,7 @@ import com.kh2rando.tracker.model.combineMany
 import com.kh2rando.tracker.model.hints.DisabledHintSystem
 import com.kh2rando.tracker.model.hints.HintInfo
 import com.kh2rando.tracker.model.hints.JSmarteeHintSystem
+import com.kh2rando.tracker.model.hints.LocationAwareHintInfo
 import com.kh2rando.tracker.model.hints.PathHintSystem
 import com.kh2rando.tracker.model.hints.PointsHintSystem
 import com.kh2rando.tracker.model.hints.ShananasHintSystem
@@ -86,6 +87,20 @@ class FullGameState(
   backgroundDispatcher: CoroutineDispatcher,
 ) : BaseGameStateUpdateApi by baseGameState, HintStateApi by hintState, FullGameStateApi {
 
+  override val revealedPrimaryHintsInOrder: StateFlow<ImmutableList<HintInfo>> = run {
+    combine(revealedReportHintSets, revealedProgressionHintSets) { reports, progression ->
+      persistentSetOf<HintInfo>().mutate { builder ->
+        reports.filterNotTo(builder) { it is HintInfo.JournalTextOnly }
+        progression.filterNotTo(builder) { it is HintInfo.JournalTextOnly }
+      }.toImmutableSet()
+    }
+      .onStart { emit(previouslyRevealedHints.toImmutableSet()) } // Emit any hints we've already seen first
+      .scan(persistentSetOf<HintInfo>()) { acc, value -> acc + value } // Use Sets here to make sure things are only added once
+      .drop(1) // Skip the first emission where we won't have a previous set to compare to
+      .map { it.toImmutableList() } // Now present it as a list since order explicitly matters here
+      .stateIn(scope, SharingStarted.Eagerly, previouslyRevealedHints)
+  }
+
   override val locationUiStates: ImmutableMap<Location, StateFlow<LocationUiState>> = run {
     val gameAcquiredItemsSets = acquiredItems
     val userSelectedLocations = userSelectedLocations
@@ -101,6 +116,7 @@ class FullGameState(
         gameAcquiredItemsSets,
         userSelectedLocations,
         autoDetectedLocations,
+        mostRecentRevealedPrimaryHint,
         locationState.acquiredItems,
         revealedItemLists.getValue(location),
         counterStates.getValue(location),
@@ -112,6 +128,7 @@ class FullGameState(
           gameAcquiredItems,
           userSelectedLocation,
           autoDetectedLocation,
+          mostRecentRevealedPrimaryHint,
           locationAcquiredItems,
           locationRevealedItems,
           counterState,
@@ -120,11 +137,13 @@ class FullGameState(
           userMarkCount,
           auxiliaryHintInfo,
         ->
+        val mostRecentHintLocation = (mostRecentRevealedPrimaryHint as? LocationAwareHintInfo)?.location
         LocationUiState(
           gameStateUpdater = this,
           location = location,
           isUserSelectedLocation = location == userSelectedLocation,
           isAutoDetectedLocation = location == autoDetectedLocation,
+          isLastRevealedHintLocation = location == mostRecentHintLocation,
           acquiredItems = locationAcquiredItems,
           revealedItems = locationRevealedItems,
           lockedVisitCount = if (visitCount == 0) {
@@ -148,21 +167,6 @@ class FullGameState(
         .flowOn(backgroundDispatcher)
         .stateIn(scope, SharingStarted.Eagerly, LocationUiState(gameStateUpdater = this, location))
     }
-  }
-
-  // TODO: Would like some more testing of this, both automated and just overall
-  override val revealedPrimaryHintsInOrder: StateFlow<ImmutableList<HintInfo>> = run {
-    combine(revealedReportHintSets, revealedProgressionHintSets) { reports, progression ->
-      persistentSetOf<HintInfo>().mutate { builder ->
-        reports.filterNotTo(builder) { it is HintInfo.JournalTextOnly }
-        progression.filterNotTo(builder) { it is HintInfo.JournalTextOnly }
-      }.toImmutableSet()
-    }
-      .onStart { emit(previouslyRevealedHints.toImmutableSet()) } // Emit any hints we've already seen first
-      .scan(persistentSetOf<HintInfo>()) { acc, value -> acc + value } // Use Sets here to make sure things are only added once
-      .drop(1) // Skip the first emission where we won't have a previous set to compare to
-      .map { it.toImmutableList() } // Now present it as a list since order explicitly matters here
-      .stateIn(scope, SharingStarted.Eagerly, previouslyRevealedHints)
   }
 
   override fun toGameStateSerializedForm(): GameStateSerializedForm {

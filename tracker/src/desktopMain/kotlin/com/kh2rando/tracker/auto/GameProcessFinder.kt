@@ -66,13 +66,11 @@ class GameProcessFinder(private val kernel32: Kernel32 = Kernel32.INSTANCE) {
 
       val candidateAddressCollections = listOf(
         EpicGlobal1009(),
-        EpicGlobal10010(),
 //        EpicJp1009(),
-//        EpicJp10010(),
+        EpicShared10010(),
         SteamGlobal1009(),
-        SteamGlobal10010(),
         SteamJP1009(),
-//        SteamJP10010(),
+        SteamShared10010(),
       )
       val addressCollection = candidateAddressCollections.firstOrNull { candidate ->
         val versionCheckResult = memoryReader.readByteAsInt(candidate.versionCheckAddress)

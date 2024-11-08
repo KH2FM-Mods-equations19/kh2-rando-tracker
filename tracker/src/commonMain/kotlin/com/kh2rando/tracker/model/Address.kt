@@ -18,6 +18,8 @@ value class Address(val address: Long) {
    */
   operator fun minus(offset: Int): Address = Address(address - offset)
 
+  override fun toString(): String = address.hex()
+
 }
 
 /**
@@ -33,7 +35,12 @@ enum class GameLocalizationVersion {
   /**
    * JP version.
    */
-  JP
+  JP,
+
+  /**
+   * Unknown version (some game versions make it difficult to distinguish at this time).
+   */
+  Unknown,
 
 }
 
@@ -116,9 +123,33 @@ abstract class GameAddresses(
   // Used by DA tracker to look into certain game files. Try to avoid this if possible.
 //  val filePointer: Address,
 
-  val world: Address = now + 0x00,
-  val room: Address = now + 0x01,
+  /**
+   * The current world ID (1 byte).
+   */
+  val worldId: Address = now + 0x00,
 
-  // More of an offset than an address?
-  val nextSlot: Int = 0x278, // This is only different for emulator
+  /**
+   * The current room ID (1 byte).
+   */
+  val roomId: Address = now + 0x01,
+
+  /**
+   * The current place (combination of [worldId] and [roomId]) (2 bytes).
+   */
+  val placeId: Address = now + 0x00,
+
+  val doorId: Address = now + 0x02,
+  val mapId: Address = now + 0x04,
+  val battleId: Address = now + 0x06,
+  val eventId: Address = now + 0x08,
 )
+
+@OptIn(ExperimentalStdlibApi::class)
+fun Int.hex(): String {
+  return toHexString(HexFormat.UpperCase)
+}
+
+@OptIn(ExperimentalStdlibApi::class)
+fun Long.hex(): String {
+  return toHexString(HexFormat.UpperCase)
+}

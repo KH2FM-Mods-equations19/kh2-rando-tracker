@@ -3,11 +3,13 @@ package com.kh2rando.tracker.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.window.MenuBar
 import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.rememberWindowState
 import com.kh2rando.tracker.generated.resources.Res
 import com.kh2rando.tracker.generated.resources.desc_objectives
@@ -33,7 +35,9 @@ fun AboutWindow(
   version: String,
   onCloseRequest: () -> Unit,
 ) {
+  val windowState = rememberWindowState(position = WindowPosition(Alignment.Center))
   Window(
+    state = windowState,
     onCloseRequest = onCloseRequest,
     icon = painterResource(Res.drawable.tracker_logo),
     title = stringResource(Res.string.menu_about_tracker),

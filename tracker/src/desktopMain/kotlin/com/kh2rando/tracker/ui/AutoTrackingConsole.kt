@@ -14,7 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.kh2rando.tracker.auto.GameProcessFinder
 import com.kh2rando.tracker.auto.LocationReader
-import com.kh2rando.tracker.auto.hex
+import com.kh2rando.tracker.model.hex
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay

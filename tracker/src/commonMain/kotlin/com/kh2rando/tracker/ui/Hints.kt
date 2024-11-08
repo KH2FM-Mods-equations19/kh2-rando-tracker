@@ -233,8 +233,8 @@ fun HintStatusBar(
     val typography = MaterialTheme.typography
 
     // Hint row 1
-    val hi by gameState.mostRecentRevealedPrimaryHint.collectAsState(null)
-    val currentHintInfo = hi
+    val currHintInfo by gameState.mostRecentRevealedPrimaryHint.collectAsState(initial = null)
+    val currentHintInfo = currHintInfo
     if (currentHintInfo == null) {
       CompositionLocalProvider(LocalTextStyle provides typography.titleLarge) {
         NoCurrentHintContent(

@@ -11,14 +11,13 @@ import com.kh2rando.tracker.auto.WorldThatNeverWasIds as TWTNW
 class LocationReader(private val gameProcess: GameProcess) {
 
   private val addresses = gameProcess.addresses
-  private val now = addresses.now
-  private val worldIdAddress = now + 0x00
-  private val roomIdAddress = now + 0x01
-  private val placeIdAddress = now + 0x00
-  private val doorIdAddress = now + 0x02
-  private val mapIdAddress = now + 0x04
-  private val battleIdAddress = now + 0x06
-  private val eventIdAddress = now + 0x08
+  private val worldIdAddress = addresses.worldId
+  private val roomIdAddress = addresses.roomId
+  private val placeIdAddress = addresses.placeId
+  private val doorIdAddress = addresses.doorId
+  private val mapIdAddress = addresses.mapId
+  private val battleIdAddress = addresses.battleId
+  private val eventIdAddress = addresses.eventId
   private val eventCompleteAddress = addresses.btlEnd + 0x820
   private val inSimulatedTwilightTownAddress = addresses.save + 0x1CFF
   private val menuAddress = addresses.menu

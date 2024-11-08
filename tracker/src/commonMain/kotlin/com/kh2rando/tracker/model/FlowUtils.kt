@@ -17,7 +17,7 @@ fun <T> stateFlowOf(value: T): StateFlow<T> = MutableStateFlow(value).asStateFlo
  * Combines the most recently emitted values from 9 flows.
  */
 @Suppress("UNCHECKED_CAST")
-inline fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, R> combineMany(
+inline fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, R> combineMany(
   flow1: Flow<T1>,
   flow2: Flow<T2>,
   flow3: Flow<T3>,
@@ -28,9 +28,10 @@ inline fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, R> combineMany(
   flow8: Flow<T8>,
   flow9: Flow<T9>,
   flow10: Flow<T10>,
-  crossinline transform: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) -> R,
+  flow11: Flow<T11>,
+  crossinline transform: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11) -> R,
 ): Flow<R> {
-  return combine(flow1, flow2, flow3, flow4, flow5, flow6, flow7, flow8, flow9, flow10) { array ->
+  return combine(flow1, flow2, flow3, flow4, flow5, flow6, flow7, flow8, flow9, flow10, flow11) { array ->
     transform(
       array[0] as T1,
       array[1] as T2,
@@ -42,6 +43,7 @@ inline fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, R> combineMany(
       array[7] as T8,
       array[8] as T9,
       array[9] as T10,
+      array[10] as T11,
     )
   }
 }

@@ -101,9 +101,10 @@ compose {
       nativeDistributions {
         targetFormats(TargetFormat.Msi)
         packageName = "KH2 Rando Tracker"
-        description = "Item Tracker for Kingdom Hearts II Randomizer"
+        description = "KH2 Rando Tracker"
         copyright = "© 2024 equations19"
         packageVersion = trackerVersion
+        vendor = "equations19"
         modules("jdk.unsupported")
 
         windows {

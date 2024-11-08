@@ -1,6 +1,6 @@
 package com.kh2rando.tracker.ui
 
-import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.EaseInOutSine
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
@@ -96,7 +96,7 @@ private fun AutoTrackingStatusArea(
             initialValue = 0.0f,
             targetValue = 360.0f,
             animationSpec = infiniteRepeatable(
-              animation = tween(durationMillis = 1000, easing = LinearEasing)
+              animation = tween(durationMillis = 1000, easing = EaseInOutSine)
             )
           )
           Icon(

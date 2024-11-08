@@ -1,5 +1,7 @@
 package com.kh2rando.tracker.auto
 
+import com.kh2rando.tracker.model.hex
+
 @JvmInline
 value class WorldId(val id: Int) {
 

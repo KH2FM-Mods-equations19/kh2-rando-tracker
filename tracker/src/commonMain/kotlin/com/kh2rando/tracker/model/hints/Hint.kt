@@ -25,6 +25,15 @@ sealed interface Hint {
 }
 
 /**
+ * Hint information that knows about a specific [Location].
+ */
+interface LocationAwareHintInfo {
+
+  val location: Location
+
+}
+
+/**
  * Information that can be displayed on the tracker for a specific [Hint].
  */
 @Serializable
@@ -60,9 +69,9 @@ sealed interface HintInfo {
   @SerialName("GeneralRevealed")
   data class GeneralRevealed(
     override val hintOrReportNumber: Int,
-    val location: Location,
+    override val location: Location,
     override val journalText: String? = null,
-  ) : HintInfo
+  ) : HintInfo, LocationAwareHintInfo
 
   /**
    * Indicates that a location has a certain number of trackable items ("important checks").
@@ -72,10 +81,10 @@ sealed interface HintInfo {
   @SerialName("ImportantCheckCount")
   data class ImportantCheckCount(
     override val hintOrReportNumber: Int,
-    val location: Location,
+    override val location: Location,
     val count: Int,
     override val journalText: String? = null,
-  ) : HintInfo
+  ) : HintInfo, LocationAwareHintInfo
 
   /**
    * Indicates that a location has a certain number of points remaining to obtain, based on items that have not yet been
@@ -86,10 +95,10 @@ sealed interface HintInfo {
   @SerialName("PointsCount")
   data class PointsCount(
     override val hintOrReportNumber: Int,
-    val location: Location,
+    override val location: Location,
     val points: Int,
     override val journalText: String? = null,
-  ) : HintInfo
+  ) : HintInfo, LocationAwareHintInfo
 
   /**
    * Indicates the location where a specific item can be found.
@@ -99,10 +108,10 @@ sealed interface HintInfo {
   @SerialName("ItemLocation")
   data class ItemLocation(
     override val hintOrReportNumber: Int,
-    val location: Location,
+    override val location: Location,
     val item: ItemPrototype,
     override val journalText: String? = null,
-  ) : HintInfo
+  ) : HintInfo, LocationAwareHintInfo
 
   /**
    * Indicates that a location is on the path to one or more proofs, or that the location is not on the path to any.
@@ -112,10 +121,10 @@ sealed interface HintInfo {
   @SerialName("PathToProofs")
   data class PathToProofs(
     override val hintOrReportNumber: Int,
-    val location: Location,
+    override val location: Location,
     val proofs: Set<Proof>,
     override val journalText: String? = null,
-  ) : HintInfo, LocationAuxiliaryHintInfo
+  ) : HintInfo, LocationAwareHintInfo, LocationAuxiliaryHintInfo
 
 }
 

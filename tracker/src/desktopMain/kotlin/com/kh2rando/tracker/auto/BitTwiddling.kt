@@ -8,9 +8,4 @@ package com.kh2rando.tracker.auto
 @Suppress("NOTHING_TO_INLINE") // This does seem to perform marginally better when inlined
 inline fun Int.isSetByMask(mask: Int): Boolean = (this and mask) == mask
 
-@OptIn(ExperimentalStdlibApi::class)
-fun Int.hex(): String {
-  return toHexString(HexFormat.UpperCase)
-}
-
 //inline fun Int.getBitAtPosition(position: Int): Int = (this shr position) and 1

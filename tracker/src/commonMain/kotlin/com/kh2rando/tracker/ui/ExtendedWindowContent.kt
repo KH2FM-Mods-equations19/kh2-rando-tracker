@@ -185,7 +185,7 @@ private fun MainExtendedWindowContent(
         Text(stringResource(Res.string.extended_misc_proof_information), modifier = Modifier.padding(4.dp))
       }
       ProofInfoArea(
-        enabledLocations = gameState.seed.settings.enabledLocations,
+        eligibleLocations = gameState.seed.settings.enabledLocations - Location.GardenOfAssemblage,
         locationLayout = locationLayout,
         locationStatesProvider = { location -> gameState.locationUiStates.getValue(location) },
         onToggleUserProofMark = { location, userProofMark -> gameState.toggleUserProofMark(location, userProofMark) },
@@ -197,7 +197,7 @@ private fun MainExtendedWindowContent(
 
 @Composable
 private fun ProofInfoArea(
-  enabledLocations: Set<Location>,
+  eligibleLocations: Set<Location>,
   locationLayout: LocationLayout,
   locationStatesProvider: (Location) -> StateFlow<LocationUiState>,
   onToggleUserProofMark: (Location, UserProofMark) -> Unit,
@@ -208,13 +208,13 @@ private fun ProofInfoArea(
     horizontalArrangement = Arrangement.spacedBy(4.dp),
   ) {
     ProofInfoColumn(
-      locations = locationLayout.leftLocations.filter { it in enabledLocations },
+      locations = locationLayout.leftLocations.filter { it in eligibleLocations },
       locationStatesProvider = locationStatesProvider,
       onToggleUserProofMark = onToggleUserProofMark,
       modifier = Modifier.weight(1.0f),
     )
     ProofInfoColumn(
-      locations = locationLayout.rightLocations.filter { it in enabledLocations },
+      locations = locationLayout.rightLocations.filter { it in eligibleLocations },
       locationStatesProvider = locationStatesProvider,
       onToggleUserProofMark = onToggleUserProofMark,
       modifier = Modifier.weight(1.0f),

@@ -28,32 +28,6 @@ class EpicGlobal1009 : GameAddresses(
 
 }
 
-//  https://github.com/KH2FM-Mods-Num/GoA-ROM-Edition/pull/48/commits/d9fe809c7a3364641c97bc5ae6b9ff5e27622d7c
-
-/**
- * Epic Games Global version 1.0.0.10.
- */
-class EpicGlobal10010 : GameAddresses(
-  localizationVersion = GameLocalizationVersion.Global,
-  versionCheckAddress = Address(0x660E44),
-  versionCheckExpectedValue = 106,
-  now = Address(0x716DF8),
-  save = Address(0x9A9330),
-  sys3Pointer = Address(0x2AE58D0),
-  btl0Pointer = Address(0x2AE58D8),
-  btlEnd = Address(0x2A0F760),
-  slot1 = Address(0x2A22318),
-  menu = Address(0x743350),
-  abilityToPause = Address(0xABB2F8),
-  battleStatus = Address(0x2A10E84),
-  backgroundMusic = Address(0xABA7C4),
-//  filePointer = Address(0x29F2D18),
-) {
-
-  override fun toString(): String = "Epic Games Global 1.0.0.10"
-
-}
-
 ///**
 // * Epic Games JP version 1.0.0.9.
 // */
@@ -75,3 +49,27 @@ class EpicGlobal10010 : GameAddresses(
 //  override fun toString(): String = "Epic Games JP 1.0.0.9"
 //
 //}
+
+/**
+ * Epic Games version 1.0.0.10 (addresses are the same between the two).
+ */
+class EpicShared10010 : GameAddresses(
+  localizationVersion = GameLocalizationVersion.Unknown,
+  versionCheckAddress = Address(0x660E44),
+  versionCheckExpectedValue = 106,
+  now = Address(0x716DF8),
+  save = Address(0x9A9330),
+  sys3Pointer = Address(0x2AE58D0),
+  btl0Pointer = Address(0x2AE58D8),
+  btlEnd = Address(0x2A0F760),
+  slot1 = Address(0x2A23018),
+  menu = Address(0x743350),
+  abilityToPause = Address(0xABB2F8),
+  battleStatus = Address(0x2A10E84),
+  backgroundMusic = Address(0xABA7C4),
+//  filePointer = Address(0x29F2D18),
+) {
+
+  override fun toString(): String = "Epic Games 1.0.0.10"
+
+}
