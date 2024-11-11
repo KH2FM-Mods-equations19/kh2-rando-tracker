@@ -12,7 +12,6 @@ import com.kh2rando.tracker.model.hints.ShananasHintSystem
 import com.kh2rando.tracker.model.hints.SpoilerHintSystem
 import com.kh2rando.tracker.model.item.ItemPrototype
 import com.kh2rando.tracker.model.item.VisitUnlock
-import com.kh2rando.tracker.model.item.removeAcquired
 import com.kh2rando.tracker.model.locationsMap
 import com.kh2rando.tracker.model.preferences.TrackerPreferences
 import com.kh2rando.tracker.serialization.GameStateSerializedForm
@@ -73,7 +72,11 @@ val FullGameStateApi.mostRecentRevealedPrimaryHint: Flow<HintInfo?>
  */
 val FullGameStateApi.revealedButNotAcquiredItems: Flow<ImmutableList<ItemPrototype>>
   get() {
-    return combine(allRevealedItems, acquiredItems) { revealed, acquired -> revealed.removeAcquired(acquired) }
+    return combine(locationUiStates.values) { uiStateList ->
+      persistentListOf<ItemPrototype>().mutate { result ->
+        uiStateList.flatMapTo(result) { it.revealedButNotAcquiredPrototypes }
+      }
+    }
   }
 
 /**

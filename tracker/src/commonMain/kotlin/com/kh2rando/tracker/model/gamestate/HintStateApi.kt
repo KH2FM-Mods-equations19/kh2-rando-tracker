@@ -12,9 +12,7 @@ import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentSetOf
-import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
 
 /**
  * Information about the state of hints.
@@ -52,13 +50,3 @@ interface HintStateApi {
     get() = stateFlowOf(persistentSetOf())
 
 }
-
-/**
- * All items revealed across all locations.
- */
-val HintStateApi.allRevealedItems: Flow<ImmutableList<ItemPrototype>>
-  get() {
-    return combine(revealedItemLists.values) { lists ->
-      lists.asSequence().flatten().toImmutableList()
-    }
-  }

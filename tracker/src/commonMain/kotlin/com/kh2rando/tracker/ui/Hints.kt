@@ -160,8 +160,8 @@ fun PrimaryHintInfoContent(
         Text(text)
 
         if (showIcons) {
-        hintInfo.item.ItemIcon(modifier = Modifier.size(32.dp))
-          }
+          hintInfo.item.ItemIcon(modifier = Modifier.size(32.dp))
+        }
       }
 
       is HintInfo.PathToProofs -> {
@@ -201,7 +201,7 @@ fun HintJournalTextContent(hintInfo: HintInfo, modifier: Modifier = Modifier) {
 fun FullHintInfoContent(
   hintInfo: HintInfo,
   modifier: Modifier = Modifier,
-  showIcons: Boolean = true
+  showIcons: Boolean = true,
 ) {
   Column(modifier = modifier) {
     PrimaryHintInfoContent(hintInfo, showIcons = showIcons)
