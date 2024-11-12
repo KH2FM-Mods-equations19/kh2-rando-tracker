@@ -66,7 +66,7 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 
 ## Changelog
 
-### 1.9.2
+### 1.9.3
 
 - Initial public (re)release.
 
