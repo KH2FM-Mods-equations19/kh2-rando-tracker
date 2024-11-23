@@ -7,6 +7,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.window.MenuBarScope
 import com.kh2rando.tracker.auto.AutoTrackingState
 import com.kh2rando.tracker.generated.resources.Res
+import com.kh2rando.tracker.generated.resources.custom_icons_open_folder
+import com.kh2rando.tracker.generated.resources.custom_icons_title
 import com.kh2rando.tracker.generated.resources.debug_autotracking_console
 import com.kh2rando.tracker.generated.resources.debug_menu
 import com.kh2rando.tracker.generated.resources.debug_progress_flags_viewer
@@ -20,6 +22,7 @@ import com.kh2rando.tracker.generated.resources.menu_layout_classic
 import com.kh2rando.tracker.generated.resources.menu_layout_goa
 import com.kh2rando.tracker.generated.resources.menu_layout_vanilla
 import com.kh2rando.tracker.generated.resources.menu_location_layout
+import com.kh2rando.tracker.generated.resources.menu_other
 import com.kh2rando.tracker.generated.resources.menu_reset_tracker
 import com.kh2rando.tracker.generated.resources.menu_reset_window_size
 import com.kh2rando.tracker.generated.resources.menu_save_progress
@@ -35,6 +38,7 @@ import com.kh2rando.tracker.model.preferences.collectAsState
 import com.kh2rando.tracker.model.progress.progressCheckpoints
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
+import java.awt.Desktop
 
 @Composable
 fun MenuBarScope.TrackerMenu(
@@ -150,6 +154,23 @@ fun MenuBarScope.SettingsMenu(preferences: TrackerPreferences) {
         }
       }
     )
+  }
+}
+
+@Composable
+fun MenuBarScope.OtherMenu(onShowCustomIconsWindow: () -> Unit) {
+  Menu(stringResource(Res.string.menu_other)) {
+    Item(stringResource(Res.string.custom_icons_title)) {
+      onShowCustomIconsWindow()
+    }
+    if (Desktop.isDesktopSupported()) {
+      Item(stringResource(Res.string.custom_icons_open_folder)) {
+        val desktop = Desktop.getDesktop()
+        if (desktop.isSupported(Desktop.Action.OPEN)) {
+          desktop.open(CustomizableIconRegistry.customImagesPath.toFile())
+        }
+      }
+    }
   }
 }
 

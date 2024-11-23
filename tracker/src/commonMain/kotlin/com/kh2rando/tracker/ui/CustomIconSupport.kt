@@ -33,8 +33,6 @@ data class CustomImagePath(val path: Path?) {
  */
 class CustomizableIconRegistry {
 
-  private val customImagesPath: Path = TrackerFileSystem.customImagesDirectory
-
   private val cache = mutableMapOf<HasCustomizableIcon, CustomImagePath>()
 
   /**
@@ -60,6 +58,8 @@ class CustomizableIconRegistry {
 
   companion object {
 
+    val customImagesPath: Path by lazy { TrackerFileSystem.customImagesDirectory }
+
     val LocalCustomizableIconRegistry = staticCompositionLocalOf { CustomizableIconRegistry() }
 
     val current: CustomizableIconRegistry
@@ -75,9 +75,9 @@ class CustomizableIconRegistry {
  * images.
  */
 @Composable
-fun HasCustomizableIcon.findCustomIconFile(): Path? {
+fun HasCustomizableIcon.findCustomIconFile(force: Boolean = false): Path? {
   val useCustomImages by TrackerPreferences.current.useCustomImages.collectAsState()
-  return CustomizableIconRegistry.current.customPathOrNull(icon = this, useCustomImages)
+  return CustomizableIconRegistry.current.customPathOrNull(icon = this, useCustomImages = force || useCustomImages)
 }
 
 @Composable

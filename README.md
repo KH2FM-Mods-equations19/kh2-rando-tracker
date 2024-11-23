@@ -58,17 +58,23 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 - Randomized bosses/enemies hinting
 - Explicit Reverse Rando support
 - Auto tracking for puzzle objective completion
-- Battleship
-- Bingo
 - World Complete Bonus support for progression hints (depends on complexity)
+- "Hi-Score Mode" (depends on complexity)
 - Custom tracker background image
 - Emulator version support
+- Battleship (may not ever work compatibly with other trackers)
+- Bingo (may not ever work compatibly with other trackers)
 
 ## Changelog
 
+### 1.9.4
+
+- Minor stability changes and updates
+- Viewer for default and custom icons
+
 ### 1.9.3
 
-- Initial public (re)release.
+- Initial public (re)release
 
 ## Acknowledgements
 

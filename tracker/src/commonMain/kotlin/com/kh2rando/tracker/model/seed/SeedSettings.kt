@@ -273,6 +273,7 @@ enum class ToggleSetting(
    * Whether or not the tracker should track and display a cumulative number of points based on checks acquired and
    * other factors.
    */
+  // TODO: This isn't implemented yet. May not be worth the effort - would have to start keeping track of a lot more.
   HighScoreMode,
 
 }

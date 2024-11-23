@@ -19,6 +19,7 @@
     <string name="menu_auto_save_progress">Auto-save tracker progress</string>
     <string name="menu_use_custom_images">Load custom images</string>
     <string name="menu_auto_math">Revealed item auto-math</string>
+    <string name="menu_other">Other</string>
 
     <string name="state_loading_seed">Loading seed</string>
 

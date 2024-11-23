@@ -38,12 +38,14 @@ import com.kh2rando.tracker.model.preferences.collectAsState
 import com.kh2rando.tracker.model.seed.FinalDoorRequirement
 import com.kh2rando.tracker.ui.AboutWindow
 import com.kh2rando.tracker.ui.AutoTrackingConsoleContent
+import com.kh2rando.tracker.ui.CustomIconsWindow
 import com.kh2rando.tracker.ui.CustomizableIconRegistry
 import com.kh2rando.tracker.ui.DebugMenu
 import com.kh2rando.tracker.ui.DropFileType
 import com.kh2rando.tracker.ui.ExtendedWindow
 import com.kh2rando.tracker.ui.MainWindowContent
 import com.kh2rando.tracker.ui.ObjectiveWindow
+import com.kh2rando.tracker.ui.OtherMenu
 import com.kh2rando.tracker.ui.ProgressFlagsViewerContent
 import com.kh2rando.tracker.ui.ProgressionDebugMenu
 import com.kh2rando.tracker.ui.ResetConfirmationDialog
@@ -123,6 +125,7 @@ fun main(args: Array<String>) {
     var autoTrackingState: AutoTrackingState by remember { mutableStateOf(AutoTrackingState.None) }
 
     var showingExtendedWindow: Boolean by remember { mutableStateOf(initialPreferences.showExtendedWindow) }
+    var showingCustomIconsWindow: Boolean by remember { mutableStateOf(false) }
     var showingAboutTracker: Boolean by remember { mutableStateOf(false) }
     var showingResetConfirmation: Boolean by remember { mutableStateOf(false) }
     var showingAutoTrackingConsole: Boolean by remember { mutableStateOf(false) }
@@ -167,6 +170,9 @@ fun main(args: Array<String>) {
               onResetWindowSize = { windowState.size = defaultSize }
             )
             SettingsMenu(preferences = preferences)
+            OtherMenu(
+              onShowCustomIconsWindow = { showingCustomIconsWindow = true },
+            )
             if (debugMode) {
               DebugMenu(
                 onShowAutoTrackingConsole = { showingAutoTrackingConsole = true },
@@ -228,6 +234,12 @@ fun main(args: Array<String>) {
               gameState = gameState,
               preferences = preferences,
               onCloseRequest = { showingExtendedWindow = false }
+            )
+          }
+
+          if (showingCustomIconsWindow) {
+            CustomIconsWindow(
+              onCloseRequest = { showingCustomIconsWindow = false }
             )
           }
 

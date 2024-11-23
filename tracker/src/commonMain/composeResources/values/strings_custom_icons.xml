@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <string name="custom_icons_title">Image viewer</string>
+    <string name="custom_icons_custom_path">Custom path</string>
+    <string name="custom_icons_default_icon">Default image</string>
+    <string name="custom_icons_custom_icon">Custom image</string>
+    <string name="custom_icons_open_folder">Open custom image folder</string>
+
+</resources>

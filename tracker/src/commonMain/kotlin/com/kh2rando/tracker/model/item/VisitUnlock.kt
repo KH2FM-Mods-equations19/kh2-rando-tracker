@@ -186,7 +186,7 @@ enum class VisitUnlock(
       get() = Res.drawable.lock_royalsummons
 
     override val customIconIdentifier: String
-      get() = "lock_kingsletter"
+      get() = "lock_royalsummons"
 
   },
 

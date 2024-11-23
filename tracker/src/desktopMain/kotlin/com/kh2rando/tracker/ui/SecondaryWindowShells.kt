@@ -12,6 +12,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.rememberWindowState
 import com.kh2rando.tracker.generated.resources.Res
+import com.kh2rando.tracker.generated.resources.custom_icons_title
 import com.kh2rando.tracker.generated.resources.desc_objectives
 import com.kh2rando.tracker.generated.resources.extended_settings_show_on_startup
 import com.kh2rando.tracker.generated.resources.extended_settings_show_song_information
@@ -134,5 +135,19 @@ fun ObjectiveWindow(
     ObjectiveWindowContent(gameState)
 
     SaveWindowSizeAndPosition(windowState, sizePreference, positionPreference)
+  }
+}
+
+@Composable
+fun CustomIconsWindow(onCloseRequest: () -> Unit) {
+  val windowState = rememberWindowState(size = DpSize(width = 800.dp, height = 600.dp))
+
+  Window(
+    state = windowState,
+    onCloseRequest = onCloseRequest,
+    icon = painterResource(Res.drawable.tracker_logo),
+    title = stringResource(Res.string.custom_icons_title)
+  ) {
+    CustomIconsWindowContent()
   }
 }

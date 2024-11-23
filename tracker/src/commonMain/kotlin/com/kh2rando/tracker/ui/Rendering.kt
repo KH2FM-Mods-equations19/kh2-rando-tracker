@@ -89,9 +89,9 @@ fun Color.tintFilterOrNull(): ColorFilter? {
 }
 
 @Composable
-fun SmallHeader(text: String, modifier: Modifier = Modifier) {
-  Surface(color = MaterialTheme.colorScheme.primary, modifier = Modifier.fillMaxWidth()) {
-    Text(text, modifier = modifier.padding(4.dp))
+fun SmallHeader(text: String, modifier: Modifier = Modifier.fillMaxWidth()) {
+  Surface(color = MaterialTheme.colorScheme.primary, modifier = modifier) {
+    Text(text, modifier = Modifier.padding(4.dp))
   }
 }
 

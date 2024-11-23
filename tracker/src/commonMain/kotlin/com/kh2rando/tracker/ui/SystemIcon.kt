@@ -116,9 +116,9 @@ enum class SystemIcon : HasCustomizableIcon, HasColorToken {
     override val defaultIcon: DrawableResource
       get() = Res.drawable.system_block
     override val customIconPath: List<String>
-      get() = listOf("System")
+      get() = listOf("System", "config")
     override val customIconIdentifier: String
-      get() = "cross"
+      get() = "disconnected"
     override val colorToken: ColorToken
       get() = ColorToken.Red
   },
@@ -182,7 +182,7 @@ enum class SystemIcon : HasCustomizableIcon, HasColorToken {
     override val defaultIcon: DrawableResource
       get() = Res.drawable.ansem_report
     override val customIconPath: List<String>
-      get() = listOf("checks")
+      get() = listOf("Checks")
     override val customIconIdentifier: String
       get() = "ansem_report"
     override val colorToken: ColorToken

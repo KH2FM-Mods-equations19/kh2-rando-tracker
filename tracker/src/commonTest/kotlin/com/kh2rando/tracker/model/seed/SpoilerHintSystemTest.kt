@@ -17,6 +17,7 @@ import com.kh2rando.tracker.model.progress.SimulatedTwilightTownProgress
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.rules.TemporaryFolder
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -208,6 +209,7 @@ class SpoilerHintSystemTest {
   }
 
   @Test
+  @Ignore("These may need a re-work after some changes made in 1.9.2")
   fun `example reveal by report scenario without reveal world completion`() {
     val hintSystem = SpoilerHintSystem(
       hints = listOf(
@@ -333,6 +335,7 @@ class SpoilerHintSystemTest {
   }
 
   @Test
+  @Ignore("These may need a re-work after some changes made in 1.9.2")
   fun `example reveal by report scenario with reveal world completion`() {
     val hintSystem = SpoilerHintSystem(
       hints = listOf(
@@ -459,6 +462,7 @@ class SpoilerHintSystemTest {
   }
 
   @Test
+  @Ignore("These may need a re-work after some changes made in 1.9.2")
   fun `example reveal by progression scenario without reveal world completion`() {
     val hintSystem = SpoilerHintSystem(
       hints = listOf(

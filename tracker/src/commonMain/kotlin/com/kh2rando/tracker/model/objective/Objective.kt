@@ -153,25 +153,25 @@ enum class Objective(
 
   // STT
   DefeatTwilightThorn(
-    checkpoint = (SimulatedTwilightTownProgress.TwilightThorn),
+    checkpoint = SimulatedTwilightTownProgress.TwilightThorn,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 33),
     type = Type.Boss,
     description = Res.string.objective_stt_twilight_thorn,
   ),
   DefeatAxel1(
-    checkpoint = (SimulatedTwilightTownProgress.Axel1),
+    checkpoint = SimulatedTwilightTownProgress.Axel1,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 73),
     type = Type.Fight,
     description = Res.string.objective_stt_axel_1,
   ),
   FightSetzer(
-    checkpoint = (SimulatedTwilightTownProgress.Struggle),
+    checkpoint = SimulatedTwilightTownProgress.Struggle,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 519),
     type = Type.Fight,
     description = Res.string.objective_stt_setzer,
   ),
   DefeatAxel2(
-    checkpoint = (SimulatedTwilightTownProgress.Axel),
+    checkpoint = SimulatedTwilightTownProgress.Axel,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 34),
     type = Type.Boss,
     description = Res.string.objective_stt_axel_2,
@@ -179,20 +179,20 @@ enum class Objective(
 
   // TT
   TalkTo3Fairies(
-    checkpoint = (TwilightTownProgress.MysteriousTower),
+    checkpoint = TwilightTownProgress.MysteriousTower,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 286),
     type = Type.WorldProgress,
     description = Res.string.objective_tt_fairies,
   ),
   DefeatSandlotBerserkers(
-    checkpoint = (TwilightTownProgress.Sandlot),
+    checkpoint = TwilightTownProgress.Sandlot,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 294),
     type = Type.Fight,
     description = Res.string.objective_tt_sandlot,
     difficulty = Difficulty.Middle,
   ),
   FightAlongsideAxel(
-    checkpoint = (TwilightTownProgress.BetwixtAndBetween),
+    checkpoint = TwilightTownProgress.BetwixtAndBetween,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 63),
     type = Type.Fight,
     description = Res.string.objective_tt_betwixt,
@@ -201,20 +201,20 @@ enum class Objective(
 
   // HB
   DefendBailey(
-    checkpoint = (HollowBastionProgress.Bailey),
+    checkpoint = HollowBastionProgress.Bailey,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 47),
     type = Type.Fight,
     description = Res.string.objective_hb_bailey,
   ),
   DefeatDemyx(
-    checkpoint = (HollowBastionProgress.HBDemyx),
+    checkpoint = HollowBastionProgress.HBDemyx,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 28),
     type = Type.Boss,
     description = Res.string.objective_hb_demyx,
     difficulty = Difficulty.Middle,
   ),
   Stop1000Heartless(
-    checkpoint = (HollowBastionProgress.ThousandHeartless),
+    checkpoint = HollowBastionProgress.ThousandHeartless,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 60),
     type = Type.Fight,
     description = Res.string.objective_hb_thousand_heartless,
@@ -223,7 +223,7 @@ enum class Objective(
 
   // CoR
   ReachEndOfCavernOfRemembrance(
-    checkpoint = (CavernOfRemembranceProgress.LastChest),
+    checkpoint = CavernOfRemembranceProgress.LastChest,
     location = Location.HollowBastion,
     checkLocation = CheckLocation(CheckLocationCategory.Chest, 579),
     type = Type.WorldProgress,
@@ -231,7 +231,7 @@ enum class Objective(
     difficulty = Difficulty.Late,
   ),
   ReachEndOfTransportToRemembrance(
-    checkpoint = (CavernOfRemembranceProgress.Transport),
+    checkpoint = CavernOfRemembranceProgress.Transport,
     location = Location.HollowBastion,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 72),
     type = Type.Fight,
@@ -241,26 +241,26 @@ enum class Objective(
 
   // LoD
   ClimbMountainTrail(
-    checkpoint = (LandOfDragonsProgress.Mountain),
+    checkpoint = LandOfDragonsProgress.Mountain,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 495),
     type = Type.WorldProgress,
     description = Res.string.objective_lod_mountain,
   ),
   FightEnemiesInVillageCave(
-    checkpoint = (LandOfDragonsProgress.Cave),
+    checkpoint = LandOfDragonsProgress.Cave,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 43),
     type = Type.Fight,
     description = Res.string.objective_lod_cave,
   ),
   DefeatShanYu(
-    checkpoint = (LandOfDragonsProgress.ShanYu),
+    checkpoint = LandOfDragonsProgress.ShanYu,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 9),
     type = Type.Boss,
     description = Res.string.objective_lod_shan_yu,
     difficulty = Difficulty.Middle,
   ),
   DefeatStormRider(
-    checkpoint = (LandOfDragonsProgress.StormRider),
+    checkpoint = LandOfDragonsProgress.StormRider,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 10),
     type = Type.Boss,
     description = Res.string.objective_lod_storm_rider,
@@ -269,26 +269,26 @@ enum class Objective(
 
   // BC
   DefeatThresholder(
-    checkpoint = (BeastsCastleProgress.Thresholder),
+    checkpoint = BeastsCastleProgress.Thresholder,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 2),
     type = Type.Boss,
     description = Res.string.objective_bc_thresholder,
   ),
   HelpBeast(
-    checkpoint = (BeastsCastleProgress.Beast),
+    checkpoint = BeastsCastleProgress.Beast,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 12),
     type = Type.WorldProgress,
     description = Res.string.objective_bc_beast,
   ),
   DefeatDarkThorn(
-    checkpoint = (BeastsCastleProgress.DarkThorn),
+    checkpoint = BeastsCastleProgress.DarkThorn,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 3),
     type = Type.Boss,
     description = Res.string.objective_bc_dark_thorn,
     difficulty = Difficulty.Middle,
   ),
   DefeatXaldin(
-    checkpoint = (BeastsCastleProgress.Xaldin),
+    checkpoint = BeastsCastleProgress.Xaldin,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 4),
     type = Type.Boss,
     description = Res.string.objective_bc_xaldin,
@@ -297,27 +297,27 @@ enum class Objective(
 
   // DC
   EscortQueenMinnie(
-    checkpoint = (DisneyCastleProgress.Minnie),
+    checkpoint = DisneyCastleProgress.Minnie,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 38),
     type = Type.WorldProgress,
     description = Res.string.objective_dc_minnie,
   ),
   FightThroughWindowsOfTime(
-    checkpoint = (DisneyCastleProgress.Windows),
+    checkpoint = DisneyCastleProgress.Windows,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 368),
     type = Type.Fight,
     description = Res.string.objective_dc_windows,
     difficulty = Difficulty.Middle,
   ),
   StopPeteFromEscaping(
-    checkpoint = (DisneyCastleProgress.BoatPete),
+    checkpoint = DisneyCastleProgress.BoatPete,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 16),
     type = Type.WorldProgress,
     description = Res.string.objective_dc_boat_pete,
     difficulty = Difficulty.Middle,
   ),
   DefeatFuturePete(
-    checkpoint = (DisneyCastleProgress.DCPete),
+    checkpoint = DisneyCastleProgress.DCPete,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 17),
     type = Type.Boss,
     description = Res.string.objective_dc_pete,
@@ -326,39 +326,39 @@ enum class Objective(
 
   // PR
   StallForTimeOnIslaDeMuerta(
-    checkpoint = (PortRoyalProgress.OneMinute),
+    checkpoint = PortRoyalProgress.OneMinute,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 329),
     type = Type.WorldProgress,
     description = Res.string.objective_pr_minute_fight,
   ),
   DefendInterceptorFromPirates(
-    checkpoint = (PortRoyalProgress.Medallions),
+    checkpoint = PortRoyalProgress.Medallions,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 62),
     type = Type.Fight,
     description = Res.string.objective_pr_interceptor_pirates,
   ),
   StopExplosiveBarrels(
-    checkpoint = (PortRoyalProgress.Barrels),
+    checkpoint = PortRoyalProgress.Barrels,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 39),
     type = Type.WorldProgress,
     description = Res.string.objective_pr_interceptor_barrels,
   ),
   DefeatBarbossa(
-    checkpoint = (PortRoyalProgress.Barbossa),
+    checkpoint = PortRoyalProgress.Barbossa,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 21),
     type = Type.Boss,
     description = Res.string.objective_pr_barbossa,
     difficulty = Difficulty.Middle,
   ),
   DefeatGrimReaper1(
-    checkpoint = (PortRoyalProgress.GrimReaper1),
+    checkpoint = PortRoyalProgress.GrimReaper1,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 59),
     type = Type.Boss,
     description = Res.string.objective_pr_grim_reaper_1,
     difficulty = Difficulty.Middle,
   ),
   DefeatGrimReaper2(
-    checkpoint = (PortRoyalProgress.GrimReaper),
+    checkpoint = PortRoyalProgress.GrimReaper,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 22),
     type = Type.Boss,
     description = Res.string.objective_pr_grim_reaper_2,
@@ -367,27 +367,27 @@ enum class Objective(
 
   // AG
   EscortAbu(
-    checkpoint = (AgrabahProgress.Abu),
+    checkpoint = AgrabahProgress.Abu,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 42),
     type = Type.WorldProgress,
     description = Res.string.objective_ag_abu,
   ),
   SurviveTreasureRoomAmbush(
-    checkpoint = (AgrabahProgress.TreasureRoom),
+    checkpoint = AgrabahProgress.TreasureRoom,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 46),
     type = Type.Fight,
     description = Res.string.objective_ag_treasure_room,
     difficulty = Difficulty.Middle,
   ),
   DefeatElementalLords(
-    checkpoint = (AgrabahProgress.Lords),
+    checkpoint = AgrabahProgress.Lords,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 37),
     type = Type.Boss,
     description = Res.string.objective_ag_elemental_lords,
     difficulty = Difficulty.Middle,
   ),
   DefeatGenieJafar(
-    checkpoint = (AgrabahProgress.GenieJafar),
+    checkpoint = AgrabahProgress.GenieJafar,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 15),
     type = Type.Boss,
     description = Res.string.objective_ag_jafar,
@@ -396,41 +396,41 @@ enum class Objective(
 
   // HT
   DefeatPrisonKeeper(
-    checkpoint = (HalloweenTownProgress.PrisonKeeper),
+    checkpoint = HalloweenTownProgress.PrisonKeeper,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 18),
     type = Type.Boss,
     description = Res.string.objective_ht_prison_keeper,
   ),
   DefeatOogieBoogie(
-    checkpoint = (HalloweenTownProgress.OogieBoogie),
+    checkpoint = HalloweenTownProgress.OogieBoogie,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 19),
     type = Type.Boss,
     description = Res.string.objective_ht_oogie_boogie,
     difficulty = Difficulty.Middle,
   ),
   CaptureLockShockBarrel(
-    checkpoint = (HalloweenTownProgress.Children),
+    checkpoint = HalloweenTownProgress.Children,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 40),
     type = Type.WorldProgress,
     description = Res.string.objective_ht_children,
     difficulty = Difficulty.Middle,
   ),
   FindStolenPresents(
-    checkpoint = (HalloweenTownProgress.StolenPresents),
+    checkpoint = HalloweenTownProgress.StolenPresents,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 297),
     type = Type.Fight,
     description = Res.string.objective_ht_stolen_presents,
     difficulty = Difficulty.Middle
   ),
   CreateDecoyPresents(
-    checkpoint = (HalloweenTownProgress.PresentsMinigame),
+    checkpoint = HalloweenTownProgress.PresentsMinigame,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 298),
     type = Type.WorldProgress,
     description = Res.string.objective_ht_presents_minigame,
     difficulty = Difficulty.Middle,
   ),
   DefeatExperiment(
-    checkpoint = (HalloweenTownProgress.Experiment),
+    checkpoint = HalloweenTownProgress.Experiment,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 20),
     type = Type.Boss,
     description = Res.string.objective_ht_experiment,
@@ -439,33 +439,33 @@ enum class Objective(
 
   // PL
   ReuniteWithSimba(
-    checkpoint = (PrideLandsProgress.Simba),
+    checkpoint = PrideLandsProgress.Simba,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 264),
     type = Type.WorldProgress,
     description = Res.string.objective_pl_simba,
   ),
   RescueTimonAndPumbaa(
-    checkpoint = (PrideLandsProgress.Hyenas1),
+    checkpoint = PrideLandsProgress.Hyenas1,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 49),
     type = Type.WorldProgress,
     description = Res.string.objective_pl_hyenas_1,
   ),
   DefeatScar(
-    checkpoint = (PrideLandsProgress.Scar),
+    checkpoint = PrideLandsProgress.Scar,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 29),
     type = Type.Boss,
     description = Res.string.objective_pl_scar,
     difficulty = Difficulty.Middle,
   ),
   GetInfoAboutGhostOfScarFromHyenas(
-    checkpoint = (PrideLandsProgress.Hyenas2),
+    checkpoint = PrideLandsProgress.Hyenas2,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 50),
     type = Type.WorldProgress,
     description = Res.string.objective_pl_hyenas_2,
     difficulty = Difficulty.Middle,
   ),
   DefeatGroundshaker(
-    checkpoint = (PrideLandsProgress.GroundShaker),
+    checkpoint = PrideLandsProgress.GroundShaker,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 30),
     type = Type.Boss,
     description = Res.string.objective_pl_groundshaker,
@@ -474,27 +474,27 @@ enum class Objective(
 
   // SP
   SurviveDataspaceAttack(
-    checkpoint = (SpaceParanoidsProgress.Screens),
+    checkpoint = SpaceParanoidsProgress.Screens,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 45),
     type = Type.Fight,
     description = Res.string.objective_sp_screens,
   ),
   DefeatHostileProgram(
-    checkpoint = (SpaceParanoidsProgress.HostileProgram),
+    checkpoint = SpaceParanoidsProgress.HostileProgram,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 31),
     type = Type.Boss,
     description = Res.string.objective_sp_hostile_program,
     difficulty = Difficulty.Middle,
   ),
   RideSolarSailer(
-    checkpoint = (SpaceParanoidsProgress.SolarSailer),
+    checkpoint = SpaceParanoidsProgress.SolarSailer,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 61),
     type = Type.Fight,
     description = Res.string.objective_sp_solar_sailer,
     difficulty = Difficulty.Middle,
   ),
   DefeatMCP(
-    checkpoint = (SpaceParanoidsProgress.MCP),
+    checkpoint = SpaceParanoidsProgress.MCP,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 32),
     type = Type.Boss,
     description = Res.string.objective_sp_mcp,
@@ -503,34 +503,34 @@ enum class Objective(
 
   // TWTNW
   DefeatRoxas(
-    checkpoint = (WorldThatNeverWasProgress.Roxas),
+    checkpoint = WorldThatNeverWasProgress.Roxas,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 69),
     type = Type.Boss,
     description = Res.string.objective_twtnw_roxas,
   ),
   DefeatXigbar(
-    checkpoint = (WorldThatNeverWasProgress.Xigbar),
+    checkpoint = WorldThatNeverWasProgress.Xigbar,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 23),
     type = Type.Boss,
     description = Res.string.objective_twtnw_xigbar,
     difficulty = Difficulty.Middle,
   ),
   DefeatLuxord(
-    checkpoint = (WorldThatNeverWasProgress.Luxord),
+    checkpoint = WorldThatNeverWasProgress.Luxord,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 24),
     type = Type.Boss,
     description = Res.string.objective_twtnw_luxord,
     difficulty = Difficulty.Middle,
   ),
   DefeatSaix(
-    checkpoint = (WorldThatNeverWasProgress.Saix),
+    checkpoint = WorldThatNeverWasProgress.Saix,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 25),
     type = Type.Boss,
     description = Res.string.objective_twtnw_saix,
     difficulty = Difficulty.Middle,
   ),
   DefeatXemnas(
-    checkpoint = (WorldThatNeverWasProgress.Xemnas1),
+    checkpoint = WorldThatNeverWasProgress.Xemnas1,
     checkLocation = CheckLocation(CheckLocationCategory.DoubleStatBonus, 26),
     type = Type.Boss,
     description = Res.string.objective_twtnw_xemnas,
@@ -539,40 +539,40 @@ enum class Objective(
 
   // OC
   DefeatCerberus(
-    checkpoint = (OlympusColiseumProgress.Cerberus),
+    checkpoint = OlympusColiseumProgress.Cerberus,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 5),
     type = Type.Boss,
     description = Res.string.objective_oc_cerberus,
   ),
   TrainWithPhil(
-    checkpoint = (OlympusColiseumProgress.Urns),
+    checkpoint = OlympusColiseumProgress.Urns,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 57),
     type = Type.WorldProgress,
     description = Res.string.objective_oc_urns,
   ),
   DefeatPeteAtLock(
-    checkpoint = (OlympusColiseumProgress.OCPete),
+    checkpoint = OlympusColiseumProgress.OCPete,
     checkLocation = CheckLocation(CheckLocationCategory.ItemBonus, 6),
     type = Type.Fight,
     description = Res.string.objective_oc_pete,
     difficulty = Difficulty.Middle,
   ),
   DefeatHydra(
-    checkpoint = (OlympusColiseumProgress.Hydra),
+    checkpoint = OlympusColiseumProgress.Hydra,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 7),
     type = Type.Boss,
     description = Res.string.objective_oc_hydra,
     difficulty = Difficulty.Middle,
   ),
   DefeatAmbushHadesChamber(
-    checkpoint = (OlympusColiseumProgress.AuronStatue),
+    checkpoint = OlympusColiseumProgress.AuronStatue,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 295),
     type = Type.Fight,
     description = Res.string.objective_oc_aurons_statue,
     difficulty = Difficulty.Middle,
   ),
   DefeatHades(
-    checkpoint = (OlympusColiseumProgress.Hades),
+    checkpoint = OlympusColiseumProgress.Hades,
     checkLocation = CheckLocation(CheckLocationCategory.ItemAndStatBonus, 8),
     type = Type.Boss,
     description = Res.string.objective_oc_hades,
@@ -581,27 +581,27 @@ enum class Objective(
 
   // Cups
   WinPainPanicCup(
-    checkpoint = (OlympusColiseumProgress.PainPanicCup),
+    checkpoint = OlympusColiseumProgress.PainPanicCup,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 513),
     type = Type.Fight,
     description = Res.string.objective_oc_cups_pain_panic,
   ),
   WinCerberusCup(
-    checkpoint = (OlympusColiseumProgress.CerberusCup),
+    checkpoint = OlympusColiseumProgress.CerberusCup,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 515),
     type = Type.Fight,
     description = Res.string.objective_oc_cups_cerberus,
     difficulty = Difficulty.Middle,
   ),
   WinTitanCup(
-    checkpoint = (OlympusColiseumProgress.TitanCup),
+    checkpoint = OlympusColiseumProgress.TitanCup,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 514),
     type = Type.Fight,
     description = Res.string.objective_oc_cups_titan,
     difficulty = Difficulty.Middle,
   ),
   WinGoddessOfFateCup(
-    checkpoint = (OlympusColiseumProgress.GoddessOfFateCup),
+    checkpoint = OlympusColiseumProgress.GoddessOfFateCup,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 516),
     type = Type.Fight,
     description = Res.string.objective_oc_cups_goddess,
@@ -610,14 +610,14 @@ enum class Objective(
 
   // HAW
   RescuePoohFromSpookyCave(
-    checkpoint = (HundredAcreWoodProgress.SpookyCave),
+    checkpoint = HundredAcreWoodProgress.SpookyCave,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 284),
     type = Type.WorldProgress,
     description = Res.string.objective_haw_spooky_cave,
     difficulty = Difficulty.Late,
   ),
   HelpPoohOutOfHunnyPot(
-    checkpoint = (HundredAcreWoodProgress.StarryHill),
+    checkpoint = HundredAcreWoodProgress.StarryHill,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 285),
     type = Type.WorldProgress,
     description = Res.string.objective_haw_starry_hill,
@@ -626,20 +626,20 @@ enum class Objective(
 
   // AT
   RelearnToSwim(
-    checkpoint = (AtlanticaProgress.Tutorial),
+    checkpoint = AtlanticaProgress.Tutorial,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 367),
     type = Type.WorldProgress,
     description = Res.string.objective_at_tutorial,
   ),
   DefeatUrsula(
-    checkpoint = (AtlanticaProgress.Ursula),
+    checkpoint = AtlanticaProgress.Ursula,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 287),
     type = Type.WorldProgress,
     description = Res.string.objective_at_ursula,
     difficulty = Difficulty.Late,
   ),
   ParticipateInNewDayMusical(
-    checkpoint = (AtlanticaProgress.NewDay),
+    checkpoint = AtlanticaProgress.NewDay,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 279),
     type = Type.WorldProgress,
     description = Res.string.objective_at_new_day,
@@ -648,100 +648,100 @@ enum class Objective(
 
   // Double check the valor dummy and final dummy ones
   ReachValor3(
-    checkpoint = (DriveFormProgress.Valor3),
+    checkpoint = DriveFormProgress.Valor3,
     checkLocation = CheckLocation(CheckLocationCategory.ValorLevel, 3),
     type = Type.WorldProgress,
     description = Res.string.objective_valor_3,
   ),
   ReachValor5(
-    checkpoint = (DriveFormProgress.Valor5),
+    checkpoint = DriveFormProgress.Valor5,
     checkLocation = CheckLocation(CheckLocationCategory.ValorLevel, 5),
     type = Type.WorldProgress,
     description = Res.string.objective_valor_5,
     difficulty = Difficulty.Middle,
   ),
   ReachValor7(
-    checkpoint = (DriveFormProgress.Valor7),
+    checkpoint = DriveFormProgress.Valor7,
     checkLocation = CheckLocation(CheckLocationCategory.ValorLevel, 7),
     type = Type.WorldProgress,
     description = Res.string.objective_valor_7,
     difficulty = Difficulty.Latest,
   ),
   ReachWisdom3(
-    checkpoint = (DriveFormProgress.Wisdom3),
+    checkpoint = DriveFormProgress.Wisdom3,
     checkLocation = CheckLocation(CheckLocationCategory.WisdomLevel, 3),
     type = Type.WorldProgress,
     description = Res.string.objective_wisdom_3,
   ),
   ReachWisdom5(
-    checkpoint = (DriveFormProgress.Wisdom5),
+    checkpoint = DriveFormProgress.Wisdom5,
     checkLocation = CheckLocation(CheckLocationCategory.WisdomLevel, 5),
     type = Type.WorldProgress,
     description = Res.string.objective_wisdom_5,
     difficulty = Difficulty.Middle,
   ),
   ReachWisdom7(
-    checkpoint = (DriveFormProgress.Wisdom7),
+    checkpoint = DriveFormProgress.Wisdom7,
     checkLocation = CheckLocation(CheckLocationCategory.WisdomLevel, 7),
     type = Type.WorldProgress,
     description = Res.string.objective_wisdom_7,
     difficulty = Difficulty.Latest,
   ),
   ReachLimit3(
-    checkpoint = (DriveFormProgress.Limit3),
+    checkpoint = DriveFormProgress.Limit3,
     checkLocation = CheckLocation(CheckLocationCategory.LimitLevel, 3),
     type = Type.WorldProgress,
     description = Res.string.objective_limit_3,
   ),
   ReachLimit5(
-    checkpoint = (DriveFormProgress.Limit5),
+    checkpoint = DriveFormProgress.Limit5,
     checkLocation = CheckLocation(CheckLocationCategory.LimitLevel, 5),
     type = Type.WorldProgress,
     description = Res.string.objective_limit_5,
     difficulty = Difficulty.Middle,
   ),
   ReachLimit7(
-    checkpoint = (DriveFormProgress.Limit7),
+    checkpoint = DriveFormProgress.Limit7,
     checkLocation = CheckLocation(CheckLocationCategory.LimitLevel, 7),
     type = Type.WorldProgress,
     description = Res.string.objective_limit_7,
     difficulty = Difficulty.Latest,
   ),
   ReachMaster3(
-    checkpoint = (DriveFormProgress.Master3),
+    checkpoint = DriveFormProgress.Master3,
     checkLocation = CheckLocation(CheckLocationCategory.MasterLevel, 3),
     type = Type.WorldProgress,
     description = Res.string.objective_master_3,
   ),
   ReachMaster5(
-    checkpoint = (DriveFormProgress.Master5),
+    checkpoint = DriveFormProgress.Master5,
     checkLocation = CheckLocation(CheckLocationCategory.MasterLevel, 5),
     type = Type.WorldProgress,
     description = Res.string.objective_master_5,
     difficulty = Difficulty.Middle,
   ),
   ReachMaster7(
-    checkpoint = (DriveFormProgress.Master7),
+    checkpoint = DriveFormProgress.Master7,
     checkLocation = CheckLocation(CheckLocationCategory.MasterLevel, 7),
     type = Type.WorldProgress,
     description = Res.string.objective_master_7,
     difficulty = Difficulty.Latest,
   ),
   ReachFinal3(
-    checkpoint = (DriveFormProgress.Final3),
+    checkpoint = DriveFormProgress.Final3,
     checkLocation = CheckLocation(CheckLocationCategory.FinalLevel, 3),
     type = Type.WorldProgress,
     description = Res.string.objective_final_3,
   ),
   ReachFinal5(
-    checkpoint = (DriveFormProgress.Final5),
+    checkpoint = DriveFormProgress.Final5,
     checkLocation = CheckLocation(CheckLocationCategory.FinalLevel, 5),
     type = Type.WorldProgress,
     description = Res.string.objective_final_5,
     difficulty = Difficulty.Middle,
   ),
   ReachFinal7(
-    checkpoint = (DriveFormProgress.Final7),
+    checkpoint = DriveFormProgress.Final7,
     checkLocation = CheckLocation(CheckLocationCategory.FinalLevel, 7),
     type = Type.WorldProgress,
     description = Res.string.objective_final_7,
@@ -750,42 +750,42 @@ enum class Objective(
 
   // Puzzle
   CompleteAwakeningPuzzle(
-    checkpoint = (CreationsProgress.AwakeningPuzzle),
+    checkpoint = CreationsProgress.AwakeningPuzzle,
     checkLocation = CheckLocation(CheckLocationCategory.Creation, 0),
     type = Type.WorldProgress,
     description = Res.string.objective_puzzle_awakening,
     difficulty = Difficulty.Middle,
   ),
   CompleteHeartPuzzle(
-    checkpoint = (CreationsProgress.HeartPuzzle),
+    checkpoint = CreationsProgress.HeartPuzzle,
     checkLocation = CheckLocation(CheckLocationCategory.Creation, 1),
     type = Type.WorldProgress,
     description = Res.string.objective_puzzle_heart,
     difficulty = Difficulty.Middle,
   ),
   CompleteDualityPuzzle(
-    checkpoint = (CreationsProgress.DualityPuzzle),
+    checkpoint = CreationsProgress.DualityPuzzle,
     checkLocation = CheckLocation(CheckLocationCategory.Creation, 2),
     type = Type.WorldProgress,
     description = Res.string.objective_puzzle_duality,
     difficulty = Difficulty.Late,
   ),
   CompleteFrontierPuzzle(
-    checkpoint = (CreationsProgress.FrontierPuzzle),
+    checkpoint = CreationsProgress.FrontierPuzzle,
     checkLocation = CheckLocation(CheckLocationCategory.Creation, 3),
     type = Type.WorldProgress,
     description = Res.string.objective_puzzle_frontier,
     difficulty = Difficulty.Late,
   ),
   CompleteDaylightPuzzle(
-    checkpoint = (CreationsProgress.DaylightPuzzle),
+    checkpoint = CreationsProgress.DaylightPuzzle,
     checkLocation = CheckLocation(CheckLocationCategory.Creation, 4),
     type = Type.WorldProgress,
     description = Res.string.objective_puzzle_daylight,
     difficulty = Difficulty.Late,
   ),
   CompleteSunsetPuzzle(
-    checkpoint = (CreationsProgress.SunsetPuzzle),
+    checkpoint = CreationsProgress.SunsetPuzzle,
     checkLocation = CheckLocation(CheckLocationCategory.Creation, 5),
     type = Type.WorldProgress,
     description = Res.string.objective_puzzle_sunset,
@@ -794,105 +794,105 @@ enum class Objective(
 
   // Superbosses
   DefeatSephiroth(
-    checkpoint = (HollowBastionProgress.Sephiroth),
+    checkpoint = HollowBastionProgress.Sephiroth,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 35),
     type = Type.Boss,
     description = Res.string.objective_hb_sephiroth,
     difficulty = Difficulty.Latest,
   ),
   DefeatLingeringWill(
-    checkpoint = (DisneyCastleProgress.LingeringWill),
+    checkpoint = DisneyCastleProgress.LingeringWill,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 70),
     type = Type.Boss,
     description = Res.string.objective_dc_lingering_will,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataRoxas(
-    checkpoint = (SimulatedTwilightTownProgress.DataRoxas),
+    checkpoint = SimulatedTwilightTownProgress.DataRoxas,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 558),
     type = Type.Boss,
     description = Res.string.objective_stt_data_roxas,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataDemyx(
-    checkpoint = (HollowBastionProgress.DataDemyx),
+    checkpoint = HollowBastionProgress.DataDemyx,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 560),
     type = Type.Boss,
     description = Res.string.objective_hb_data_demyx,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataXigbar(
-    checkpoint = (LandOfDragonsProgress.DataXigbar),
+    checkpoint = LandOfDragonsProgress.DataXigbar,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 555),
     type = Type.Boss,
     description = Res.string.objective_lod_data_xigbar,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataSaix(
-    checkpoint = (PrideLandsProgress.DataSaix),
+    checkpoint = PrideLandsProgress.DataSaix,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 556),
     type = Type.Boss,
     description = Res.string.objective_pl_data_saix,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataAxel(
-    checkpoint = (TwilightTownProgress.DataAxel),
+    checkpoint = TwilightTownProgress.DataAxel,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 561),
     type = Type.Boss,
     description = Res.string.objective_tt_data_axel,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataXaldin(
-    checkpoint = (BeastsCastleProgress.DataXaldin),
+    checkpoint = BeastsCastleProgress.DataXaldin,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 559),
     type = Type.Boss,
     description = Res.string.objective_bc_data_xaldin,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataLuxord(
-    checkpoint = (PortRoyalProgress.DataLuxord),
+    checkpoint = PortRoyalProgress.DataLuxord,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 557),
     type = Type.Boss,
     description = Res.string.objective_pr_data_luxord,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataXemnas(
-    checkpoint = (WorldThatNeverWasProgress.DataXemnas),
+    checkpoint = WorldThatNeverWasProgress.DataXemnas,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 554),
     type = Type.Boss,
     description = Res.string.objective_twtnw_data_xemnas,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataZexion(
-    checkpoint = (OlympusColiseumProgress.ZexionData),
+    checkpoint = OlympusColiseumProgress.ZexionData,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 551),
     type = Type.Boss,
     description = Res.string.objective_oc_data_zexion,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataVexen(
-    checkpoint = (HalloweenTownProgress.VexenData),
+    checkpoint = HalloweenTownProgress.VexenData,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 549),
     type = Type.Boss,
     description = Res.string.objective_ht_data_vexen,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataLarxene(
-    checkpoint = (SpaceParanoidsProgress.LarxeneData),
+    checkpoint = SpaceParanoidsProgress.LarxeneData,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 552),
     type = Type.Boss,
     description = Res.string.objective_sp_data_larxene,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataLexaeus(
-    checkpoint = (AgrabahProgress.LexaeusData),
+    checkpoint = AgrabahProgress.LexaeusData,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 550),
     type = Type.Boss,
     description = Res.string.objective_ag_data_lexaeus,
     difficulty = Difficulty.Latest,
   ),
   DefeatDataMarluxia(
-    checkpoint = (DisneyCastleProgress.MarluxiaData),
+    checkpoint = DisneyCastleProgress.MarluxiaData,
     checkLocation = CheckLocation(CheckLocationCategory.Popup, 553),
     type = Type.Boss,
     description = Res.string.objective_dc_data_marluxia,
@@ -901,35 +901,35 @@ enum class Objective(
 
   // AS
   DefeatASZexion(
-    checkpoint = (OlympusColiseumProgress.Zexion),
+    checkpoint = OlympusColiseumProgress.Zexion,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 66),
     type = Type.Boss,
     description = Res.string.objective_oc_as_zexion,
     difficulty = Difficulty.Latest,
   ),
   DefeatASVexen(
-    checkpoint = (HalloweenTownProgress.Vexen),
+    checkpoint = HalloweenTownProgress.Vexen,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 64),
     type = Type.Boss,
     description = Res.string.objective_ht_as_vexen,
     difficulty = Difficulty.Latest,
   ),
   DefeatASLarxene(
-    checkpoint = (SpaceParanoidsProgress.Larxene),
+    checkpoint = SpaceParanoidsProgress.Larxene,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 68),
     type = Type.Boss,
     description = Res.string.objective_sp_as_larxene,
     difficulty = Difficulty.Latest,
   ),
   DefeatASLexaeus(
-    checkpoint = (AgrabahProgress.Lexaeus),
+    checkpoint = AgrabahProgress.Lexaeus,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 65),
     type = Type.Boss,
     description = Res.string.objective_ag_as_lexaeus,
     difficulty = Difficulty.Latest,
   ),
   DefeatASMarluxia(
-    checkpoint = (DisneyCastleProgress.Marluxia),
+    checkpoint = DisneyCastleProgress.Marluxia,
     checkLocation = CheckLocation(CheckLocationCategory.StatBonus, 67),
     type = Type.Boss,
     description = Res.string.objective_dc_as_marluxia,
