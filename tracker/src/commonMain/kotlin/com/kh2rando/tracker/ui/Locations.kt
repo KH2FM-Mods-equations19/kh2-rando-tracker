@@ -265,25 +265,38 @@ private fun LocationRow(
         counterState = counterState,
         counterContent = { CounterArea(counterState = counterState) },
         userMarkContent = {
-          val userProofMarks = locationUiState.userProofMarks
-          val markedProofCount = userProofMarks.size
-          if (markedProofCount == 0) {
+          val possibleProofs = locationUiState.possibleProofs
+          val impossibleProofs = locationUiState.impossibleProofs
+          val possibleProofCount = possibleProofs.size
+          val impossibleProofCount = impossibleProofs.size
+          if (possibleProofCount == 0 && impossibleProofCount == 0) {
             AnimatedContent(locationUiState.userMarkIcon) { icon -> icon.Content(Modifier) }
           } else {
             BoxWithConstraints(contentAlignment = Alignment.Center) {
-              if (markedProofCount > 1) {
+              if (impossibleProofCount == 3) {
+                CustomizableIcon(
+                  icon = UserProofMark.NoProofs,
+                  contentDescription = stringResource(UserProofMark.NoProofs.displayString),
+                  alpha = 0.8f,
+                )
+              } else if (possibleProofCount > 1) {
                 Image(
                   imageResource(Res.drawable.proof_blank),
                   contentDescription = null,
                   alpha = 0.8f,
                 )
                 CounterText(
-                  markedProofCount.toString(),
+                  possibleProofCount.toString(),
                   maximumHeight = maxHeight / 2,
                   color = LocalContentColor.current.copy(alpha = 0.8f),
                 )
-              } else {
-                val proofMark = userProofMarks.first()
+              } else if (possibleProofCount == 1) {
+                val proof = possibleProofs.first()
+                val proofMark = when (proof) {
+                  Proof.ProofOfConnection -> UserProofMark.Connection
+                  Proof.ProofOfNonexistence -> UserProofMark.Nonexistence
+                  Proof.ProofOfPeace -> UserProofMark.Peace
+                }
                 CustomizableIcon(
                   icon = proofMark,
                   contentDescription = stringResource(proofMark.displayString),

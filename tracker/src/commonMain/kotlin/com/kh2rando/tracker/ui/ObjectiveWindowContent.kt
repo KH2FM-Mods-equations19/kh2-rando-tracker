@@ -25,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.text.style.TextOverflow
@@ -37,6 +36,8 @@ import com.kh2rando.tracker.model.ColorToken
 import com.kh2rando.tracker.model.gamestate.BaseGameStateUpdateApi
 import com.kh2rando.tracker.model.gamestate.allCompletedProgressCheckpoints
 import com.kh2rando.tracker.model.objective.Objective
+import com.kh2rando.tracker.model.preferences.TrackerPreferences
+import com.kh2rando.tracker.model.preferences.collectAsState
 import com.kh2rando.tracker.model.progress.DriveFormProgress
 import com.kh2rando.tracker.model.progress.SoraLevelProgress
 import com.kh2rando.tracker.model.seed.FinalDoorRequirement
@@ -45,6 +46,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun ObjectiveWindowContent(
   gameState: BaseGameStateUpdateApi?,
+  preferences: TrackerPreferences,
   modifier: Modifier = Modifier,
 ) {
   Surface(modifier) {
@@ -54,6 +56,7 @@ fun ObjectiveWindowContent(
     } else {
       Objectives(
         gameState = gameState,
+        preferences = preferences,
         objectivesRequirement = finalDoorRequirement,
         modifier = Modifier.fillMaxSize()
       )
@@ -71,6 +74,7 @@ private fun NoObjectives(modifier: Modifier = Modifier) {
 @Composable
 private fun Objectives(
   gameState: BaseGameStateUpdateApi,
+  preferences: TrackerPreferences,
   objectivesRequirement: FinalDoorRequirement.Objectives,
   modifier: Modifier = Modifier,
 ) {
@@ -112,6 +116,10 @@ private fun Objectives(
       }
     }
 
+    val objectiveMetColor: Color by preferences.gridCellCompleteColor.collectAsState()
+    val objectiveMarkedColor: Color by preferences.gridCellMarkColor.collectAsState()
+    val allObjectivesMetColor: Color by preferences.gridCompletionColor.collectAsState()
+
     LazyVerticalGrid(
       columns = GridCells.FixedSize(size = 72.dp),
       modifier = Modifier.weight(1.0f)
@@ -120,11 +128,11 @@ private fun Objectives(
         val isMet = objective.isMet()
 
         val background = if (isMet && allMet) {
-          ColorToken.Green.color.copy(alpha = 0.5f)
+          allObjectivesMetColor.copy(alpha = 0.5f)
         } else if (isMet) {
-          ColorToken.Red.color.copy(alpha = 0.5f)
+          objectiveMetColor.copy(alpha = 0.5f)
         } else if (objective in objectivesMarkedSecondary) {
-          MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
+          objectiveMarkedColor.copy(alpha = 0.5f)
         } else {
           Color.Transparent
         }
@@ -155,7 +163,6 @@ private fun ObjectiveCell(
 ) {
   val checkpoint = objective.checkpoint
   val objectiveText = stringResource(objective.description)
-  val alpha = if (isMet) 0.5f else DefaultAlpha
 
   Box(
     modifier = modifier
@@ -176,7 +183,7 @@ private fun ObjectiveCell(
         )
       } else {
         SimpleTooltipArea(tooltipText = objectiveText) {
-          CustomizableIcon(icon = checkpoint, contentDescription = objectiveText, alpha = alpha)
+          CustomizableIcon(icon = checkpoint, contentDescription = objectiveText)
         }
       }
     } else if (checkpoint is SoraLevelProgress) {
@@ -188,12 +195,12 @@ private fun ObjectiveCell(
         )
       } else {
         SimpleTooltipArea(tooltipText = objectiveText) {
-          CustomizableIcon(icon = checkpoint, contentDescription = objectiveText, alpha = alpha)
+          CustomizableIcon(icon = checkpoint, contentDescription = objectiveText)
         }
       }
     } else {
       SimpleTooltipArea(tooltipText = objectiveText) {
-        CustomizableIcon(icon = checkpoint, contentDescription = objectiveText, alpha = alpha)
+        CustomizableIcon(icon = checkpoint, contentDescription = objectiveText)
       }
     }
 

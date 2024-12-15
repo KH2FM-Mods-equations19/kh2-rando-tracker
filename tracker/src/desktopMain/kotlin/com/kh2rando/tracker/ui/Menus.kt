@@ -17,6 +17,7 @@ import com.kh2rando.tracker.generated.resources.menu_about_tracker
 import com.kh2rando.tracker.generated.resources.menu_auto_math
 import com.kh2rando.tracker.generated.resources.menu_auto_save_progress
 import com.kh2rando.tracker.generated.resources.menu_auto_tracking_auto_start
+import com.kh2rando.tracker.generated.resources.menu_choose_colors
 import com.kh2rando.tracker.generated.resources.menu_extended_window
 import com.kh2rando.tracker.generated.resources.menu_layout_classic
 import com.kh2rando.tracker.generated.resources.menu_layout_goa
@@ -84,7 +85,10 @@ fun MenuBarScope.TrackerMenu(
 }
 
 @Composable
-fun MenuBarScope.SettingsMenu(preferences: TrackerPreferences) {
+fun MenuBarScope.SettingsMenu(
+  preferences: TrackerPreferences,
+  onShowChooseColorsWindow: () -> Unit,
+) {
   val scope = rememberCoroutineScope()
 
   Menu(stringResource(Res.string.menu_settings)) {
@@ -154,6 +158,10 @@ fun MenuBarScope.SettingsMenu(preferences: TrackerPreferences) {
         }
       }
     )
+
+    Item(text = stringResource(Res.string.menu_choose_colors)) {
+      onShowChooseColorsWindow()
+    }
   }
 }
 

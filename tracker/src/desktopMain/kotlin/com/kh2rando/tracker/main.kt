@@ -38,6 +38,7 @@ import com.kh2rando.tracker.model.preferences.collectAsState
 import com.kh2rando.tracker.model.seed.FinalDoorRequirement
 import com.kh2rando.tracker.ui.AboutWindow
 import com.kh2rando.tracker.ui.AutoTrackingConsoleContent
+import com.kh2rando.tracker.ui.ChooseColorsWindow
 import com.kh2rando.tracker.ui.CustomIconsWindow
 import com.kh2rando.tracker.ui.CustomizableIconRegistry
 import com.kh2rando.tracker.ui.DebugMenu
@@ -125,6 +126,7 @@ fun main(args: Array<String>) {
     var autoTrackingState: AutoTrackingState by remember { mutableStateOf(AutoTrackingState.None) }
 
     var showingExtendedWindow: Boolean by remember { mutableStateOf(initialPreferences.showExtendedWindow) }
+    var showingChooseColorsWindow: Boolean by remember { mutableStateOf(false) }
     var showingCustomIconsWindow: Boolean by remember { mutableStateOf(false) }
     var showingAboutTracker: Boolean by remember { mutableStateOf(false) }
     var showingResetConfirmation: Boolean by remember { mutableStateOf(false) }
@@ -169,7 +171,10 @@ fun main(args: Array<String>) {
               onResetTracker = { showingResetConfirmation = true },
               onResetWindowSize = { windowState.size = defaultSize }
             )
-            SettingsMenu(preferences = preferences)
+            SettingsMenu(
+              preferences = preferences,
+              onShowChooseColorsWindow = { showingChooseColorsWindow = true },
+            )
             OtherMenu(
               onShowCustomIconsWindow = { showingCustomIconsWindow = true },
             )
@@ -234,6 +239,13 @@ fun main(args: Array<String>) {
               gameState = gameState,
               preferences = preferences,
               onCloseRequest = { showingExtendedWindow = false }
+            )
+          }
+
+          if (showingChooseColorsWindow) {
+            ChooseColorsWindow(
+              preferences = preferences,
+              onCloseRequest = { showingChooseColorsWindow = false },
             )
           }
 

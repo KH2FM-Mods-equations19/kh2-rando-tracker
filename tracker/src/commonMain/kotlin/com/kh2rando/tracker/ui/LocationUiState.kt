@@ -15,6 +15,7 @@ import com.kh2rando.tracker.model.LocationCounterState
 import com.kh2rando.tracker.model.gamestate.BaseGameStateUpdateApi
 import com.kh2rando.tracker.model.hints.LocationAuxiliaryHintInfo
 import com.kh2rando.tracker.model.item.ItemPrototype
+import com.kh2rando.tracker.model.item.Proof
 import com.kh2rando.tracker.model.item.UniqueItem
 import com.kh2rando.tracker.model.item.removeAcquired
 import com.kh2rando.tracker.model.progress.DisneyCastleProgress
@@ -39,7 +40,8 @@ data class LocationUiState(
   val lockedVisitCount: Int = 0,
   val counterState: LocationCounterState = LocationCounterState.None,
   val completedProgressCheckpoints: ImmutableSet<ProgressCheckpoint> = persistentSetOf(),
-  val userProofMarks: ImmutableSet<UserProofMark> = persistentSetOf(),
+  val possibleProofs: ImmutableSet<Proof> = persistentSetOf(),
+  val impossibleProofs: ImmutableSet<Proof> = persistentSetOf(),
   val userMarkCount: Int = 0,
   val auxiliaryHintInfo: LocationAuxiliaryHintInfo = LocationAuxiliaryHintInfo.NotApplicableToHintSystem,
 ) {

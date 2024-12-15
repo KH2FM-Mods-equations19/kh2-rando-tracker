@@ -124,7 +124,8 @@ class FullGameState(
         revealedItemLists.getValue(location),
         counterStates.getValue(location),
         locationState.completedProgressCheckpoints,
-        locationState.userProofMarks,
+        locationState.possibleProofs,
+        locationState.impossibleProofs,
         locationState.userMarkCounts,
         auxiliaryHintInfos.getValue(location),
       ) {
@@ -136,7 +137,8 @@ class FullGameState(
           locationRevealedItems,
           counterState,
           completedProgressCheckpoints,
-          userProofMarks,
+          possibleProofs,
+          impossibleProofs,
           userMarkCount,
           auxiliaryHintInfo,
         ->
@@ -162,7 +164,8 @@ class FullGameState(
           },
           counterState = counterState,
           completedProgressCheckpoints = completedProgressCheckpoints,
-          userProofMarks = userProofMarks,
+          possibleProofs = possibleProofs,
+          impossibleProofs = impossibleProofs,
           userMarkCount = userMarkCount,
           auxiliaryHintInfo = auxiliaryHintInfo
         )
@@ -182,7 +185,8 @@ class FullGameState(
           items = locationState.acquiredItems.value.map { it.prototype },
           progress = locationState.completedProgressCheckpoints.value.map { it.index },
           manuallyRejectedItems = locationState.manuallyRejectedItems,
-          userProofMarks = locationState.userProofMarks.value,
+          possibleProofs = locationState.possibleProofs.value,
+          impossibleProofs = locationState.impossibleProofs.value,
           userMark = locationState.userMarkCounts.value,
         )
       },

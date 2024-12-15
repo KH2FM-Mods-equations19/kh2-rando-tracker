@@ -67,6 +67,11 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 
 ## Changelog
 
+### 1.9.5
+
+- Allow customization of the objective window colors
+- Add ability to mark proofs as either possible, impossible, or unknown per location
+
 ### 1.9.4
 
 - Minor stability changes and updates

@@ -19,6 +19,7 @@
     <string name="menu_auto_save_progress">Auto-save tracker progress</string>
     <string name="menu_use_custom_images">Load custom images</string>
     <string name="menu_auto_math">Revealed item auto-math</string>
+    <string name="menu_choose_colors">Choose colors</string>
     <string name="menu_other">Other</string>
 
     <string name="state_loading_seed">Loading seed</string>
@@ -105,5 +106,9 @@
     <string name="status_searching_for_game">Searching for game</string>
     <string name="status_err_unsupported_game_version">Detected an unsupported game version</string>
     <string name="status_err_connecting">Unable to connect to the game</string>
+
+    <string name="grid_cell_mark_color">Grid item marked</string>
+    <string name="grid_cell_complete_color">Grid item complete</string>
+    <string name="grid_all_complete_color">Grid complete</string>
 
 </resources>

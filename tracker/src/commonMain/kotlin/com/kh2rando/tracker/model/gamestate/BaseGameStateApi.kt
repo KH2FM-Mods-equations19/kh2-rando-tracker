@@ -9,12 +9,12 @@ import com.kh2rando.tracker.model.MusicState
 import com.kh2rando.tracker.model.SoraState
 import com.kh2rando.tracker.model.item.AnsemReport
 import com.kh2rando.tracker.model.item.ItemPrototype
+import com.kh2rando.tracker.model.item.Proof
 import com.kh2rando.tracker.model.item.UniqueItem
 import com.kh2rando.tracker.model.objective.Objective
 import com.kh2rando.tracker.model.progress.ProgressCheckpoint
 import com.kh2rando.tracker.model.seed.RandomizerSeed
 import com.kh2rando.tracker.model.stateFlowOf
-import com.kh2rando.tracker.ui.UserProofMark
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.toImmutableSet
@@ -225,9 +225,24 @@ interface BaseGameStateUpdateApi : BaseGameStateApi {
   fun manuallyToggleLocation(location: Location)
 
   /**
-   * Toggles the [userProofMark] on or off for this location.
+   * Marks [proof] as definitely possible for [location].
    */
-  fun toggleUserProofMark(location: Location, userProofMark: UserProofMark)
+  fun markProofPossible(location: Location, proof: Proof)
+
+  /**
+   * Marks [proof] as definitely impossible for [location].
+   */
+  fun markProofImpossible(location: Location, proof: Proof)
+
+  /**
+   * Marks [proof] as unknown possibility for [location].
+   */
+  fun markProofUnknown(location: Location, proof: Proof)
+
+  /**
+   * Adjusts the user mark for [proof] forward or backward based on the [delta].
+   */
+  fun adjustUserProofMark(location: Location, proof: Proof, delta: Int)
 
   /**
    * Sets the user mark count for the given [location] to [userMark], unconditionally.

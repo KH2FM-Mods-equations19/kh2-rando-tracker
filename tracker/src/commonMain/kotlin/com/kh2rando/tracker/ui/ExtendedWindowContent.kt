@@ -29,7 +29,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
@@ -54,6 +53,7 @@ import com.kh2rando.tracker.model.MusicState
 import com.kh2rando.tracker.model.SoraState
 import com.kh2rando.tracker.model.gamestate.FullGameState
 import com.kh2rando.tracker.model.item.MunnyPouch
+import com.kh2rando.tracker.model.item.Proof
 import com.kh2rando.tracker.model.preferences.TrackerPreferences
 import com.kh2rando.tracker.model.preferences.collectAsState
 import kotlinx.coroutines.flow.StateFlow
@@ -188,7 +188,12 @@ private fun MainExtendedWindowContent(
         eligibleLocations = gameState.seed.settings.enabledLocations - Location.GardenOfAssemblage,
         locationLayout = locationLayout,
         locationStatesProvider = { location -> gameState.locationUiStates.getValue(location) },
-        onToggleUserProofMark = { location, userProofMark -> gameState.toggleUserProofMark(location, userProofMark) },
+        onAdjustProof = { location, proof, delta -> gameState.adjustUserProofMark(location, proof, delta) },
+        onMarkAllProofsImpossible = { location ->
+          for (proof in Proof.entries) {
+            gameState.markProofImpossible(location, proof)
+          }
+        },
         modifier = Modifier.fillMaxWidth().weight(1.0f)
       )
     }
@@ -200,7 +205,8 @@ private fun ProofInfoArea(
   eligibleLocations: Set<Location>,
   locationLayout: LocationLayout,
   locationStatesProvider: (Location) -> StateFlow<LocationUiState>,
-  onToggleUserProofMark: (Location, UserProofMark) -> Unit,
+  onAdjustProof: (Location, Proof, delta: Int) -> Unit,
+  onMarkAllProofsImpossible: (Location) -> Unit,
   modifier: Modifier = Modifier,
 ) {
   Row(
@@ -210,13 +216,15 @@ private fun ProofInfoArea(
     ProofInfoColumn(
       locations = locationLayout.leftLocations.filter { it in eligibleLocations },
       locationStatesProvider = locationStatesProvider,
-      onToggleUserProofMark = onToggleUserProofMark,
+      onAdjustProof = onAdjustProof,
+      onMarkAllProofsImpossible = onMarkAllProofsImpossible,
       modifier = Modifier.weight(1.0f),
     )
     ProofInfoColumn(
       locations = locationLayout.rightLocations.filter { it in eligibleLocations },
       locationStatesProvider = locationStatesProvider,
-      onToggleUserProofMark = onToggleUserProofMark,
+      onAdjustProof = onAdjustProof,
+      onMarkAllProofsImpossible = onMarkAllProofsImpossible,
       modifier = Modifier.weight(1.0f),
     )
   }
@@ -226,7 +234,8 @@ private fun ProofInfoArea(
 private fun ProofInfoColumn(
   locations: List<Location>,
   locationStatesProvider: (Location) -> StateFlow<LocationUiState>,
-  onToggleUserProofMark: (Location, UserProofMark) -> Unit,
+  onAdjustProof: (Location, Proof, delta: Int) -> Unit,
+  onMarkAllProofsImpossible: (Location) -> Unit,
   modifier: Modifier = Modifier,
 ) {
   Column(
@@ -237,7 +246,8 @@ private fun ProofInfoColumn(
       val locationState = locationStatesProvider(location)
       LocationProofInfoArea(
         locationState,
-        onToggleUserProofMark = { userProofMark -> onToggleUserProofMark(location, userProofMark) },
+        onAdjustProof = { proof, delta -> onAdjustProof(location, proof, delta) },
+        onMarkAllProofsImpossible = { onMarkAllProofsImpossible(location) },
         modifier = Modifier.fillMaxWidth()
       )
     }
@@ -245,23 +255,34 @@ private fun ProofInfoColumn(
 }
 
 @Composable
+@OptIn(ExperimentalComposeUiApi::class)
 private fun LocationProofInfoArea(
   locationStates: StateFlow<LocationUiState>,
-  onToggleUserProofMark: (UserProofMark) -> Unit,
+  onAdjustProof: (Proof, delta: Int) -> Unit,
+  onMarkAllProofsImpossible: () -> Unit,
   modifier: Modifier = Modifier,
 ) {
   val locationState by locationStates.collectAsState()
   val location = locationState.location
-  val userProofMarks = locationState.userProofMarks
+  val possibleProofs = locationState.possibleProofs
+  val impossibleProofs = locationState.impossibleProofs
   val completed = locationState.counterState == LocationCounterState.Completed
-  val noProofs = UserProofMark.NoProofs in userProofMarks
+  val noProofs = impossibleProofs.containsAll(Proof.entries)
   val colorScheme = MaterialTheme.colorScheme
   Surface(color = colorScheme.surfaceContainer) {
     Row(
       modifier = modifier.heightIn(max = 48.dp).padding(4.dp),
       verticalAlignment = Alignment.CenterVertically,
     ) {
-      Box(Modifier.weight(1.0f)) {
+      Box(
+        Modifier.weight(1.0f)
+          .onPointerEvent(PointerEventType.Scroll) { event ->
+            val scrollDeltaY = event.changes.first().scrollDelta.y
+            if (scrollDeltaY > 0) {
+              onMarkAllProofsImpossible()
+            }
+          },
+      ) {
         CustomizableIcon(
           location,
           contentDescription = location.localizedName,
@@ -274,16 +295,12 @@ private fun LocationProofInfoArea(
         }
       }
 
-      for (userProofMark in UserProofMark.entries) {
+      for (proof in Proof.entries) {
         UserProofMark(
-          userProofMark,
-          selected = userProofMark in userProofMarks,
-          tintOverride = if (noProofs && userProofMark != UserProofMark.NoProofs) {
-            colorScheme.disabledItemTint
-          } else {
-            null
-          },
-          onToggleUserProofMark = onToggleUserProofMark,
+          proof,
+          possible = proof in possibleProofs,
+          impossible = proof in impossibleProofs,
+          onAdjust = { delta -> onAdjustProof(proof, delta) },
           modifier = Modifier.weight(1.0f),
         )
       }
@@ -294,25 +311,38 @@ private fun LocationProofInfoArea(
 @Composable
 @OptIn(ExperimentalComposeUiApi::class)
 private fun UserProofMark(
-  userProofMark: UserProofMark,
-  selected: Boolean,
-  tintOverride: Color?,
-  onToggleUserProofMark: (UserProofMark) -> Unit,
+  proof: Proof,
+  possible: Boolean,
+  impossible: Boolean,
+  onAdjust: (delta: Int) -> Unit,
   modifier: Modifier = Modifier,
 ) {
+  val tintOverride = if (impossible) {
+    MaterialTheme.colorScheme.disabledItemTint
+  } else {
+    null
+  }
   CustomizableIcon(
-    userProofMark,
-    contentDescription = stringResource(userProofMark.displayString),
-    alpha = if (selected || tintOverride != null) DefaultAlpha else 0.15f,
+    proof,
+    contentDescription = proof.localizedName,
+    alpha = if (possible || tintOverride != null) DefaultAlpha else 0.15f,
     tintColorOverride = tintOverride,
     modifier = modifier
-      .clickable { onToggleUserProofMark(userProofMark) }
+      .clickable {
+        if (possible) {
+          // Cycle back down to impossible by adjusting down twice
+          onAdjust(-1)
+          onAdjust(-1)
+        } else {
+          onAdjust(1)
+        }
+      }
       .onPointerEvent(PointerEventType.Scroll) { event ->
         val scrollDeltaY = event.changes.first().scrollDelta.y
         if (scrollDeltaY > 0) {
-          onToggleUserProofMark(userProofMark)
+          onAdjust(-1)
         } else if (scrollDeltaY < 0) {
-          onToggleUserProofMark(userProofMark)
+          onAdjust(1)
         }
       },
   )

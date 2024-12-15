@@ -10,13 +10,13 @@ import com.kh2rando.tracker.model.SoraState
 import com.kh2rando.tracker.model.item.AnsemReport
 import com.kh2rando.tracker.model.item.DriveForm
 import com.kh2rando.tracker.model.item.ItemPrototype
+import com.kh2rando.tracker.model.item.Proof
 import com.kh2rando.tracker.model.item.UniqueItem
 import com.kh2rando.tracker.model.locationsMap
 import com.kh2rando.tracker.model.objective.Objective
 import com.kh2rando.tracker.model.progress.ProgressCheckpoint
 import com.kh2rando.tracker.model.seed.LevelChecks.Companion.checksBetween
 import com.kh2rando.tracker.model.seed.RandomizerSeed
-import com.kh2rando.tracker.ui.UserProofMark
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.ImmutableSet
@@ -212,8 +212,20 @@ class BaseGameState(
     }
   }
 
-  override fun toggleUserProofMark(location: Location, userProofMark: UserProofMark) {
-    location.writableState.toggleUserProofMark(userProofMark)
+  override fun markProofPossible(location: Location, proof: Proof) {
+    location.writableState.markProofPossible(proof)
+  }
+
+  override fun markProofImpossible(location: Location, proof: Proof) {
+    location.writableState.markProofImpossible(proof)
+  }
+
+  override fun markProofUnknown(location: Location, proof: Proof) {
+    location.writableState.markProofUnknown(proof)
+  }
+
+  override fun adjustUserProofMark(location: Location, proof: Proof, delta: Int) {
+    location.writableState.adjustUserProofMark(proof, delta)
   }
 
   override fun setUserMarkForLocation(location: Location, userMark: Int) {

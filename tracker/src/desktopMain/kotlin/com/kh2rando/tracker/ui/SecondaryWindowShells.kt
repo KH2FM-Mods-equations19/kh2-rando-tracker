@@ -19,6 +19,7 @@ import com.kh2rando.tracker.generated.resources.extended_settings_show_song_info
 import com.kh2rando.tracker.generated.resources.extended_settings_song_folder_as_group
 import com.kh2rando.tracker.generated.resources.extended_window_title
 import com.kh2rando.tracker.generated.resources.menu_about_tracker
+import com.kh2rando.tracker.generated.resources.menu_choose_colors
 import com.kh2rando.tracker.generated.resources.menu_settings
 import com.kh2rando.tracker.generated.resources.tracker_logo
 import com.kh2rando.tracker.model.gamestate.BaseGameStateUpdateApi
@@ -132,9 +133,27 @@ fun ObjectiveWindow(
     icon = painterResource(Res.drawable.tracker_logo),
     title = stringResource(Res.string.desc_objectives)
   ) {
-    ObjectiveWindowContent(gameState)
+    ObjectiveWindowContent(gameState, preferences)
 
     SaveWindowSizeAndPosition(windowState, sizePreference, positionPreference)
+  }
+}
+
+
+@Composable
+fun ChooseColorsWindow(
+  preferences: TrackerPreferences,
+  onCloseRequest: () -> Unit,
+) {
+  val windowState = rememberWindowState(size = DpSize(width = 960.dp, height = 240.dp))
+
+  Window(
+    state = windowState,
+    onCloseRequest = onCloseRequest,
+    icon = painterResource(Res.drawable.tracker_logo),
+    title = stringResource(Res.string.menu_choose_colors)
+  ) {
+    ChooseColorsWindowContent(preferences)
   }
 }
 

@@ -2,10 +2,10 @@ package com.kh2rando.tracker.model.gamestate
 
 import com.kh2rando.tracker.model.Location
 import com.kh2rando.tracker.model.item.ItemPrototype
+import com.kh2rando.tracker.model.item.Proof
 import com.kh2rando.tracker.model.item.UniqueItem
 import com.kh2rando.tracker.model.progress.ProgressCheckpoint
 import com.kh2rando.tracker.ui.UserMarkIcon
-import com.kh2rando.tracker.ui.UserProofMark
 import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.PersistentSet
 import kotlinx.collections.immutable.minus
@@ -41,9 +41,14 @@ interface LocationStateApi {
   val userMarkCounts: StateFlow<Int>
 
   /**
-   * [UserProofMark]s for this location.
+   * Proofs that the user has marked as being possible for this location.
    */
-  val userProofMarks: StateFlow<ImmutableSet<UserProofMark>>
+  val possibleProofs: StateFlow<ImmutableSet<Proof>>
+
+  /**
+   * Proofs that the user has marked as being impossible for this location.
+   */
+  val impossibleProofs: StateFlow<ImmutableSet<Proof>>
 
   /**
    * A set of items that have been manually rejected from this location by the user.
@@ -73,9 +78,13 @@ class LocationState(override val location: Location) : LocationStateApi {
   override val userMarkCounts: StateFlow<Int>
     get() = _userMarks
 
-  private val _userProofMarks: MutableStateFlow<PersistentSet<UserProofMark>> = MutableStateFlow(persistentSetOf())
-  override val userProofMarks: StateFlow<ImmutableSet<UserProofMark>>
-    get() = _userProofMarks
+  private val _possibleProofs: MutableStateFlow<PersistentSet<Proof>> = MutableStateFlow(persistentSetOf())
+  override val possibleProofs: StateFlow<ImmutableSet<Proof>>
+    get() = _possibleProofs
+
+  private val _impossibleProofs: MutableStateFlow<PersistentSet<Proof>> = MutableStateFlow(persistentSetOf())
+  override val impossibleProofs: StateFlow<ImmutableSet<Proof>>
+    get() = _impossibleProofs
 
   private val _manuallyRejectedItems: MutableSet<ItemPrototype> = mutableSetOf()
   override val manuallyRejectedItems: Set<ItemPrototype>
@@ -118,28 +127,47 @@ class LocationState(override val location: Location) : LocationStateApi {
   }
 
   /**
-   * Toggles the [userProofMark] on or off for this location.
+   * Marks [proof] as definitely possible for this location.
    */
-  fun toggleUserProofMark(userProofMark: UserProofMark) {
-    _userProofMarks.update { previous ->
-      if (userProofMark == UserProofMark.NoProofs) {
-        if (userProofMark in previous) {
-          // If it was just no proof before, now it should be empty
-          persistentSetOf()
-        } else {
-          // Marking no proof should get rid of any marked proofs
-          persistentSetOf(userProofMark)
-        }
-      } else {
-        if (userProofMark in previous) {
-          // Can just do a simple remove
-          previous - userProofMark
-        } else {
-          // If a proof is now marked, it can't be no proofs
-          previous - UserProofMark.NoProofs + userProofMark
-        }
-      }
+  fun markProofPossible(proof: Proof) {
+    _possibleProofs.update { previous -> previous + proof }
+    _impossibleProofs.update { previous -> previous - proof }
+  }
 
+  /**
+   * Marks [proof] as definitely impossible for this location.
+   */
+  fun markProofImpossible(proof: Proof) {
+    _possibleProofs.update { previous -> previous - proof }
+    _impossibleProofs.update { previous -> previous + proof }
+  }
+
+  /**
+   * Marks [proof] as unknown possibility for this location.
+   */
+  fun markProofUnknown(proof: Proof) {
+    _possibleProofs.update { previous -> previous - proof }
+    _impossibleProofs.update { previous -> previous - proof }
+  }
+
+  /**
+   * Adjusts the user proof mark for [proof] by a [delta].
+   */
+  fun adjustUserProofMark(proof: Proof, delta: Int) {
+    val possible = _possibleProofs.value
+    val impossible = _impossibleProofs.value
+    if (delta < 0) {
+      when (proof) {
+        in possible -> _possibleProofs.update { previous -> previous - proof }
+        in impossible -> { /* Nothing */ }
+        else -> _impossibleProofs.update { previous -> previous + proof }
+      }
+    } else if (delta > 0) {
+      when (proof) {
+        in possible -> { /* Nothing */ }
+        in impossible -> _impossibleProofs.update { previous -> previous - proof }
+        else -> _possibleProofs.update { previous -> previous + proof }
+      }
     }
   }
 

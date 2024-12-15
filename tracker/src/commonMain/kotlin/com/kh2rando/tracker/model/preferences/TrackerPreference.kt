@@ -3,6 +3,8 @@ package com.kh2rando.tracker.model.preferences
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.packFloats
@@ -157,6 +159,25 @@ class WindowPositionPreference(
         dataStore.edit { preferences -> preferences.remove(key) }
       }
     }
+  }
+
+}
+
+/**
+ * A preference stored as a (packed) [Color].
+ */
+class ColorPreference(
+  dataStore: DataStore<Preferences>,
+  override val key: Preferences.Key<Long>,
+  override val defaultValue: Color,
+) : LongBackedPreference<Color>(dataStore) {
+
+  override fun fromLong(rawValue: Long): Color {
+    return Color(rawValue)
+  }
+
+  override fun toLong(value: Color): Long {
+    return value.toArgb().toLong()
   }
 
 }

@@ -10,7 +10,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.kh2rando.tracker.model.ColorToken
 import com.kh2rando.tracker.model.LocationLayout
+import com.kh2rando.tracker.ui.color
 import okio.Path
 
 /**
@@ -150,6 +152,33 @@ class TrackerPreferences(private val dataStore: DataStore<Preferences>) {
     dataStore,
     key = longPreferencesKey("objectiveWindow.screenPosition"),
     defaultValue = WindowPosition.Aligned(Alignment.Center)
+  )
+
+  /**
+   * Color for an grid cell that has been completed.
+   */
+  val gridCellCompleteColor = ColorPreference(
+    dataStore,
+    key = longPreferencesKey("grid.cellCompleteColor"),
+    defaultValue = ColorToken.Red.color
+  )
+
+  /**
+   * Color to use for marking a grid cell.
+   */
+  val gridCellMarkColor = ColorPreference(
+    dataStore,
+    key = longPreferencesKey("grid.cellMarkColor"),
+    defaultValue = ColorToken.LightBlue.color
+  )
+
+  /**
+   * Color to use to indicate grid completion.
+   */
+  val gridCompletionColor = ColorPreference(
+    dataStore,
+    key = longPreferencesKey("grid.completionColor"),
+    defaultValue = ColorToken.Green.color
   )
 
   companion object {
