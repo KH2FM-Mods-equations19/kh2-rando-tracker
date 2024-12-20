@@ -3,6 +3,7 @@
 package com.kh2rando.tracker.ui
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -181,11 +182,25 @@ private fun MainExtendedWindowContent(
       Spacer(Modifier.height(16.dp))
 
       val locationLayout by preferences.locationLayout.collectAsState()
+      val proofEligibleLocations = gameState.seed.settings.enabledLocations - Location.GardenOfAssemblage
       Surface(color = MaterialTheme.colorScheme.primary, modifier = Modifier.fillMaxWidth()) {
-        Text(stringResource(Res.string.extended_misc_proof_information), modifier = Modifier.padding(4.dp))
+        Row(horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+          Text(stringResource(Res.string.extended_misc_proof_information), modifier = Modifier.padding(4.dp))
+
+          Row(Modifier.background(MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.5f))) {
+            for (proof in Proof.entries) {
+              HeaderProofShortcut(proof, onInteract = {
+                for (location in proofEligibleLocations) {
+                  gameState.markProofImpossible(location, proof)
+                }
+              })
+            }
+          }
+        }
       }
+
       ProofInfoArea(
-        eligibleLocations = gameState.seed.settings.enabledLocations - Location.GardenOfAssemblage,
+        eligibleLocations = proofEligibleLocations,
         locationLayout = locationLayout,
         locationStatesProvider = { location -> gameState.locationUiStates.getValue(location) },
         onAdjustProof = { location, proof, delta -> gameState.adjustUserProofMark(location, proof, delta) },
@@ -198,6 +213,27 @@ private fun MainExtendedWindowContent(
       )
     }
   }
+}
+
+@Composable
+@OptIn(ExperimentalComposeUiApi::class)
+private fun HeaderProofShortcut(
+  proof: Proof,
+  onInteract: () -> Unit,
+  modifier: Modifier = Modifier,
+) {
+  CustomizableIcon(
+    proof,
+    contentDescription = proof.localizedName,
+    modifier = modifier.size(36.dp)
+      .clickable { onInteract() }
+      .onPointerEvent(PointerEventType.Scroll) { event ->
+        val scrollDeltaY = event.changes.first().scrollDelta.y
+        if (scrollDeltaY != 0.0f) {
+          onInteract()
+        }
+      },
+  )
 }
 
 @Composable

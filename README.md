@@ -40,7 +40,7 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 - Displaying the journal ability hints for Ansem Reports
 - Manually scroll-wheeling through a predefined set of mark icons for each location
 - Extended information window
-    - Mark each location as having no proofs, or any combination of the three
+    - Mark each location's individual proof possibilities
 - Game Versions
     - Epic Games Global 1.0.0.9
     - Epic Games Global 1.0.0.10
@@ -66,6 +66,11 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 - Bingo (may not ever work compatibly with other trackers)
 
 ## Changelog
+
+### 1.9.6
+
+- Add a shortcut to manually mark a proof as obtained
+  - This will mark the proof as impossible for all locations
 
 ### 1.9.5
 
