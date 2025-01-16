@@ -1,6 +1,6 @@
 # kh2-rando-tracker
 
-**Not for use in tournament races at this time!**
+**Not for use in tournament races at this time (and maybe ever)!**
 
 Tracker for Kingdom Hearts II Randomizer. Based on, and attempts to match most of the main features
 of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
@@ -9,8 +9,14 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 
 - Hint Systems
     - JSmartee
+      - Each location's number counts down once known, for consistency with other hint systems with
+        numbers
+      - "Hinted hints" are indicated using an icon rather than text color
     - Shananas
+      - Locations are indicated as either done or not, instead of having a counter that counts up
+        and changes color
     - Points
+      - A location affected by "auto-math" is indicated by an icon, in addition to text color
     - Path
     - Spoiler
     - Progression variants of all of the above
@@ -36,21 +42,18 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
     - Manually
     - Automatically on a timer
 - Customizable icons for most symbols
-- Displaying the seed hash when a seed is loaded
-- Displaying the journal ability hints for Ansem Reports
+- Displays the seed hash when a seed is loaded
+- Displays the journal ability hints for Ansem Reports
 - Manually scroll-wheeling through a predefined set of mark icons for each location
 - Extended information window
-    - Mark each location's individual proof possibilities
+    - Mark each location's individual proof possibilities (using scroll wheel so that the game can
+      keep focus)
 - Game Versions
     - Epic Games Global 1.0.0.9
     - Epic Games Global 1.0.0.10
     - Steam Global 1.0.0.9 (untested)
     - Steam Global 1.0.0.10
     - Steam JP 1.0.0.9 (untested)
-
-## Planned
-
-- Additional customization options
 
 ## Not planned at this time (may reconsider at some point)
 
@@ -61,11 +64,15 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 - World Complete Bonus support for progression hints (depends on complexity)
 - "Hi-Score Mode" (depends on complexity)
 - Custom tracker background image
-- Emulator version support
+- Emulator version support (very unlikely)
 - Battleship (may not ever work compatibly with other trackers)
 - Bingo (may not ever work compatibly with other trackers)
 
 ## Changelog
+
+### 2.0.0
+
+- Finalize some things for version 2
 
 ### 1.9.6
 

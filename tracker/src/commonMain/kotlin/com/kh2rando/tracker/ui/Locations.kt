@@ -58,7 +58,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.coerceAtLeast
 import androidx.compose.ui.unit.dp
 import com.kh2rando.tracker.generated.resources.Res
-import com.kh2rando.tracker.generated.resources.ansem_report
 import com.kh2rando.tracker.generated.resources.desc_locked_visit
 import com.kh2rando.tracker.generated.resources.desc_no_path_to_light
 import com.kh2rando.tracker.generated.resources.hint_count_adjusted_by_reveals
@@ -638,7 +637,7 @@ private fun HintedHintArea(modifier: Modifier = Modifier) {
   ) {
     val displayText = stringResource(Res.string.hint_hinted_hint)
     SimpleTooltipArea(tooltipText = displayText) {
-      Image(imageResource(Res.drawable.ansem_report), contentDescription = displayText)
+      CustomizableIcon(SystemIcon.AnsemReport, contentDescription = displayText)
     }
   }
 }
