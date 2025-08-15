@@ -5,6 +5,24 @@
 Tracker for Kingdom Hearts II Randomizer. Based on, and attempts to match most of the main features
 of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 
+## Design philosophy
+
+This tracker is written with an opinionated design philosophy, taking into account years of
+experience both playing and watching the randomizer.
+
+- Consistency
+  - Locations should only display numbers if numbers are relevant to the hint system being used
+  - If locations do display numbers, those numbers should always count down, regardless of hint
+    system
+  - If locations do display numbers, those numbers should have the same meaning for all locations
+- Readability
+  - Many viewers watch gameplay on small screens
+  - Favor solid colors over gradients
+  - Favor easily distinguishable/recognizable icons/images
+  - Favor fonts where numbers are easily distinguishable
+- Accessibility
+  - Color should never be used as the only indicator of something that is different
+
 ## Supported
 
 - Hint Systems
@@ -69,6 +87,11 @@ of, the [KH2Tracker](https://github.com/Dee-Ayy/KH2Tracker).
 - Bingo (may not ever work compatibly with other trackers)
 
 ## Changelog
+
+### 2.1.0
+
+- Hide locked visit icons if visit unlock items are not trackable
+- Fix spoiler hints not correctly indicating world completion
 
 ### 2.0.0
 

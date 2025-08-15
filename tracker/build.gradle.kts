@@ -49,6 +49,7 @@ kotlin {
       implementation(compose.components.uiToolingPreview)
       implementation(compose.foundation)
       implementation(compose.material3)
+      implementation(compose.materialIconsExtended)
       implementation(compose.runtime)
       implementation(compose.ui)
       implementation(libs.androidx.datastore)
@@ -102,7 +103,7 @@ compose {
         targetFormats(TargetFormat.Msi)
         packageName = "KH2 Rando Tracker"
         description = "KH2 Rando Tracker"
-        copyright = "© 2024 equations19"
+        copyright = "© 2025 equations19"
         packageVersion = trackerVersion
         vendor = "equations19"
         modules("jdk.unsupported")

@@ -122,23 +122,23 @@ val LocationUiState.acquiredPrototypes: List<ItemPrototype>
   get() = acquiredItems.map { it.prototype }
 
 fun LocationUiState.assertAcquired(vararg prototypes: ItemPrototype) {
-  assertEquals(expected = prototypes.toList(), actual = acquiredPrototypes)
+  assertEquals(expected = prototypes.toList(), actual = acquiredPrototypes, message = "$location")
 }
 
 fun LocationUiState.assertRevealed(vararg prototypes: ItemPrototype) {
-  assertEquals(expected = prototypes.toList(), actual = revealedItems)
+  assertEquals(expected = prototypes.toList(), actual = revealedItems, message = "$location")
 }
 
 fun LocationUiState.assertProgress(vararg checkpoints: ProgressCheckpoint) {
-  assertEquals(expected = checkpoints.toSet(), actual = completedProgressCheckpoints)
+  assertEquals(expected = checkpoints.toSet(), actual = completedProgressCheckpoints, message = "$location")
 }
 
 fun LocationUiState.assertCounter(counterState: LocationCounterState) {
-  assertEquals(expected = counterState, actual = this.counterState)
+  assertEquals(expected = counterState, actual = this.counterState, message = "$location")
 }
 
 fun LocationUiState.assertAuxiliary(auxiliaryHintInfo: LocationAuxiliaryHintInfo) {
-  assertEquals(expected = auxiliaryHintInfo, actual = this.auxiliaryHintInfo)
+  assertEquals(expected = auxiliaryHintInfo, actual = this.auxiliaryHintInfo, message = "$location")
 }
 
 /**

@@ -87,27 +87,36 @@ class SpoilerHintSystemTest {
       testLocationHints(gameState) {
         for (location in Location.entries) {
           awaitLocationState(location) {
-            assertCounter(LocationCounterState.None)
             assertAuxiliary(LocationAuxiliaryHintInfo.NotApplicableToHintSystem)
 
             when (location) {
               Location.SoraLevels -> {
+                assertCounter(LocationCounterState.None)
                 assertRevealed(SummonCharm.BaseballCharm, Magic.Fire)
               }
 
               Location.DriveForms -> {
+                assertCounter(LocationCounterState.None)
                 assertRevealed(Magic.Reflect, Magic.Reflect, Magic.Blizzard, Magic.Blizzard)
               }
 
               Location.Agrabah -> {
+                assertCounter(LocationCounterState.None)
                 assertRevealed(SummonCharm.LampCharm)
               }
 
               Location.TwilightTown -> {
+                assertCounter(LocationCounterState.None)
                 assertRevealed(Magic.Thunder)
               }
 
+              Location.GardenOfAssemblage -> {
+                assertCounter(LocationCounterState.None)
+                assertEmpty(revealedItems)
+              }
+
               else -> {
+                assertCounter(LocationCounterState.Completed)
                 assertEmpty(revealedItems)
               }
             }

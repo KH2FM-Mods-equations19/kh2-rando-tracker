@@ -5,7 +5,6 @@ package com.kh2rando.tracker.ui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.draganddrop.dragAndDropSource
-import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -272,16 +271,10 @@ private fun Modifier.itemDragAndDropSource(
       }
     }
   ) {
-    detectDragGestures(
-      onDragStart = {
-        val stringData = prototype.gameId.value.toString()
-        val data = DragAndDropTransferData(
-          transferable = DragAndDropTransferable(StringSelection(stringData)),
-          supportedActions = listOf(DragAndDropTransferAction.Move),
-        )
-        startTransfer(data)
-      },
-      onDrag = { _, _ -> }
+    val stringData = prototype.gameId.value.toString()
+    DragAndDropTransferData(
+      transferable = DragAndDropTransferable(StringSelection(stringData)),
+      supportedActions = listOf(DragAndDropTransferAction.Move),
     )
   }
 }

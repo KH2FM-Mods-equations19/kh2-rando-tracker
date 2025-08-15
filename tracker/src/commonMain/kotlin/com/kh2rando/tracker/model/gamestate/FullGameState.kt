@@ -105,13 +105,15 @@ class FullGameState(
   }
 
   override val locationUiStates: ImmutableMap<Location, StateFlow<LocationUiState>> = run {
+    val seedSettings = seed.settings
     val gameAcquiredItemsSets = acquiredItems
     val userSelectedLocations = userSelectedLocations
     val autoDetectedLocations = detectedLocations
 
+    val trackLockedVisits = seedSettings.trackableItems.any { it is VisitUnlock }
     val unlockItemsByLocation = VisitUnlock.entries.associateBy { it.associatedLocation }
 
-    seed.settings.enabledLocations.locationsMap { location ->
+    seedSettings.enabledLocations.locationsMap { location ->
       val locationState = stateForLocation(location)
       val visitCount = location.visitCount
 
@@ -151,7 +153,7 @@ class FullGameState(
           isLastRevealedHintLocation = location == mostRecentHintLocation,
           acquiredItems = locationAcquiredItems,
           revealedItems = locationRevealedItems,
-          lockedVisitCount = if (visitCount == 0) {
+          lockedVisitCount = if (!trackLockedVisits || visitCount == 0) {
             0
           } else {
             val unlockItem = unlockItemsByLocation[location]
@@ -215,7 +217,7 @@ class GameStateFactory(
   fun create(
     baseGameState: BaseGameState,
     previouslyRevealedHints: ImmutableList<HintInfo> = persistentListOf(),
-  ) : FullGameState {
+  ): FullGameState {
     val hintStateApi = when (val hintSystem = baseGameState.seed.settings.hintSystem) {
       is DisabledHintSystem -> {
         DisabledHintStateApi(baseGameState, hintSystem)
