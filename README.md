@@ -88,6 +88,10 @@ experience both playing and watching the randomizer.
 
 ## Changelog
 
+### 2.2.0
+
+TODO
+
 ### 2.1.0
 
 - Hide locked visit icons if visit unlock items are not trackable

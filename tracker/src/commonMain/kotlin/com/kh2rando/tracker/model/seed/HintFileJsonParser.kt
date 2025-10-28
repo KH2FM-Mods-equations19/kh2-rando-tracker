@@ -26,6 +26,7 @@ import com.kh2rando.tracker.model.item.AnsemReport
 import com.kh2rando.tracker.model.item.ChestUnlockKeyblade
 import com.kh2rando.tracker.model.item.DreamWeapon
 import com.kh2rando.tracker.model.item.DriveForm
+import com.kh2rando.tracker.model.item.FullItemList
 import com.kh2rando.tracker.model.item.HadesCupTrophy
 import com.kh2rando.tracker.model.item.ImportantAbility
 import com.kh2rando.tracker.model.item.ItemPrototype
@@ -264,7 +265,7 @@ private fun parseItemsByLocation(
     itemsByLocation[location] = mutableListOf()
   }
 
-  val unassignedItems = ItemPrototype.fullList.filterTo(mutableListOf()) { it in trackableItems }
+  val unassignedItems = FullItemList.fullList.filterTo(mutableListOf()) { it in trackableItems }
 
   for ((rawLocation, itemIds) in rawItemsByLocation) {
     val location = checkNotNull(resolveItemLocation(rawLocation)) { "Unexpected location name $rawLocation" }

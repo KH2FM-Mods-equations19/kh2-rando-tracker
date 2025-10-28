@@ -15,6 +15,7 @@ import com.kh2rando.tracker.model.hints.DisabledHintSystem
 import com.kh2rando.tracker.model.hints.HintInfo
 import com.kh2rando.tracker.model.hints.HintSystem
 import com.kh2rando.tracker.model.hints.LocationAuxiliaryHintInfo
+import com.kh2rando.tracker.model.item.FullItemList
 import com.kh2rando.tracker.model.item.ItemPrototype
 import com.kh2rando.tracker.model.preferences.TrackerPreferences
 import com.kh2rando.tracker.model.progress.ProgressCheckpoint
@@ -32,7 +33,7 @@ import kotlin.test.assertEquals
  */
 fun testSeed(
   enabledLocations: Set<Location> = Location.entries.toSet(),
-  trackableItems: Set<ItemPrototype> = ItemPrototype.fullList.toSet(),
+  trackableItems: Set<ItemPrototype> = FullItemList.fullList.toSet(),
   hintSystem: HintSystem = DisabledHintSystem(hints = emptyList()),
   finalDoorRequirement: FinalDoorRequirement = FinalDoorRequirement.ThreeProofs,
   levelChecks: LevelChecks = LevelChecks(

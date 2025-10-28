@@ -9,6 +9,7 @@ import com.kh2rando.tracker.model.MusicState
 import com.kh2rando.tracker.model.SoraState
 import com.kh2rando.tracker.model.item.AnsemReport
 import com.kh2rando.tracker.model.item.DriveForm
+import com.kh2rando.tracker.model.item.FullItemList
 import com.kh2rando.tracker.model.item.ItemPrototype
 import com.kh2rando.tracker.model.item.Proof
 import com.kh2rando.tracker.model.item.UniqueItem
@@ -84,7 +85,7 @@ class BaseGameState(
     get() = locationStates.getValue(this)
 
   override val allTrackableItems: ImmutableSet<UniqueItem> = run {
-    ItemPrototype.fullList.asSequence().mapNotNull { item ->
+    FullItemList.fullList.asSequence().mapNotNull { item ->
       if (item in seed.settings.trackableItems) UniqueItem(item) else null
     }.toImmutableSet()
   }

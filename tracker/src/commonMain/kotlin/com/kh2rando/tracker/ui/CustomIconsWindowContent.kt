@@ -27,8 +27,8 @@ import com.kh2rando.tracker.log
 import com.kh2rando.tracker.model.HasCustomizableIcon
 import com.kh2rando.tracker.model.Location
 import com.kh2rando.tracker.model.item.DreamWeapon
+import com.kh2rando.tracker.model.item.FullItemList
 import com.kh2rando.tracker.model.item.GrowthAbilityPrototype
-import com.kh2rando.tracker.model.item.ItemPrototype
 import com.kh2rando.tracker.model.objective.Objective
 import com.kh2rando.tracker.model.progress.ProgressCheckpoint
 import org.jetbrains.compose.resources.painterResource
@@ -38,7 +38,7 @@ import org.jetbrains.compose.resources.stringResource
 fun CustomIconsWindowContent(modifier: Modifier = Modifier) {
   Surface(modifier = modifier.fillMaxSize()) {
     val allCustomizableIcons = buildSet {
-      addAll(ItemPrototype.fullList)
+      addAll(FullItemList.fullList)
       addAll(ProgressCheckpoint.allCheckpoints)
 
       addAll(CreationsIcon.entries)
