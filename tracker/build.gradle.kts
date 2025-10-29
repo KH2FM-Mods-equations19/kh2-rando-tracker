@@ -45,19 +45,19 @@ kotlin {
     val desktopMain by getting
 
     commonMain.dependencies {
-      implementation(compose.components.resources)
-      implementation(compose.components.uiToolingPreview)
-      implementation(compose.foundation)
-      implementation(compose.material3)
-      implementation(compose.materialIconsExtended)
-      implementation(compose.runtime)
-      implementation(compose.ui)
       implementation(libs.androidx.datastore)
       implementation(libs.androidx.datastore.preferences)
       implementation(libs.androidx.lifecycle.runtime.compose)
       implementation(libs.androidx.lifecycle.viewmodel)
       implementation(libs.androidx.lifecycle.viewmodel.compose)
       implementation(libs.coil)
+      implementation(libs.compose.foundation)
+      implementation(libs.compose.material3)
+      implementation(libs.compose.materialIconsExtended)
+      implementation(libs.compose.preview)
+      implementation(libs.compose.resources)
+      implementation(libs.compose.runtime)
+      implementation(libs.compose.ui)
       implementation(libs.kotlinx.collections.immutable)
       implementation(libs.kotlinx.serialization.cbor)
       implementation(libs.kotlinx.serialization.json)
@@ -116,9 +116,9 @@ compose {
     }
   }
 
-  android {
-
-  }
+//  android {
+//
+//  }
 }
 
 //android {

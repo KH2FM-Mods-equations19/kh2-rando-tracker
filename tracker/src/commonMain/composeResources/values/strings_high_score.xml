@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <string name="high_score_individual_items">Individual items</string>
+    <string name="high_score_set_bonuses">Set bonuses</string>
+    <string name="high_score_bonus_levels">Bonus level</string>
+    <string name="high_score_world_completion">World completion</string>
+    <string name="high_score_form_levels">Form level</string>
+    <string name="high_score_bosses">Bosses defeated</string>
+    <string name="high_score_death_penalty">Death penalty</string>
+    <string name="high_score_total">Total</string>
+
+</resources>

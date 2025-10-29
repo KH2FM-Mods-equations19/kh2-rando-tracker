@@ -6,6 +6,7 @@ import com.kh2rando.tracker.generated.resources.prog_lod_cave
 import com.kh2rando.tracker.generated.resources.prog_lod_data_xigbar
 import com.kh2rando.tracker.generated.resources.prog_lod_missions
 import com.kh2rando.tracker.generated.resources.prog_lod_mountain
+import com.kh2rando.tracker.generated.resources.prog_lod_riku
 import com.kh2rando.tracker.generated.resources.prog_lod_shan_yu
 import com.kh2rando.tracker.generated.resources.prog_lod_storm_rider
 import com.kh2rando.tracker.generated.resources.prog_lod_summit
@@ -13,6 +14,7 @@ import com.kh2rando.tracker.generated.resources.prog_lod_throne_room
 import com.kh2rando.tracker.generated.resources.progression_chest
 import com.kh2rando.tracker.generated.resources.progression_lod_missions
 import com.kh2rando.tracker.generated.resources.progression_lod_mountain_climb
+import com.kh2rando.tracker.generated.resources.progression_lod_riku
 import com.kh2rando.tracker.generated.resources.progression_lod_shan_yu
 import com.kh2rando.tracker.generated.resources.progression_lod_snipers
 import com.kh2rando.tracker.generated.resources.progression_lod_storm_rider
@@ -74,6 +76,13 @@ enum class LandOfDragonsProgress(
     defaultIcon = Res.drawable.progression_lod_shan_yu,
     customIconIdentifier = "shan_yu",
     associatedFlag = Flag.MU_118_END_L,
+  ),
+
+  Riku(
+    displayString = Res.string.prog_lod_riku,
+    defaultIcon = Res.drawable.progression_lod_riku,
+    customIconIdentifier = "riku",
+    associatedFlag = Flag.MU_204_END_L,
   ),
 
   ThroneRoom(

@@ -207,6 +207,10 @@ class BaseGameState(
     checkpoint.location.writableState.removeProgress(checkpoint)
   }
 
+  override fun recordDeath() {
+    _deaths.update { previous -> previous + 1 }
+  }
+
   override fun manuallyToggleLocation(location: Location) {
     _userSelectedLocation.update { previous ->
       if (previous == location) null else location
@@ -381,7 +385,7 @@ class BaseGameState(
 
     // We only increment if the state has changed and the new state is dead
     if (isDead) {
-      _deaths.update { previous -> previous + 1 }
+      recordDeath()
     }
 
     // Record our new state for next time

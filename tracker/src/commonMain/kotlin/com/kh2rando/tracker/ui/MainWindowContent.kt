@@ -27,6 +27,7 @@ import com.kh2rando.tracker.generated.resources.dialog_reset_tracker_question
 import com.kh2rando.tracker.generated.resources.state_loading_seed
 import com.kh2rando.tracker.model.AutoTrackingDisplayInfo
 import com.kh2rando.tracker.model.gamestate.TrackerStateViewModel
+import com.kh2rando.tracker.model.gamestate.highScoreStates
 import com.kh2rando.tracker.model.preferences.TrackerPreferences
 import org.jetbrains.compose.resources.stringResource
 
@@ -64,6 +65,7 @@ fun MainWindowContent(
 
         var showingReportSummary: Boolean by remember { mutableStateOf(false) }
         var showingProgressionSummary: Boolean by remember { mutableStateOf(false) }
+        var showingHighScoreSummary: Boolean by remember { mutableStateOf(false) }
 
         Column(Modifier.fillMaxSize()) {
           LocationsLayout(gameState = gameState, preferences = preferences, modifier = Modifier.weight(1.4f))
@@ -72,7 +74,8 @@ fun MainWindowContent(
             HintStatusBar(
               gameState = gameState,
               onShowReportDetails = { showingReportSummary = true },
-              onShowProgressionDetails = { showingProgressionSummary = true }
+              onShowProgressionDetails = { showingProgressionSummary = true },
+              onShowHighScoreDetails = { showingHighScoreSummary = true },
             )
             SoraStatsBar(gameState)
             FormsAndGrowthBar(gameState)
@@ -94,6 +97,12 @@ fun MainWindowContent(
           HintSummaryDialog(
             hintInfoProvider = { gameState.revealedProgressionHintSets },
             onDismissRequest = { showingProgressionSummary = false }
+          )
+        }
+        if (showingHighScoreSummary) {
+          HighScoreSummaryDialog(
+            highScoreStateProvider = { gameState.highScoreStates },
+            onDismissRequest = { showingHighScoreSummary = false },
           )
         }
       }

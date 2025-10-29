@@ -1,7 +1,7 @@
 [versions]
 androidx-datastore = "1.1.7"
 androidx-lifecycle = "2.9.4"
-compose-plugin = "1.9.1"
+compose-plugin = "1.10.0-beta01"
 junit = "4.13.2"
 kotlin = "2.2.21"
 kotlinx-coroutines = "1.10.2"
@@ -16,6 +16,13 @@ androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 coil = { module = "io.coil-kt.coil3:coil-compose", version = "3.3.0" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref="compose-plugin" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version="1.9.0" }
+compose-materialIconsExtended = { module = "org.jetbrains.compose.material:material-icons-extended", version="1.7.3" }
+compose-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref="compose-plugin" }
+compose-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref="compose-plugin" }
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref="compose-plugin" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref="compose-plugin" }
 jna-platform = { group = "net.java.dev.jna", name = "jna-platform", version = "5.18.1" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kaml = { module = "com.charleskorn.kaml:kaml", version = "0.102.0" }

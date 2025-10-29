@@ -10,6 +10,7 @@ import com.kh2rando.tracker.generated.resources.stats_deaths
 import com.kh2rando.tracker.generated.resources.stats_defense
 import com.kh2rando.tracker.generated.resources.stats_emblems
 import com.kh2rando.tracker.generated.resources.stats_magic
+import com.kh2rando.tracker.generated.resources.stats_points
 import com.kh2rando.tracker.generated.resources.stats_strength
 import com.kh2rando.tracker.generated.resources.status_pc_connected
 import com.kh2rando.tracker.generated.resources.status_pc_detected
@@ -109,6 +110,17 @@ enum class SystemIcon : HasCustomizableIcon, HasColorToken {
     override val customIconIdentifier: String
       get() = "ProgPoints"
     override val colorToken: ColorToken
+      get() = ColorToken.Gold
+  },
+
+  HighScorePoints {
+    override val defaultIcon: DrawableResource
+      get() = Res.drawable.stats_points
+    override val customIconPath: List<String>
+      get() = listOf("System", "stats")
+    override val customIconIdentifier: String
+      get() = "limit"
+    override val colorToken: ColorToken?
       get() = ColorToken.Gold
   },
 

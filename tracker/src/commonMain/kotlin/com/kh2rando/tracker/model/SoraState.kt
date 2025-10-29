@@ -13,6 +13,7 @@ data class SoraState(
   val strengthStat: Int,
   val magicStat: Int,
   val defenseStat: Int,
+  val bonusLevel: Int,
   val munny: Int,
 ) {
 
@@ -27,6 +28,7 @@ data class SoraState(
       strengthStat = -1,
       magicStat = -1,
       defenseStat = -1,
+      bonusLevel = -1,
       munny = -1,
     )
 

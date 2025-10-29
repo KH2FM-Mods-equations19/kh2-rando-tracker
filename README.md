@@ -39,6 +39,7 @@ experience both playing and watching the randomizer.
     - Spoiler
     - Progression variants of all of the above
         - (World Complete Bonus is not available at this time due to complexity)
+    - Hi-Score Mode
 - Manual Tracking
     - Drag-and-drop or select a location and double-click items
     - "Three strikes" for Ansem Reports before you can no longer attempt to place them
@@ -80,7 +81,6 @@ experience both playing and watching the randomizer.
 - Explicit Reverse Rando support
 - Auto tracking for puzzle objective completion
 - World Complete Bonus support for progression hints (depends on complexity)
-- "Hi-Score Mode" (depends on complexity)
 - Custom tracker background image
 - Emulator version support (very unlikely)
 - Battleship (may not ever work compatibly with other trackers)
@@ -92,6 +92,8 @@ experience both playing and watching the randomizer.
 
 - Restore old spoiler hints behavior for indicating world completion
 - When Ansem Reports are revealed, use the generic report icon
+- Add initial support for Hi-Score Mode
+- Add a few new location progress checkpoints
 - Add a cheat sheet for path hints to the extended information window
 
 ### 2.1.0

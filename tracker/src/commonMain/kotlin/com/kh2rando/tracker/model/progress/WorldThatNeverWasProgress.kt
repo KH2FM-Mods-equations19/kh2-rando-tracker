@@ -2,18 +2,23 @@ package com.kh2rando.tracker.model.progress
 
 import com.kh2rando.tracker.generated.resources.Res
 import com.kh2rando.tracker.generated.resources.prog_chests
+import com.kh2rando.tracker.generated.resources.prog_twtnw_armored_xemnas_1
+import com.kh2rando.tracker.generated.resources.prog_twtnw_armored_xemnas_2
 import com.kh2rando.tracker.generated.resources.prog_twtnw_data_xemnas
+import com.kh2rando.tracker.generated.resources.prog_twtnw_final_xemnas
 import com.kh2rando.tracker.generated.resources.prog_twtnw_luxord
 import com.kh2rando.tracker.generated.resources.prog_twtnw_roxas
 import com.kh2rando.tracker.generated.resources.prog_twtnw_saix
 import com.kh2rando.tracker.generated.resources.prog_twtnw_xemnas_1
 import com.kh2rando.tracker.generated.resources.prog_twtnw_xigbar
 import com.kh2rando.tracker.generated.resources.progression_chest
+import com.kh2rando.tracker.generated.resources.progression_twtnw_armored_xemnas
 import com.kh2rando.tracker.generated.resources.progression_twtnw_luxord
 import com.kh2rando.tracker.generated.resources.progression_twtnw_roxas
 import com.kh2rando.tracker.generated.resources.progression_twtnw_saix
 import com.kh2rando.tracker.generated.resources.progression_twtnw_xemnas
 import com.kh2rando.tracker.generated.resources.progression_twtnw_xemnas_data
+import com.kh2rando.tracker.generated.resources.progression_twtnw_xemnas_final
 import com.kh2rando.tracker.generated.resources.progression_twtnw_xigbar
 import com.kh2rando.tracker.model.HasCustomizableIcon
 import com.kh2rando.tracker.model.Location
@@ -77,6 +82,31 @@ enum class WorldThatNeverWasProgress(
     defaultIcon = Res.drawable.progression_twtnw_xemnas_data,
     customIconIdentifier = "xemnas_data",
     associatedFlag = Flag.EH_FM_XEM_RE_CLEAR,
+  ),
+
+  // For now at least, we'll use the same progression icon for AX1 and AX2.
+  // Not a lot of need to distinguish between the two from a tracker progress perspective.
+
+  ArmoredXemnas1(
+    displayString = Res.string.prog_twtnw_armored_xemnas_1,
+    defaultIcon = Res.drawable.progression_twtnw_armored_xemnas,
+    customIconIdentifier = "armored_xemnas_1",
+    associatedFlag = Flag.EH_eh24_ms110,
+  ),
+
+  ArmoredXemnas2(
+    displayString = Res.string.prog_twtnw_armored_xemnas_2,
+    defaultIcon = Res.drawable.progression_twtnw_armored_xemnas,
+    customIconIdentifier = "armored_xemnas_2",
+    associatedFlag = Flag.EH_eh23_ms112,
+  ),
+
+  // TODO: Display synthetic progress for data only, final only, data + final, similar to Marluxia/LW and Demyx/Sephi?
+  FinalXemnas(
+    displayString = Res.string.prog_twtnw_final_xemnas,
+    defaultIcon = Res.drawable.progression_twtnw_xemnas_final,
+    customIconIdentifier = "xemnas_final",
+    associatedFlag = Flag.EH_GAME_COMPLETE,
   );
 
   override val index: Int

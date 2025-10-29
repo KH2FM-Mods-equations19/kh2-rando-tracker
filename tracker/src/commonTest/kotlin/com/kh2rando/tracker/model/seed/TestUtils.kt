@@ -12,6 +12,7 @@ import com.kh2rando.tracker.model.gamestate.GameStateFactory
 import com.kh2rando.tracker.model.gamestate.mostRecentRevealedPrimaryHint
 import com.kh2rando.tracker.model.hints.BasicProgressionSettings
 import com.kh2rando.tracker.model.hints.DisabledHintSystem
+import com.kh2rando.tracker.model.hints.HighScoreData
 import com.kh2rando.tracker.model.hints.HintInfo
 import com.kh2rando.tracker.model.hints.HintSystem
 import com.kh2rando.tracker.model.hints.LocationAuxiliaryHintInfo
@@ -42,6 +43,7 @@ fun testSeed(
   ),
   levelSetting: LevelSetting = LevelSetting.Level50,
   creationsOptions: Set<CreationsOption> = CreationsOption.entries.toSet(),
+  highScoreData: HighScoreData? = null,
   toggleSettings: Set<ToggleSetting> = ToggleSetting.entries.toSet(),
   generatorVersion: String = "test",
   seedHashIcons: List<String> = emptyList(),
@@ -58,6 +60,7 @@ fun testSeed(
       levelChecks = levelChecks,
       levelSetting = levelSetting,
       creationsOptions = creationsOptions,
+      highScoreData = highScoreData,
       toggleSettings = toggleSettings,
     ),
     seedHashIcons = seedHashIcons,
