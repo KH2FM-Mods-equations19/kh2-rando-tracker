@@ -155,12 +155,13 @@ fun PrimaryHintInfoContent(
           HintLocationContent(location, locationShortName)
         }
 
-        val itemDisplayName = hintInfo.item.localizedName
+        val item = hintInfo.item
+        val itemDisplayName = item.localizedName(showAnsemReportNumbers = false)
         val text = stringResource(Res.string.hint_item_location_template, locationShortName, itemDisplayName)
         Text(text)
 
         if (showIcons) {
-          hintInfo.item.ItemIcon(modifier = Modifier.size(32.dp))
+          item.ItemIcon(modifier = Modifier.size(32.dp), showAnsemReportNumbers = false)
         }
       }
 

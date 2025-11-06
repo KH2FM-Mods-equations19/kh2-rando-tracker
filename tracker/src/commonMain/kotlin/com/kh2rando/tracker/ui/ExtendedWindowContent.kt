@@ -224,7 +224,7 @@ private fun HeaderProofShortcut(
 ) {
   CustomizableIcon(
     proof,
-    contentDescription = proof.localizedName,
+    contentDescription = proof.localizedName(),
     modifier = modifier.size(36.dp)
       .clickable { onInteract() }
       .onPointerEvent(PointerEventType.Scroll) { event ->
@@ -360,7 +360,7 @@ private fun UserProofMark(
   }
   CustomizableIcon(
     proof,
-    contentDescription = proof.localizedName,
+    contentDescription = proof.localizedName(),
     alpha = if (possible || tintOverride != null) DefaultAlpha else 0.15f,
     tintColorOverride = tintOverride,
     modifier = modifier

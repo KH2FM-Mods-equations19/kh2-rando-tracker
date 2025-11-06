@@ -52,6 +52,7 @@ fun ItemPrototype.ItemIcon(
   modifier: Modifier = Modifier,
   renderState: ItemRenderState = ItemRenderState.Default,
   strikeCount: Int = 0,
+  showAnsemReportNumbers: Boolean = true,
 ) {
   val colorScheme = MaterialTheme.colorScheme
 
@@ -66,10 +67,12 @@ fun ItemPrototype.ItemIcon(
   }
 
   BoxWithConstraints(modifier = modifier) {
-    if (findCustomIconFile() == null && this@ItemIcon is AnsemReport) {
+    val isAnsemReport = this@ItemIcon is AnsemReport
+
+    if (findCustomIconFile() == null && isAnsemReport) {
       Image(
         imageResource(Res.drawable.ansem_report_blank),
-        contentDescription = localizedName,
+        contentDescription = localizedName(showAnsemReportNumbers = showAnsemReportNumbers),
         alpha = alpha,
         colorFilter = tintOverride.tintFilterOrNull() ?: defaultIconTint.tintFilterOrNull(),
         modifier = Modifier.align(Alignment.Center)
@@ -77,7 +80,7 @@ fun ItemPrototype.ItemIcon(
 
       val acquired = renderState is ItemRenderState.Disabled
       OutlinedText(
-        textString = reportNumber.toString(),
+        textString = if (showAnsemReportNumbers) "$reportNumber" else "?",
         outlineColor = when (renderState) {
           ItemRenderState.Default -> colorScheme.onSurface.copy(alpha = alpha)
           ItemRenderState.Revealed, ItemRenderState.Disabled -> Color.Transparent
@@ -89,9 +92,14 @@ fun ItemPrototype.ItemIcon(
         modifier = Modifier.align(Alignment.Center)
       )
     } else {
+      val customizableIcon = if (isAnsemReport && !showAnsemReportNumbers) {
+        SystemIcon.AnsemReport
+      } else {
+        this@ItemIcon
+      }
       CustomizableIcon(
-        icon = this@ItemIcon,
-        contentDescription = localizedName,
+        icon = customizableIcon,
+        contentDescription = localizedName(showAnsemReportNumbers = showAnsemReportNumbers),
         modifier = modifier,
         alpha = alpha,
         tintColorOverride = tintOverride,

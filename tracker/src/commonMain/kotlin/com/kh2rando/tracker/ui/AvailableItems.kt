@@ -175,7 +175,7 @@ private fun AvailableItemCell(
 
   val anyAvailable = availableCount > 0
   val interactable = anyAvailable && strikeCount < 3
-  SimpleTooltipArea(tooltipText = entry.prototype.localizedName, modifier = modifier) {
+  SimpleTooltipArea(tooltipText = entry.prototype.localizedName(), modifier = modifier) {
     Box(
       modifier = Modifier.fillMaxHeight()
         .combinedClickable(
@@ -198,7 +198,12 @@ private fun AvailableItemCell(
       when (totalCopies) {
         1 -> {
           val itemRenderState = if (anyAvailable) {
-            if (entry.revealedButNotAcquiredCount > 0) ItemRenderState.Revealed else ItemRenderState.Default
+            if (entry.revealedButNotAcquiredCount > 0) {
+              // Don't indicate which exact reports are revealed
+              if (prototype is AnsemReport) ItemRenderState.Default else ItemRenderState.Revealed
+            } else {
+              ItemRenderState.Default
+            }
           } else {
             ItemRenderState.Disabled
           }

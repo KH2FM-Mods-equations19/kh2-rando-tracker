@@ -91,6 +91,7 @@ experience both playing and watching the randomizer.
 ### 2.2.0
 
 - Restore old spoiler hints behavior for indicating world completion
+- When Ansem Reports are revealed, use the generic report icon
 
 ### 2.1.0
 
