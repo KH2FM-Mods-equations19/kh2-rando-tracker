@@ -90,7 +90,7 @@ experience both playing and watching the randomizer.
 
 ### 2.2.0
 
-TODO
+- Restore old spoiler hints behavior for indicating world completion
 
 ### 2.1.0
 

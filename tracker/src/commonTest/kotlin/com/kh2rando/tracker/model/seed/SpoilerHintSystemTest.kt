@@ -116,7 +116,7 @@ class SpoilerHintSystemTest {
               }
 
               else -> {
-                assertCounter(LocationCounterState.Completed)
+                assertCounter(LocationCounterState.None)
                 assertEmpty(revealedItems)
               }
             }
