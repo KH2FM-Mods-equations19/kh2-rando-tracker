@@ -92,6 +92,7 @@ experience both playing and watching the randomizer.
 
 - Restore old spoiler hints behavior for indicating world completion
 - When Ansem Reports are revealed, use the generic report icon
+- Add a cheat sheet for path hints to the extended information window
 
 ### 2.1.0
 

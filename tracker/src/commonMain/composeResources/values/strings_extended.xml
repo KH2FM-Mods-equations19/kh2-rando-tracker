@@ -11,6 +11,8 @@
     <string name="extended_misc_proof_information">Proof information</string>
     <string name="extended_misc_proof_information_none">No proofs</string>
 
+    <string name="expended_path_cheat_sheet">Path hints cheat sheet</string>
+
     <string name="extended_window_song_label">Song information</string>
     <string name="extended_no_game_state">No seed is loaded</string>
     <string name="extended_no_music_state">No song information</string>

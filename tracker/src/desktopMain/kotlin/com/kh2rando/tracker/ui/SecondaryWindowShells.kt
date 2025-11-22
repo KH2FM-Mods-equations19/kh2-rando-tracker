@@ -20,6 +20,7 @@ import com.kh2rando.tracker.generated.resources.extended_settings_song_folder_as
 import com.kh2rando.tracker.generated.resources.extended_window_title
 import com.kh2rando.tracker.generated.resources.menu_about_tracker
 import com.kh2rando.tracker.generated.resources.menu_choose_colors
+import com.kh2rando.tracker.generated.resources.menu_reset_window_size
 import com.kh2rando.tracker.generated.resources.menu_settings
 import com.kh2rando.tracker.generated.resources.tracker_logo
 import com.kh2rando.tracker.model.gamestate.BaseGameStateUpdateApi
@@ -59,8 +60,9 @@ fun ExtendedWindow(
   val (size, position) = runBlocking {
     sizePreference.values.first() to positionPreference.values.first()
   }
+  val defaultSize = DpSize(width = 800.dp, height = 900.dp)
   val windowState = rememberWindowState(
-    size = if (size.isSpecified) size else DpSize(width = 800.dp, height = 600.dp),
+    size = if (size.isSpecified) size else defaultSize,
     position = position,
   )
 
@@ -100,6 +102,15 @@ fun ExtendedWindow(
           checked = songFolderAsGroup,
           onCheckedChange = { newValue ->
             scope.launch { preferences.songFolderAsGroup.save(newValue) }
+          }
+        )
+
+        Separator()
+
+        Item(
+          text = stringResource(Res.string.menu_reset_window_size),
+          onClick = {
+            windowState.size = defaultSize
           }
         )
       }

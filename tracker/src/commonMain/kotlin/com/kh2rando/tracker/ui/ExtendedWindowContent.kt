@@ -3,11 +3,14 @@
 package com.kh2rando.tracker.ui
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,6 +20,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
@@ -35,7 +42,9 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.util.fastCoerceAtMost
 import com.kh2rando.tracker.generated.resources.Res
+import com.kh2rando.tracker.generated.resources.expended_path_cheat_sheet
 import com.kh2rando.tracker.generated.resources.extended_journal_title
 import com.kh2rando.tracker.generated.resources.extended_misc_drive_gauge_current_max
 import com.kh2rando.tracker.generated.resources.extended_misc_munny
@@ -53,13 +62,22 @@ import com.kh2rando.tracker.model.LocationLayout
 import com.kh2rando.tracker.model.MusicState
 import com.kh2rando.tracker.model.SoraState
 import com.kh2rando.tracker.model.gamestate.FullGameState
+import com.kh2rando.tracker.model.hints.PathHintSystem
+import com.kh2rando.tracker.model.item.DriveForm
+import com.kh2rando.tracker.model.item.ImportantAbility
+import com.kh2rando.tracker.model.item.ItemPrototype
+import com.kh2rando.tracker.model.item.Magic
 import com.kh2rando.tracker.model.item.MunnyPouch
 import com.kh2rando.tracker.model.item.Proof
+import com.kh2rando.tracker.model.item.SummonCharm
+import com.kh2rando.tracker.model.item.TornPage
+import com.kh2rando.tracker.model.item.VisitUnlock
 import com.kh2rando.tracker.model.preferences.TrackerPreferences
 import com.kh2rando.tracker.model.preferences.collectAsState
 import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.stringResource
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun ExtendedWindowContent(
@@ -111,6 +129,8 @@ private fun MainExtendedWindowContent(
   preferences: TrackerPreferences,
   modifier: Modifier = Modifier,
 ) {
+  val enabledLocations = gameState.seed.settings.enabledLocations
+
   Row(modifier.fillMaxWidth().padding(8.dp), horizontalArrangement = Arrangement.spacedBy(2.dp)) {
     Column(modifier = Modifier.weight(2.0f)) {
       SmallHeader(stringResource(Res.string.extended_journal_title))
@@ -182,7 +202,7 @@ private fun MainExtendedWindowContent(
       Spacer(Modifier.height(16.dp))
 
       val locationLayout by preferences.locationLayout.collectAsState()
-      val proofEligibleLocations = gameState.seed.settings.enabledLocations - Location.GardenOfAssemblage
+      val proofEligibleLocations = enabledLocations - Location.GardenOfAssemblage
       Surface(color = MaterialTheme.colorScheme.primary, modifier = Modifier.fillMaxWidth()) {
         Row(horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
           Text(stringResource(Res.string.extended_misc_proof_information), modifier = Modifier.padding(4.dp))
@@ -199,6 +219,7 @@ private fun MainExtendedWindowContent(
         }
       }
 
+      val pathHints = gameState.seed.settings.hintSystem is PathHintSystem
       ProofInfoArea(
         eligibleLocations = proofEligibleLocations,
         locationLayout = locationLayout,
@@ -209,8 +230,19 @@ private fun MainExtendedWindowContent(
             gameState.markProofImpossible(location, proof)
           }
         },
-        modifier = Modifier.fillMaxWidth().weight(1.0f)
+        pathHints = pathHints,
+        modifier = Modifier.fillMaxWidth(),
       )
+
+      Spacer(Modifier.height(8.dp))
+
+      if (pathHints) {
+        SmallHeader(stringResource(Res.string.expended_path_cheat_sheet))
+        PathHintsCheatSheet(
+          enabledLocations = enabledLocations,
+          modifier = Modifier.fillMaxWidth(),
+        )
+      }
     }
   }
 }
@@ -243,6 +275,7 @@ private fun ProofInfoArea(
   locationStatesProvider: (Location) -> StateFlow<LocationUiState>,
   onAdjustProof: (Location, Proof, delta: Int) -> Unit,
   onMarkAllProofsImpossible: (Location) -> Unit,
+  pathHints: Boolean,
   modifier: Modifier = Modifier,
 ) {
   Row(
@@ -254,6 +287,7 @@ private fun ProofInfoArea(
       locationStatesProvider = locationStatesProvider,
       onAdjustProof = onAdjustProof,
       onMarkAllProofsImpossible = onMarkAllProofsImpossible,
+      pathHints = pathHints,
       modifier = Modifier.weight(1.0f),
     )
     ProofInfoColumn(
@@ -261,6 +295,7 @@ private fun ProofInfoArea(
       locationStatesProvider = locationStatesProvider,
       onAdjustProof = onAdjustProof,
       onMarkAllProofsImpossible = onMarkAllProofsImpossible,
+      pathHints = pathHints,
       modifier = Modifier.weight(1.0f),
     )
   }
@@ -272,6 +307,7 @@ private fun ProofInfoColumn(
   locationStatesProvider: (Location) -> StateFlow<LocationUiState>,
   onAdjustProof: (Location, Proof, delta: Int) -> Unit,
   onMarkAllProofsImpossible: (Location) -> Unit,
+  pathHints: Boolean,
   modifier: Modifier = Modifier,
 ) {
   Column(
@@ -284,7 +320,8 @@ private fun ProofInfoColumn(
         locationState,
         onAdjustProof = { proof, delta -> onAdjustProof(location, proof, delta) },
         onMarkAllProofsImpossible = { onMarkAllProofsImpossible(location) },
-        modifier = Modifier.fillMaxWidth()
+        pathHints = pathHints,
+        modifier = Modifier.fillMaxWidth(),
       )
     }
   }
@@ -296,6 +333,7 @@ private fun LocationProofInfoArea(
   locationStates: StateFlow<LocationUiState>,
   onAdjustProof: (Proof, delta: Int) -> Unit,
   onMarkAllProofsImpossible: () -> Unit,
+  pathHints: Boolean,
   modifier: Modifier = Modifier,
 ) {
   val locationState by locationStates.collectAsState()
@@ -319,12 +357,14 @@ private fun LocationProofInfoArea(
             }
           },
       ) {
-        CustomizableIcon(
-          location,
-          contentDescription = location.localizedName,
-          modifier = Modifier.align(Alignment.Center),
-          alpha = if (noProofs || completed) GhostAlpha else DefaultAlpha,
-        )
+        ProofLocationsLocation(location = location, pathHints = pathHints) {
+          CustomizableIcon(
+            location,
+            contentDescription = location.localizedName,
+            modifier = Modifier.align(Alignment.Center),
+            alpha = if (noProofs || completed) GhostAlpha else DefaultAlpha,
+          )
+        }
 
         if (completed) {
           CompletedIndicator(Modifier.fillMaxHeight(0.5f).align(Alignment.BottomEnd))
@@ -382,6 +422,303 @@ private fun UserProofMark(
         }
       },
   )
+}
+
+@Composable
+private fun PathHintsCheatSheet(
+  enabledLocations: Set<Location>,
+  modifier: Modifier = Modifier,
+) {
+  fun enabled(vararg locations: Location): List<Location> {
+    return locations.filter { it in enabledLocations }
+  }
+
+  Row(
+    modifier = modifier,
+    verticalAlignment = Alignment.CenterVertically,
+  ) {
+    Column(modifier = Modifier.weight(4.0f)) {
+      PathHintBox(
+        item = Magic.Fire,
+        locations = enabled(Location.HollowBastion, Location.Agrabah, Location.PrideLands),
+      )
+      PathHintBox(
+        item = Magic.Blizzard,
+        locations = enabled(Location.HollowBastion, Location.Atlantica),
+      )
+      PathHintBox(
+        item = Magic.Thunder,
+        locations = enabled(Location.OlympusColiseum, Location.LandOfDragons, Location.PrideLands),
+      )
+      PathHintBox(
+        item = Magic.Cure,
+        locations = enabled(Location.HundredAcreWood, Location.BeastsCastle, Location.HollowBastion),
+      )
+      PathHintBox(
+        item = Magic.Magnet,
+        locations = enabled(Location.WorldThatNeverWas, Location.PortRoyal, Location.HalloweenTown),
+      )
+      PathHintBox(
+        item = Magic.Reflect,
+        locations = enabled(Location.DisneyCastle, Location.SpaceParanoids, Location.BeastsCastle),
+      )
+    }
+    Column(modifier = Modifier.weight(4.0f)) {
+      PathHintBox(
+        item = TornPage,
+        locations = enabled(
+          Location.HollowBastion,
+          Location.Agrabah,
+          Location.PrideLands,
+          Location.DisneyCastle,
+          Location.LandOfDragons,
+          Location.HundredAcreWood,
+        ),
+      )
+      PathHintBox(
+        item = DriveForm.ValorFormDummy,
+        locations = enabled(Location.TwilightTown, Location.SimulatedTwilightTown, Location.DriveForms),
+      )
+      PathHintBox(
+        item = DriveForm.WisdomForm,
+        locations = enabled(Location.DisneyCastle, Location.DriveForms),
+      )
+      PathHintBox(
+        item = DriveForm.LimitForm,
+        locations = enabled(Location.TwilightTown, Location.SimulatedTwilightTown, Location.DriveForms),
+      )
+      PathHintBox(
+        item = DriveForm.MasterForm,
+        locations = enabled(Location.HollowBastion, Location.DriveForms),
+      )
+      PathHintBox(
+        item = DriveForm.FinalFormDummy,
+        locations = enabled(Location.DriveForms),
+      )
+    }
+    Column(modifier = Modifier.weight(2.0f)) {
+      PathHintBox(
+        item = ImportantAbility.OnceMore,
+        locations = enabled(Location.SoraLevels),
+      )
+      PathHintBox(
+        item = ImportantAbility.SecondChance,
+        locations = enabled(Location.SoraLevels),
+      )
+      PathHintBox(
+        item = SummonCharm.BaseballCharm,
+        locations = enabled(Location.HollowBastion),
+      )
+      PathHintBox(
+        item = SummonCharm.UkuleleCharm,
+        locations = enabled(Location.HollowBastion),
+      )
+      PathHintBox(
+        item = SummonCharm.LampCharm,
+        locations = enabled(Location.Agrabah),
+      )
+      PathHintBox(
+        item = SummonCharm.FeatherCharm,
+        locations = enabled(Location.PortRoyal),
+      )
+    }
+    Column(modifier = Modifier.weight(2.0f)) {
+      for (unlock in VisitUnlock.entries.subList(0, 7)) {
+        PathHintBox(
+          item = unlock,
+          locations = enabled(unlock.associatedLocation),
+        )
+      }
+    }
+    Column(modifier = Modifier.weight(2.0f)) {
+      for (unlock in VisitUnlock.entries.subList(7, 13)) {
+        PathHintBox(
+          item = unlock,
+          locations = enabled(unlock.associatedLocation),
+        )
+      }
+    }
+  }
+}
+
+@Composable
+private fun PathHintBox(
+  item: ItemPrototype,
+  locations: List<Location>,
+  modifier: Modifier = Modifier,
+) {
+  if (locations.isEmpty()) {
+    return
+  }
+  Box(
+    modifier = modifier.heightIn(max = 64.dp)
+      .border(width = 1.dp, color = MaterialTheme.colorScheme.surfaceContainerHigh),
+  ) {
+    Row(
+      modifier = Modifier.padding(vertical = 2.dp),
+      verticalAlignment = Alignment.CenterVertically
+    ) {
+      CustomizableIcon(item, contentDescription = item.localizedName(), modifier = Modifier.size(24.dp))
+      LazyVerticalGrid(
+        columns = GridCells.Fixed(locations.size.fastCoerceAtMost(3)),
+        modifier = Modifier.background(MaterialTheme.colorScheme.surfaceContainer),
+      ) {
+        items(locations) { location ->
+          CustomizableIcon(
+            icon = location,
+            contentDescription = location.localizedName,
+            modifier = Modifier.size(24.dp),
+          )
+        }
+      }
+    }
+  }
+}
+
+@Composable
+private fun ProofLocationsLocation(
+  location: Location,
+  modifier: Modifier = Modifier,
+  pathHints: Boolean,
+  content: @Composable () -> Unit,
+) {
+  if (pathHints) {
+    val colorScheme = MaterialTheme.colorScheme
+    val tooltipBorderColor = colorScheme.onSurface
+    TrackerTooltipArea(
+      modifier = modifier,
+      delay = 500.milliseconds,
+      tooltip = {
+        val items = location.pathHintItems()
+        val columns = items.size.fastCoerceAtMost(5)
+        Surface(
+          modifier = Modifier.widthIn(max = 32.dp * columns),
+          color = colorScheme.surfaceContainerLow,
+          border = BorderStroke(width = 1.dp, color = tooltipBorderColor)
+        ) {
+          LazyVerticalGrid(
+            columns = GridCells.Fixed(columns),
+            contentPadding = PaddingValues(2.dp),
+            horizontalArrangement = Arrangement.spacedBy(2.dp),
+          ) {
+            items(items) { item ->
+              CustomizableIcon(
+                icon = item,
+                contentDescription = item.localizedName(),
+                modifier = Modifier.size(24.dp),
+              )
+            }
+          }
+        }
+      },
+      content = content,
+    )
+  } else {
+    content()
+  }
+}
+
+private fun Location.pathHintItems(): List<ItemPrototype> {
+  return when (this) {
+    Location.SoraLevels -> {
+      listOf(ImportantAbility.SecondChance, ImportantAbility.OnceMore)
+    }
+
+    Location.SimulatedTwilightTown -> {
+      listOf(VisitUnlock.NaminesSketches, DriveForm.ValorFormDummy, DriveForm.LimitForm)
+    }
+
+    Location.HollowBastion -> {
+      listOf(
+        VisitUnlock.MembershipCard,
+        Magic.Blizzard,
+        Magic.Fire,
+        SummonCharm.BaseballCharm,
+        VisitUnlock.MembershipCard,
+        DriveForm.MasterForm,
+        SummonCharm.UkuleleCharm,
+        Magic.Blizzard,
+        Magic.Cure,
+        TornPage,
+      )
+    }
+
+    Location.OlympusColiseum -> {
+      listOf(VisitUnlock.BattlefieldsOfWar, Magic.Thunder, VisitUnlock.BattlefieldsOfWar)
+    }
+
+    Location.LandOfDragons -> {
+      listOf(VisitUnlock.SwordOfTheAncestor, VisitUnlock.SwordOfTheAncestor, TornPage, Magic.Thunder)
+    }
+
+    Location.PrideLands -> {
+      listOf(VisitUnlock.ProudFang, TornPage, Magic.Fire, VisitUnlock.ProudFang, Magic.Thunder)
+    }
+
+    Location.HalloweenTown -> {
+      listOf(VisitUnlock.BoneFist, Magic.Magnet, VisitUnlock.BoneFist)
+    }
+
+    Location.SpaceParanoids -> {
+      listOf(VisitUnlock.IdentityDisk, VisitUnlock.IdentityDisk, Magic.Reflect)
+    }
+
+    Location.GardenOfAssemblage -> {
+      emptyList()
+    }
+
+    Location.DriveForms -> {
+      listOf(
+        DriveForm.ValorFormDummy,
+        DriveForm.WisdomForm,
+        DriveForm.LimitForm,
+        DriveForm.MasterForm,
+        DriveForm.FinalFormDummy,
+      )
+    }
+
+    Location.TwilightTown -> {
+      listOf(
+        VisitUnlock.IceCream,
+        DriveForm.ValorFormDummy,
+        VisitUnlock.IceCream,
+        DriveForm.LimitForm,
+        VisitUnlock.IceCream,
+      )
+    }
+
+    Location.BeastsCastle -> {
+      listOf(VisitUnlock.BeastsClaw, Magic.Cure, VisitUnlock.BeastsClaw, Magic.Reflect)
+    }
+
+    Location.Agrabah -> {
+      listOf(VisitUnlock.Scimitar, SummonCharm.LampCharm, VisitUnlock.Scimitar, TornPage, Magic.Fire)
+    }
+
+    Location.HundredAcreWood -> {
+      listOf(Magic.Cure, TornPage)
+    }
+
+    Location.DisneyCastle -> {
+      listOf(VisitUnlock.RoyalSummons, TornPage, VisitUnlock.RoyalSummons, Magic.Reflect, DriveForm.WisdomForm)
+    }
+
+    Location.PortRoyal -> {
+      listOf(VisitUnlock.SkillAndCrossbones, VisitUnlock.SkillAndCrossbones, SummonCharm.FeatherCharm, Magic.Magnet)
+    }
+
+    Location.WorldThatNeverWas -> {
+      listOf(VisitUnlock.WayToTheDawn, Magic.Magnet, VisitUnlock.WayToTheDawn)
+    }
+
+    Location.Atlantica -> {
+      listOf(Magic.Blizzard)
+    }
+
+    Location.Creations -> {
+      emptyList()
+    }
+  }
 }
 
 @Composable
