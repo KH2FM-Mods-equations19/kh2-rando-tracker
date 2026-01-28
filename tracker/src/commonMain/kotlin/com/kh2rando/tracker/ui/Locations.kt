@@ -679,7 +679,7 @@ private fun PathHintsArea(hintInfo: HintInfo.PathToProofs, modifier: Modifier = 
         if (proof in pathToProofs) {
           CustomizableIcon(
             icon = proof,
-            contentDescription = proof.localizedName,
+            contentDescription = proof.localizedName(),
             modifier = Modifier.weight(1.0f),
           )
         } else {
@@ -732,7 +732,7 @@ private fun LocationItemsArea(
                 }
                 if (reportHintInfo == null) {
                   SimpleTooltipArea(
-                    tooltipText = prototype.localizedName,
+                    tooltipText = prototype.localizedName(),
                     modifier = Modifier.weight(1.0f).fillMaxHeight()
                   ) {
                     prototype.ItemIcon(
@@ -749,13 +749,15 @@ private fun LocationItemsArea(
               }
 
               is LocationItem.Revealed -> {
+                val prototype = locationItem.prototype
                 SimpleTooltipArea(
-                  tooltipText = locationItem.prototype.localizedName,
+                  tooltipText = prototype.localizedName(showAnsemReportNumbers = false),
                   modifier = Modifier.weight(1.0f).fillMaxHeight()
                 ) {
-                  locationItem.prototype.ItemIcon(
+                  prototype.ItemIcon(
                     renderState = ItemRenderState.Revealed,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
+                    showAnsemReportNumbers = false,
                   )
                 }
               }

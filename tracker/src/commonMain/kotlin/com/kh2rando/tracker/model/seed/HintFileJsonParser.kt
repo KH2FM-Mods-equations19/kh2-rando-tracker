@@ -10,6 +10,8 @@ import com.kh2rando.tracker.model.Location
 import com.kh2rando.tracker.model.hints.BasicProgressionSettings
 import com.kh2rando.tracker.model.hints.DisabledHint
 import com.kh2rando.tracker.model.hints.DisabledHintSystem
+import com.kh2rando.tracker.model.hints.HighScoreData
+import com.kh2rando.tracker.model.hints.HighScoreGoal
 import com.kh2rando.tracker.model.hints.Hint
 import com.kh2rando.tracker.model.hints.HintSystem
 import com.kh2rando.tracker.model.hints.JSmarteeHint
@@ -26,6 +28,7 @@ import com.kh2rando.tracker.model.item.AnsemReport
 import com.kh2rando.tracker.model.item.ChestUnlockKeyblade
 import com.kh2rando.tracker.model.item.DreamWeapon
 import com.kh2rando.tracker.model.item.DriveForm
+import com.kh2rando.tracker.model.item.FullItemList
 import com.kh2rando.tracker.model.item.HadesCupTrophy
 import com.kh2rando.tracker.model.item.ImportantAbility
 import com.kh2rando.tracker.model.item.ItemPrototype
@@ -77,6 +80,8 @@ class HintFileJsonParser {
     val creationsOptions = hintFileJson.parseCreationsOptions()
     val enabledLocations = hintFileJson.parseEnabledLocations(levelSetting, creationsOptions)
     val trackableItems = hintFileJson.parseTrackableItems()
+    val highScoreData = hintFileJson.parseHighScoreData()
+
     val settingsBucket = hintFileJson.settings
     val toggleSettings = buildSet {
       if ("Absent Silhouettes" in settingsBucket) {
@@ -95,23 +100,23 @@ class HintFileJsonParser {
       if ("Transport to Remembrance" in settingsBucket) add(ToggleSetting.TransportToRemembrance)
       if ("Dream Weapon Matters" in settingsBucket) add(ToggleSetting.DreamWeaponMatters)
       if ("better_stt" in settingsBucket) add(ToggleSetting.RoxasMovementEtc)
-      if ("ScoreMode" in settingsBucket) add(ToggleSetting.HighScoreMode)
     }
     return SeedSettings(
       generatorVersion = hintFileJson.generatorVersion,
       enabledLocations = enabledLocations,
       trackableItems = trackableItems,
-      hintSystem = hintFileJson.parseHintSystem(enabledLocations, trackableItems),
+      hintSystem = hintFileJson.parseHintSystem(enabledLocations, trackableItems, highScoreData),
       finalDoorRequirement = hintFileJson.parseFinalDoorRequirement(),
       levelSetting = levelSetting,
       levelChecks = hintFileJson.parseLevelChecks(trackableItems),
       creationsOptions = creationsOptions,
+      highScoreData = highScoreData,
       toggleSettings = toggleSettings,
     )
   }
 
   fun parseEncodedHintData(encodedData: String): SeedSettings {
-    val decodedData = Base64.Default.decode(encodedData)
+    val decodedData = Base64.decode(encodedData)
     return parseDecodedHintJson(decodedData.toString(Charsets.UTF_8))
   }
 
@@ -264,7 +269,7 @@ private fun parseItemsByLocation(
     itemsByLocation[location] = mutableListOf()
   }
 
-  val unassignedItems = ItemPrototype.fullList.filterTo(mutableListOf()) { it in trackableItems }
+  val unassignedItems = FullItemList.fullList.filterTo(mutableListOf()) { it in trackableItems }
 
   for ((rawLocation, itemIds) in rawItemsByLocation) {
     val location = checkNotNull(resolveItemLocation(rawLocation)) { "Unexpected location name $rawLocation" }
@@ -309,6 +314,7 @@ private fun parseItemsByLocation(
 private fun HintFileJson.parseHintSystem(
   enabledLocations: Set<Location>,
   trackableItems: Set<ItemPrototype>,
+  highScoreData: HighScoreData?,
 ): HintSystem {
   val itemsByLocation = parseItemsByLocation(
     hintFileJson = this,
@@ -331,7 +337,7 @@ private fun HintFileJson.parseHintSystem(
 
     "Points" -> {
       checkNotNull(itemsByLocation) { "Points hints expect itemsByLocation to be present" }
-      parsePointsHints(enabledLocations, trackableItems, itemsByLocation)
+      parsePointsHints(enabledLocations, trackableItems, itemsByLocation, highScoreData)
     }
 
     "Path" -> {
@@ -429,62 +435,13 @@ private fun HintFileJson.parsePointsHints(
   enabledLocations: Set<Location>,
   trackableItems: Set<ItemPrototype>,
   itemsByLocation: Map<Location, List<ItemPrototype>>,
+  highScoreData: HighScoreData?,
 ): PointsHintSystem {
-  val pointValuesByPrototype: Map<ItemPrototype, Int> = buildMap {
-    for ((rawItemType, pointValue) in checkValue) {
-      when (rawItemType) {
-        "proof" -> {
-          Proof.entries.forEach { put(it, pointValue) }
-          put(PromiseCharm, pointValue)
-        }
-
-        "form" -> {
-          DriveForm.entries.forEach { put(it, pointValue) }
-        }
-
-        "magic" -> {
-          Magic.entries.forEach { put(it, pointValue) }
-        }
-
-        "summon" -> {
-          SummonCharm.entries.forEach { put(it, pointValue) }
-        }
-
-        "ability" -> {
-          ImportantAbility.entries.forEach { put(it, pointValue) }
-        }
-
-        "keyblade" -> {
-          ChestUnlockKeyblade.entries.forEach { put(it, pointValue) }
-        }
-
-        "page" -> {
-          put(TornPage, pointValue)
-        }
-
-        "report" -> {
-          AnsemReport.entries.forEach { put(it, pointValue) }
-        }
-
-        "visit" -> {
-          VisitUnlock.entries.forEach { put(it, pointValue) }
-        }
-
-        "other" -> {
-          MunnyPouch.entries.forEach { put(it, pointValue) }
-          put(HadesCupTrophy, pointValue)
-          put(OlympusStone, pointValue)
-          put(UnknownDisk, pointValue)
-        }
-      }
-    }
-  }
-
-  val hints = reports.orEmpty().parseReportData { number -> toPointsHint(number, trackableItems) }
   return PointsHintSystem(
-    hints = hints,
+    hints = reports.orEmpty().parseReportData { number -> toPointsHint(number, trackableItems) },
     allItemsByLocation = itemsByLocation,
-    pointValuesByPrototype = pointValuesByPrototype,
+    // If we already parsed points for high score data, can re-use here
+    pointValuesByPrototype = highScoreData?.pointsByItem ?: parseItemPointValues(),
     progressionSettings = this.parsePointsProgressionSettings(enabledLocations),
   )
 }
@@ -787,6 +744,94 @@ private fun HintFileJson.ProgressionSettings.resolveBasicProgressionSettings(): 
     // Generator places a 1 here for true, 0 for false
     revealAllWhenDone = finalXemnasReveal.firstOrNull()?.let { it != 0 } ?: false,
   )
+}
+
+private fun HintFileJson.parseHighScoreData(): HighScoreData? {
+  if ("ScoreMode" !in settings) {
+    return null
+  }
+
+  val pointsByGoal = buildMap {
+    for ((rawGoal, pointValue) in checkValue) {
+      val resolvedGoal = when (rawGoal) {
+        "bonus" -> HighScoreGoal.BonusLevel
+        "complete" -> HighScoreGoal.WorldCompletion
+        "formlv" -> HighScoreGoal.FormLevel
+        "boss_as" -> HighScoreGoal.AbsentSilhouetteDefeated
+        "boss_datas" -> HighScoreGoal.DataBossDefeated
+        "boss_sephi" -> HighScoreGoal.SephirothDefeated
+        "boss_terra" -> HighScoreGoal.LingeringWillDefeated
+        "boss_final" -> HighScoreGoal.FinalXemnasDefeated
+        "boss_other" -> HighScoreGoal.NormalBossDefeated
+        "deaths" -> HighScoreGoal.DeathPenalty
+        "collection_magic" -> HighScoreGoal.MagicSet
+        "collection_page" -> HighScoreGoal.TornPageSet
+        "collection_pouches" -> HighScoreGoal.MunnyPouchSet
+        "collection_proof" -> HighScoreGoal.ProofSet
+        "collection_form" -> HighScoreGoal.DriveFormSet
+        "collection_summon" -> HighScoreGoal.SummonSet
+        "collection_ability" -> HighScoreGoal.AbilitySet
+        "collection_report" -> HighScoreGoal.AnsemReportSet
+        "collection_visit" -> HighScoreGoal.VisitUnlockSet
+        else -> continue
+      }
+      put(resolvedGoal, pointValue)
+    }
+  }
+  return HighScoreData(pointsByItem = parseItemPointValues(), pointsByGoal = pointsByGoal)
+}
+
+private fun HintFileJson.parseItemPointValues(): Map<ItemPrototype, Int> {
+  val pointValuesByPrototype: Map<ItemPrototype, Int> = buildMap {
+    for ((rawItemType, pointValue) in checkValue) {
+      when (rawItemType) {
+        "proof" -> {
+          Proof.entries.forEach { put(it, pointValue) }
+          put(PromiseCharm, pointValue)
+        }
+
+        "form" -> {
+          DriveForm.entries.forEach { put(it, pointValue) }
+        }
+
+        "magic" -> {
+          Magic.entries.forEach { put(it, pointValue) }
+        }
+
+        "summon" -> {
+          SummonCharm.entries.forEach { put(it, pointValue) }
+        }
+
+        "ability" -> {
+          ImportantAbility.entries.forEach { put(it, pointValue) }
+        }
+
+        "keyblade" -> {
+          ChestUnlockKeyblade.entries.forEach { put(it, pointValue) }
+        }
+
+        "page" -> {
+          put(TornPage, pointValue)
+        }
+
+        "report" -> {
+          AnsemReport.entries.forEach { put(it, pointValue) }
+        }
+
+        "visit" -> {
+          VisitUnlock.entries.forEach { put(it, pointValue) }
+        }
+
+        "other" -> {
+          MunnyPouch.entries.forEach { put(it, pointValue) }
+          put(HadesCupTrophy, pointValue)
+          put(OlympusStone, pointValue)
+          put(UnknownDisk, pointValue)
+        }
+      }
+    }
+  }
+  return pointValuesByPrototype
 }
 
 private fun HintFileJson.parseObjectives(): List<Objective> {

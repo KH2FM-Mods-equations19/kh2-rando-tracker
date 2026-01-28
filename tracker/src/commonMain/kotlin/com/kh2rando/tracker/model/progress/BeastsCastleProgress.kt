@@ -5,12 +5,14 @@ import com.kh2rando.tracker.generated.resources.prog_bc_beast
 import com.kh2rando.tracker.generated.resources.prog_bc_dark_thorn
 import com.kh2rando.tracker.generated.resources.prog_bc_data_xaldin
 import com.kh2rando.tracker.generated.resources.prog_bc_dragoons
+import com.kh2rando.tracker.generated.resources.prog_bc_shadowstalker
 import com.kh2rando.tracker.generated.resources.prog_bc_thresholder
 import com.kh2rando.tracker.generated.resources.prog_bc_xaldin
 import com.kh2rando.tracker.generated.resources.prog_chests
 import com.kh2rando.tracker.generated.resources.progression_bc_beast
 import com.kh2rando.tracker.generated.resources.progression_bc_dark_thorn
 import com.kh2rando.tracker.generated.resources.progression_bc_dragoons
+import com.kh2rando.tracker.generated.resources.progression_bc_shadowstalker
 import com.kh2rando.tracker.generated.resources.progression_bc_thresholder
 import com.kh2rando.tracker.generated.resources.progression_bc_xaldin
 import com.kh2rando.tracker.generated.resources.progression_bc_xaldin_story
@@ -49,6 +51,13 @@ enum class BeastsCastleProgress(
     defaultIcon = Res.drawable.progression_bc_beast,
     customIconIdentifier = "beast",
     associatedFlag = Flag.BB_bb03_ms103,
+  ),
+
+  Shadowstalker(
+    displayString = Res.string.prog_bc_shadowstalker,
+    defaultIcon = Res.drawable.progression_bc_shadowstalker,
+    customIconIdentifier = "shadowstalker",
+    associatedFlag = Flag.BB_bb05_ms104a,
   ),
 
   DarkThorn(

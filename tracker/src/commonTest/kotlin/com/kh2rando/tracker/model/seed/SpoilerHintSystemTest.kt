@@ -7,7 +7,7 @@ import com.kh2rando.tracker.model.hints.LocationAuxiliaryHintInfo
 import com.kh2rando.tracker.model.hints.SpoilerHint
 import com.kh2rando.tracker.model.hints.SpoilerHintSystem
 import com.kh2rando.tracker.model.item.AnsemReport
-import com.kh2rando.tracker.model.item.ItemPrototype
+import com.kh2rando.tracker.model.item.FullItemList
 import com.kh2rando.tracker.model.item.Magic
 import com.kh2rando.tracker.model.item.Proof
 import com.kh2rando.tracker.model.item.SummonCharm
@@ -38,7 +38,7 @@ class SpoilerHintSystemTest {
         Location.OlympusColiseum to listOf(AnsemReport.Report6),
         Location.DisneyCastle to listOf(AnsemReport.Report11),
       ),
-      revealedItemTypes = ItemPrototype.fullList.toSet(),
+      revealedItemTypes = FullItemList.fullList.toSet(),
       revealMode = SpoilerHintSystem.RevealMode.Always,
       revealWorldCompletion = false,
       progressionSettings = null,
@@ -75,7 +75,7 @@ class SpoilerHintSystemTest {
         Location.TwilightTown to listOf(Magic.Thunder),
       ),
       revealMode = SpoilerHintSystem.RevealMode.Always,
-      revealedItemTypes = ItemPrototype.fullList.toSet() - Proof.entries - AnsemReport.entries,
+      revealedItemTypes = FullItemList.fullList.toSet() - Proof.entries - AnsemReport.entries,
       revealWorldCompletion = false,
       progressionSettings = null,
     )
@@ -116,7 +116,7 @@ class SpoilerHintSystemTest {
               }
 
               else -> {
-                assertCounter(LocationCounterState.Completed)
+                assertCounter(LocationCounterState.None)
                 assertEmpty(revealedItems)
               }
             }
@@ -154,7 +154,7 @@ class SpoilerHintSystemTest {
         Location.TwilightTown to listOf(Magic.Thunder),
       ),
       revealMode = SpoilerHintSystem.RevealMode.Always,
-      revealedItemTypes = ItemPrototype.fullList.toSet() - Proof.entries - AnsemReport.entries,
+      revealedItemTypes = FullItemList.fullList.toSet() - Proof.entries - AnsemReport.entries,
       revealWorldCompletion = true,
       progressionSettings = null,
     )
@@ -244,7 +244,7 @@ class SpoilerHintSystemTest {
         Location.TwilightTown to listOf(Magic.Thunder),
       ),
       revealMode = SpoilerHintSystem.RevealMode.Gradual,
-      revealedItemTypes = ItemPrototype.fullList.toSet() - Proof.entries - AnsemReport.entries,
+      revealedItemTypes = FullItemList.fullList.toSet() - Proof.entries - AnsemReport.entries,
       revealWorldCompletion = false,
       progressionSettings = null,
     )
@@ -370,7 +370,7 @@ class SpoilerHintSystemTest {
         Location.TwilightTown to listOf(Magic.Thunder),
       ),
       revealMode = SpoilerHintSystem.RevealMode.Gradual,
-      revealedItemTypes = ItemPrototype.fullList.toSet() - Proof.entries - AnsemReport.entries,
+      revealedItemTypes = FullItemList.fullList.toSet() - Proof.entries - AnsemReport.entries,
       revealWorldCompletion = true,
       progressionSettings = null,
     )
@@ -488,7 +488,7 @@ class SpoilerHintSystemTest {
         Location.TwilightTown to listOf(Magic.Thunder),
       ),
       revealMode = SpoilerHintSystem.RevealMode.Gradual,
-      revealedItemTypes = ItemPrototype.fullList.toSet(),
+      revealedItemTypes = FullItemList.fullList.toSet(),
       revealWorldCompletion = false,
       progressionSettings = SpoilerHintSystem.ProgressionSettings(testProgressionSettings()),
     )

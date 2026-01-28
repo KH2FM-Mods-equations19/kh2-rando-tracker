@@ -21,6 +21,7 @@ import com.kh2rando.tracker.generated.resources.settings_transport
 import com.kh2rando.tracker.generated.resources.settings_transport_to_remembrance
 import com.kh2rando.tracker.generated.resources.settings_underdrome_cups
 import com.kh2rando.tracker.model.Location
+import com.kh2rando.tracker.model.hints.HighScoreData
 import com.kh2rando.tracker.model.hints.HintSystem
 import com.kh2rando.tracker.model.item.DreamWeapon
 import com.kh2rando.tracker.model.item.DriveForm
@@ -69,6 +70,10 @@ data class SeedSettings(
    * The types of creations that are enabled.
    */
   val creationsOptions: Set<CreationsOption>,
+  /**
+   * Data utilized when "high score mode" is enabled.
+   */
+  val highScoreData: HighScoreData?,
   /**
    * Which [ToggleSetting]s are enabled.
    */
@@ -268,12 +273,5 @@ enum class ToggleSetting(
    * Whether or not the "better" Roxas movement and abilities is enabled.
    */
   RoxasMovementEtc,
-
-  /**
-   * Whether or not the tracker should track and display a cumulative number of points based on checks acquired and
-   * other factors.
-   */
-  // TODO: This isn't implemented yet. May not be worth the effort - would have to start keeping track of a lot more.
-  HighScoreMode,
 
 }

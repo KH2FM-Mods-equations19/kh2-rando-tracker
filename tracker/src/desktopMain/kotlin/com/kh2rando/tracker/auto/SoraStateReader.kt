@@ -12,7 +12,7 @@ class SoraStateReader(private val gameProcess: GameProcess) {
   private val levelAddress = addresses.save + 0x24FE
   private val statsAddress = addresses.slot1 + 0x188
 //  private val formAddress = addresses.save + 0x3524
-//  private val bonusAddress = addresses.save + 0x3700
+  private val bonusAddress = addresses.save + 0x3700
   private val munnyAddress = addresses.save + 0x2440
 //  private val nextSlot = addresses.nextSlot
 
@@ -32,6 +32,7 @@ class SoraStateReader(private val gameProcess: GameProcess) {
     val magic = statsData[2].toInt()
     val defense = statsData[4].toInt()
 
+    val bonusLevel = gameProcess.readShortAsInt(bonusAddress)
     val munny = gameProcess.readShortAsInt(munnyAddress)
 
     return SoraState(
@@ -40,6 +41,7 @@ class SoraStateReader(private val gameProcess: GameProcess) {
       strengthStat = strength,
       magicStat = magic,
       defenseStat = defense,
+      bonusLevel = bonusLevel,
       munny = munny,
     )
   }

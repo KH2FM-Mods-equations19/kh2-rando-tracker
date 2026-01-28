@@ -96,17 +96,15 @@ class SpoilerHintStateApi(
         baseGameState.stateForLocation(location).acquiredItems,
       ) { revealed, locationAcquired ->
         if (revealed) {
-          val acquiredAll = checkAcquiredAllItems(
-            acquiredItems = locationAcquired,
-            allLocationItems = allItemsByLocation[location].orEmpty()
-          )
-          if (acquiredAll) LocationCounterState.Completed else LocationCounterState.None
-        } else if (revealWorldCompletion) {
-          val acquiredAll = checkAcquiredAllItems(
-            acquiredItems = locationAcquired,
-            allLocationItems = allItemsByLocation[location].orEmpty()
-          )
-          if (acquiredAll) LocationCounterState.Completed else LocationCounterState.Unrevealed
+          if (revealWorldCompletion) {
+            val acquiredAll = checkAcquiredAllItems(
+              acquiredItems = locationAcquired,
+              allLocationItems = allItemsByLocation[location].orEmpty()
+            )
+            if (acquiredAll) LocationCounterState.Completed else LocationCounterState.None
+          } else {
+            LocationCounterState.None
+          }
         } else {
           LocationCounterState.Unrevealed
         }

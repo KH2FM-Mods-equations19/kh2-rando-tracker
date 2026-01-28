@@ -96,7 +96,7 @@ enum class HollowBastionProgress(
     displayString = Res.string.prog_hb_sephiroth,
     defaultIcon = Res.drawable.progression_hb_sephiroth,
     customIconIdentifier = "sephiroth",
-    associatedFlag = Flag.HB_hb01_ms601,
+    associatedFlag = Flag.HB_605_END,
   ),
 
   DataDemyx(
@@ -238,12 +238,12 @@ enum class HollowBastionProgress(
     HB_109_END(0x1D1F, 0x01),
     HB_110_END(0x1D1F, 0x02),
     HB_hb18_ms402(0x1D1F, 0x04), // Dancers fight end
-    HB_419_END(0x1D1F, 0x08),
-    HB_601_END(0x1D1F, 0x10),
-    HB_hb01_ms601(0x1D1F, 0x20), // Sephiroth fight end
+    HB_419_END(0x1D1F, 0x08), // Gull Wing chest cutscene
+    HB_601_END(0x1D1F, 0x10), // Pre-Sephiroth cutscene
+    HB_hb01_ms601(0x1D1F, 0x20), // Thought this was Sephiroth fight end, but seems to not be consistent
     HB_604_ON(0x1D1F, 0x40),
-    HB_607_END(0x1D1F, 0x80),
-    HB_605_END(0x1D20, 0x01),
+    HB_607_END(0x1D1F, 0x80), // Post-Sephiroth Fenrir cutscene
+    HB_605_END(0x1D20, 0x01), // Hopefully a more reliable Sephiroth fight end
     HB_421_END(0x1D20, 0x02),
     HB_422_END(0x1D20, 0x04),
     HB_NEW_MICKEY_START(0x1D20, 0x08),
@@ -264,7 +264,7 @@ enum class HollowBastionProgress(
     HB_hb_event_515(0x1D22, 0x40),
     HB_RTN_ON_OFF(0x1D22, 0x80),
     HB_420_END(0x1D23, 0x01),
-    HB_607_OUT(0x1D23, 0x02),
+    HB_607_OUT(0x1D23, 0x02), // After leaving from beating Sephiroth
     HB_CLOUD_ON(0x1D23, 0x04),
     HB_FM_COM_VEX_END(0x1D23, 0x08), // AS Vexen fight end (HT)
     HB_FM_COM_LEX_END(0x1D23, 0x10), // AS Lexaeus fight end (AG)
@@ -290,7 +290,7 @@ enum class HollowBastionProgress(
     HB_FM_13TSUURO_OUT(0x1D27, 0x04),
     HB_FM_713_END(0x1D27, 0x08),
     HB_FM_714_END(0x1D27, 0x10),
-    HB_ROXAS_KINOKO_CLEAR(0x1D27, 0x20),
+    HB_ROXAS_KINOKO_CLEAR(0x1D27, 0x20), // Received Proof of Peace check?
     HB_FM_13TSUURO1_CLEAR_OUT(0x1D27, 0x40),
     HB_FM_13TSUURO2_CLEAR_OUT(0x1D27, 0x80),
     HB_FM_TSUURO1_CLEAR_EXIT(0x1D28, 0x01),

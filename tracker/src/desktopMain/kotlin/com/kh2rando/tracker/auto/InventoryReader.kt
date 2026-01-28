@@ -2,6 +2,7 @@ package com.kh2rando.tracker.auto
 
 import androidx.compose.ui.util.fastForEach
 import com.kh2rando.tracker.model.item.BitmaskedInventory
+import com.kh2rando.tracker.model.item.FullItemList
 import com.kh2rando.tracker.model.item.ImportantAbility
 import com.kh2rando.tracker.model.item.ItemPrototype
 import com.kh2rando.tracker.model.item.RealForm
@@ -22,7 +23,7 @@ class InventoryReader(
   private val hundredAcreFirstScenariosAddress = addresses.save + 0x1DB7
   private val hundredAcreSecondScenariosAddress = addresses.save + 0x1DB8
 
-  private val fullInventorySize = ItemPrototype.fullList.size
+  private val fullInventorySize = FullItemList.fullList.size
   private val trackableItemsList = trackableItems.toList()
   private val trackTornPages = TornPage in trackableItems
 

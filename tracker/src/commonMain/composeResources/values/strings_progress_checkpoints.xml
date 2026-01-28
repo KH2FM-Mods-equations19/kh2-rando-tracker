@@ -46,6 +46,8 @@
 
     <string name="prog_stt_minigame">Part-Time Job</string>
     <string name="prog_stt_twilight_thorn">Twilight Thorn (Boss)</string>
+    <string name="prog_stt_hayner">Hayner</string>
+    <string name="prog_stt_vivi">Vivi</string>
     <string name="prog_stt_axel_1">Axel 1 (Boss)</string>
     <string name="prog_stt_struggle">Beat Setzer</string>
     <string name="prog_stt_computer_room">Mansion Computer Room</string>
@@ -83,6 +85,7 @@
     <string name="prog_lod_cave">Town Cave Fight</string>
     <string name="prog_lod_summit">Summit Fight</string>
     <string name="prog_lod_shan_yu">Shan Yu (Boss)</string>
+    <string name="prog_lod_riku">Riku</string>
     <string name="prog_lod_throne_room">Throne Room</string>
     <string name="prog_lod_storm_rider">Storm Rider (Boss)</string>
     <string name="prog_lod_data_xigbar">Xigbar (Data)</string>
@@ -107,6 +110,7 @@
     <string name="prog_sp_screens">Dataspace Fight</string>
     <string name="prog_sp_hostile_program">Hostile Program (Boss)</string>
     <string name="prog_sp_solar_sailer">Solar Sailer</string>
+    <string name="prog_sp_sark">Sark</string>
     <string name="prog_sp_mcp">MCP (Boss)</string>
     <string name="prog_sp_larxene">Larxene (AS)</string>
     <string name="prog_sp_larxene_data">Larxene (Data)</string>
@@ -126,6 +130,7 @@
 
     <string name="prog_bc_thresholder">Thresholder (Boss)</string>
     <string name="prog_bc_beast">Beast Fight</string>
+    <string name="prog_bc_shadowstalker">Shadowstalker</string>
     <string name="prog_bc_dark_thorn">Dark Thorn (Boss)</string>
     <string name="prog_bc_dragoons">Dragoons Forced Fight</string>
     <string name="prog_bc_xaldin">Xaldin (Boss)</string>
@@ -177,6 +182,9 @@
     <string name="prog_twtnw_saix">Saix (Boss)</string>
     <string name="prog_twtnw_xemnas_1">Xemnas 1 (Boss)</string>
     <string name="prog_twtnw_data_xemnas">Xemnas (Data)</string>
+    <string name="prog_twtnw_armored_xemnas_1">Armored Xemnas 1</string>
+    <string name="prog_twtnw_armored_xemnas_2">Armored Xemnas 2</string>
+    <string name="prog_twtnw_final_xemnas">Xemnas (Final)</string>
 
     <string name="prog_puz_awakening">Awakening Puzzle</string>
     <string name="prog_puz_heart">Heart Puzzle</string>

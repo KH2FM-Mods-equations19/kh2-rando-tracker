@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -20,7 +22,9 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.graphics.isSpecified
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.isSpecified
 import com.kh2rando.tracker.generated.resources.Res
 import com.kh2rando.tracker.generated.resources.desc_location_complete
 import com.kh2rando.tracker.model.ColorToken
@@ -101,27 +105,35 @@ fun IconCounterCell(
   icon: HasCustomizableIcon,
   tooltip: String,
   modifier: Modifier = Modifier,
+  fontSize: TextUnit = TextUnit.Unspecified,
 ) {
   SimpleTooltipArea(tooltipText = tooltip, modifier = modifier) {
     BoxWithConstraints {
-      val adjustedTextStyle = MaterialTheme.typography.titleLarge.copy(
-        fontFamily = khMenuFontFamily(),
-      ).shrinkableToFitHeight(maxHeight)
+      val maxHeight = maxHeight
+      val adjustedTextStyle = if (fontSize.isSpecified) {
+        MaterialTheme.typography.titleLarge.copy(fontFamily = khMenuFontFamily(), fontSize = fontSize)
+      } else {
+        MaterialTheme.typography.titleLarge.copy(fontFamily = khMenuFontFamily()).shrinkableToFitHeight(maxHeight)
+      }
       Row(
-        modifier = Modifier.fillMaxHeight(),
+        modifier = Modifier.height(maxHeight),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(2.dp)
       ) {
-        CustomizableIcon(icon = icon, contentDescription = tooltip)
+        CustomizableIcon(icon = icon, contentDescription = tooltip, modifier = Modifier.size(maxHeight))
 
-        Text(
-          text,
-          color = icon.defaultIconTint,
-          style = adjustedTextStyle,
-          modifier = Modifier.weight(1.0f, fill = false),
-          maxLines = 1,
-          overflow = TextOverflow.Ellipsis
-        )
+        Box(
+          modifier = Modifier.weight(1.0f, fill = false).height(maxHeight),
+          contentAlignment = Alignment.Center,
+        ) {
+          Text(
+            text,
+            color = icon.defaultIconTint,
+            style = adjustedTextStyle,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+          )
+        }
       }
     }
   }

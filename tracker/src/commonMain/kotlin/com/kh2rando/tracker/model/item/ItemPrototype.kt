@@ -40,43 +40,6 @@ sealed interface ItemPrototype : HasGameId, HasCustomizableIcon, HasColorToken {
   companion object {
 
     /**
-     * The list of all available [ItemPrototype]s, in their respective quantities.
-     */
-    val fullList: List<ItemPrototype> = run {
-      val builder = mutableListOf<ItemPrototype>()
-
-      fun add(prototype: ItemPrototype) {
-        builder.add(prototype)
-      }
-
-      fun addAll(prototypes: Iterable<ItemPrototype>) {
-        prototypes.forEach { add(it) }
-      }
-
-      addAll(AnsemReport.entries)
-      for (magicPrototype in Magic.entries) {
-        repeat(Magic.COPIES) { add(magicPrototype) }
-      }
-      repeat(TornPage.COPIES) { add(TornPage) }
-      addAll(MunnyPouch.entries)
-      addAll(DriveForm.entries)
-      addAll(SummonCharm.entries)
-      addAll(ImportantAbility.entries)
-      addAll(Proof.entries)
-      add(PromiseCharm)
-      for (unlockPrototype in VisitUnlock.entries) {
-        repeat(unlockPrototype.associatedLocation.visitCount) {
-          add(unlockPrototype)
-        }
-      }
-      add(HadesCupTrophy)
-      add(OlympusStone)
-      add(UnknownDisk)
-      addAll(ChestUnlockKeyblade.entries)
-      builder
-    }
-
-    /**
      * Returns true if [target] matches either [gameId] or [secondaryGameId].
      */
     fun ItemPrototype.checkGameIds(target: GameId): Boolean {
@@ -121,7 +84,7 @@ interface BitmaskedInventory {
  */
 class ItemPrototypeSerializer : KSerializer<ItemPrototype> {
 
-  private val allPrototypes: Set<ItemPrototype> = ItemPrototype.fullList.toSet()
+  private val allPrototypes: Set<ItemPrototype> = FullItemList.fullList.toSet()
 
   override val descriptor: SerialDescriptor
     get() = PrimitiveSerialDescriptor("ItemPrototype", PrimitiveKind.INT)

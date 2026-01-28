@@ -69,7 +69,7 @@ enum class PrideLandsProgress(
     displayString = Res.string.prog_pl_ground_shaker,
     defaultIcon = Res.drawable.progression_pl_groundshaker,
     customIconIdentifier = "groundshaker",
-    associatedFlag = Flag.LK_lk15_ms202,
+    associatedFlag = Flag.LK_214_END,
   ),
 
   DataSaix(
@@ -143,9 +143,9 @@ enum class PrideLandsProgress(
     LK_SCENARIO_2_OPEN(0x1DD5, 0x40),
     LK_SCENARIO_2_START(0x1DD5, 0x80),
     LK_SCENARIO_2_END(0x1DD6, 0x01),
-    LK_214_END(0x1DD6, 0x02),
-    LK_lk06_ms100(0x1DD6, 0x04),
-    LK_lk15_ms202(0x1DD6, 0x08);
+    LK_214_END(0x1DD6, 0x02),  // This is the one we'll use for Groundshaker done
+    LK_lk06_ms100(0x1DD6, 0x04),  // Groundshaker done - seems to get set only with cutscene skipper?
+    LK_lk15_ms202(0x1DD6, 0x08);  // Groundshaker done - Seems to get set only without cutscene skipper?
 
     override val index: Int
       get() = ordinal

@@ -48,6 +48,7 @@
     <string name="desc_emblems">Lucky Emblems (%1$s available)</string>
     <string name="desc_objectives">Objectives</string>
     <string name="desc_reports">Secret Ansem Reports</string>
+    <string name="desc_high_score_points">High score</string>
 
     <string name="settings_level_1">Level 1 Checks</string>
     <string name="settings_level_50">Level 50 Checks</string>

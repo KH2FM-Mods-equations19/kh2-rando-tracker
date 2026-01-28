@@ -220,6 +220,11 @@ interface BaseGameStateUpdateApi : BaseGameStateApi {
   fun removeProgress(checkpoint: ProgressCheckpoint)
 
   /**
+   * Records a death.
+   */
+  fun recordDeath()
+
+  /**
    * Updates the selected location as needed in response to the location being manually toggled.
    */
   fun manuallyToggleLocation(location: Location)

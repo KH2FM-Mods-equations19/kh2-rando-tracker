@@ -48,35 +48,35 @@ fun FormsAndGrowthBar(
     horizontalArrangement = Arrangement.SpaceEvenly,
   ) {
     FormOrGrowthLevelCell(
-      tooltip = DriveForm.ValorFormDummy.localizedName,
+      tooltip = DriveForm.ValorFormDummy.localizedName(),
       level = valorLevel,
       acquired = valorAcquired,
       icon = DriveForm.ValorFormDummy,
       modifier = Modifier.weight(1.0f, fill = false),
     )
     FormOrGrowthLevelCell(
-      tooltip = DriveForm.WisdomForm.localizedName,
+      tooltip = DriveForm.WisdomForm.localizedName(),
       level = wisdomLevel,
       acquired = wisdomAcquired,
       icon = DriveForm.WisdomForm,
       modifier = Modifier.weight(1.0f, fill = false),
     )
     FormOrGrowthLevelCell(
-      tooltip = DriveForm.LimitForm.localizedName,
+      tooltip = DriveForm.LimitForm.localizedName(),
       level = limitLevel,
       acquired = limitAcquired,
       icon = DriveForm.LimitForm,
       modifier = Modifier.weight(1.0f, fill = false),
     )
     FormOrGrowthLevelCell(
-      tooltip = DriveForm.MasterForm.localizedName,
+      tooltip = DriveForm.MasterForm.localizedName(),
       level = masterLevel,
       acquired = masterAcquired,
       icon = DriveForm.MasterForm,
       modifier = Modifier.weight(1.0f, fill = false),
     )
     FormOrGrowthLevelCell(
-      tooltip = DriveForm.FinalFormDummy.localizedName,
+      tooltip = DriveForm.FinalFormDummy.localizedName(),
       level = finalLevel,
       acquired = finalAcquired,
       icon = DriveForm.FinalFormDummy,

@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.combine
 fun <T> stateFlowOf(value: T): StateFlow<T> = MutableStateFlow(value).asStateFlow()
 
 /**
- * Combines the most recently emitted values from 9 flows.
+ * Combines the most recently emitted values from many flows.
  */
 @Suppress("UNCHECKED_CAST")
 inline fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, R> combineMany(

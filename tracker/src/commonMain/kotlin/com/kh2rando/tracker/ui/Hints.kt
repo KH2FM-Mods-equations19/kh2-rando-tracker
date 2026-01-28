@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -15,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -31,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.kh2rando.tracker.generated.resources.Res
 import com.kh2rando.tracker.generated.resources.desc_emblems
+import com.kh2rando.tracker.generated.resources.desc_high_score_points
 import com.kh2rando.tracker.generated.resources.desc_objectives
 import com.kh2rando.tracker.generated.resources.desc_proofs
 import com.kh2rando.tracker.generated.resources.desc_reports
@@ -70,6 +74,14 @@ import com.kh2rando.tracker.generated.resources.hash_rank_s
 import com.kh2rando.tracker.generated.resources.hash_weapon_keyblade
 import com.kh2rando.tracker.generated.resources.hash_weapon_shield
 import com.kh2rando.tracker.generated.resources.hash_weapon_staff
+import com.kh2rando.tracker.generated.resources.high_score_bonus_levels
+import com.kh2rando.tracker.generated.resources.high_score_bosses
+import com.kh2rando.tracker.generated.resources.high_score_death_penalty
+import com.kh2rando.tracker.generated.resources.high_score_form_levels
+import com.kh2rando.tracker.generated.resources.high_score_individual_items
+import com.kh2rando.tracker.generated.resources.high_score_set_bonuses
+import com.kh2rando.tracker.generated.resources.high_score_total
+import com.kh2rando.tracker.generated.resources.high_score_world_completion
 import com.kh2rando.tracker.generated.resources.hint_general_reveal
 import com.kh2rando.tracker.generated.resources.hint_important_checks_template
 import com.kh2rando.tracker.generated.resources.hint_item_location_template
@@ -82,7 +94,9 @@ import com.kh2rando.tracker.generated.resources.progression_total_points
 import com.kh2rando.tracker.model.HasCustomizableIcon
 import com.kh2rando.tracker.model.Location
 import com.kh2rando.tracker.model.gamestate.FullGameStateApi
+import com.kh2rando.tracker.model.gamestate.HighScoreState
 import com.kh2rando.tracker.model.gamestate.acquiredReportSets
+import com.kh2rando.tracker.model.gamestate.highScoreStates
 import com.kh2rando.tracker.model.gamestate.mostRecentRevealedPrimaryHint
 import com.kh2rando.tracker.model.hints.HintInfo
 import com.kh2rando.tracker.model.hints.ProgressionSummary
@@ -92,6 +106,7 @@ import com.kh2rando.tracker.model.seed.FinalDoorRequirement
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
@@ -155,12 +170,13 @@ fun PrimaryHintInfoContent(
           HintLocationContent(location, locationShortName)
         }
 
-        val itemDisplayName = hintInfo.item.localizedName
+        val item = hintInfo.item
+        val itemDisplayName = item.localizedName(showAnsemReportNumbers = false)
         val text = stringResource(Res.string.hint_item_location_template, locationShortName, itemDisplayName)
         Text(text)
 
         if (showIcons) {
-          hintInfo.item.ItemIcon(modifier = Modifier.size(32.dp))
+          item.ItemIcon(modifier = Modifier.size(32.dp), showAnsemReportNumbers = false)
         }
       }
 
@@ -224,6 +240,7 @@ fun HintStatusBar(
   gameState: FullGameStateApi,
   onShowReportDetails: () -> Unit,
   onShowProgressionDetails: () -> Unit,
+  onShowHighScoreDetails: () -> Unit,
   modifier: Modifier = Modifier,
 ) {
   Column(modifier = modifier.fillMaxWidth().height(72.dp).padding(horizontal = 8.dp)) {
@@ -287,6 +304,16 @@ fun HintStatusBar(
           reportsAcquired = acquiredReports.size,
           onShowReportDetails = onShowReportDetails,
           modifier = summariesModifier
+        )
+        SummaryDivider()
+      }
+
+      if (seedSettings.highScoreData != null) {
+        val highScoreState by gameState.highScoreStates.collectAsState(initial = HighScoreState())
+        HighScoreSummary(
+          pointsEarned = highScoreState.total,
+          onShowHighScoreDetails = onShowHighScoreDetails,
+          modifier = summariesModifier,
         )
         SummaryDivider()
       }
@@ -371,6 +398,20 @@ private fun ReportSummary(
     tooltip = stringResource(Res.string.desc_reports),
     icon = SystemIcon.AnsemReport,
     modifier = modifier.clickable(onClick = onShowReportDetails),
+  )
+}
+
+@Composable
+private fun HighScoreSummary(
+  pointsEarned: Int,
+  onShowHighScoreDetails: () -> Unit,
+  modifier: Modifier = Modifier,
+) {
+  IconCounterCell(
+    text = pointsEarned.toString(),
+    tooltip = stringResource(Res.string.desc_high_score_points),
+    icon = SystemIcon.HighScorePoints,
+    modifier = modifier.clickable(onClick = onShowHighScoreDetails),
   )
 }
 
@@ -514,6 +555,70 @@ fun HintSummaryDialog(
   Dialog(onDismissRequest = onDismissRequest) {
     Surface {
       HintSummaryArea(showFullHints = false, hintInfoProvider = hintInfoProvider, showIcons = true)
+    }
+  }
+}
+
+@Composable
+fun HighScoreSummaryArea(
+  highScoreStateProvider: () -> Flow<HighScoreState>,
+  modifier: Modifier = Modifier,
+) {
+  val highScoreStateFlow = highScoreStateProvider()
+  val highScoreState by highScoreStateFlow.collectAsState(initial = HighScoreState())
+  LazyColumn(
+    modifier = modifier,
+    contentPadding = PaddingValues(8.dp),
+    verticalArrangement = Arrangement.spacedBy(2.dp),
+  ) {
+    highScoreRow(Res.string.high_score_individual_items, highScoreState.individualItems)
+    highScoreRow(Res.string.high_score_set_bonuses, highScoreState.inventoryBonuses)
+    highScoreRow(Res.string.high_score_bonus_levels, highScoreState.bonusLevel)
+    highScoreRow(Res.string.high_score_world_completion, highScoreState.worldCompletion)
+    highScoreRow(Res.string.high_score_form_levels, highScoreState.formLevels)
+    highScoreRow(Res.string.high_score_bosses, highScoreState.bossesDefeated)
+    highScoreRow(Res.string.high_score_death_penalty, highScoreState.deaths)
+    item { Spacer(Modifier.fillMaxWidth().height(2.dp)) }
+    highScoreRow(Res.string.high_score_total, highScoreState.total)
+  }
+}
+
+private fun LazyListScope.highScoreRow(
+  labelResource: StringResource,
+  count: Int,
+  modifier: Modifier = Modifier,
+) {
+  item {
+    val colorScheme = MaterialTheme.colorScheme
+    Surface(
+      color = colorScheme.surfaceContainer,
+      shape = MaterialTheme.shapes.medium,
+    ) {
+      Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier.fillMaxWidth().padding(8.dp),
+      ) {
+        Text(stringResource(labelResource), Modifier.weight(2.0f))
+        Box(modifier = Modifier.weight(1.0f), contentAlignment = Alignment.CenterEnd) {
+          Text(count.toString())
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Displays a summary of the high score calculation.
+ */
+@Composable
+fun HighScoreSummaryDialog(
+  highScoreStateProvider: () -> Flow<HighScoreState>,
+  onDismissRequest: () -> Unit,
+) {
+  Dialog(onDismissRequest = onDismissRequest) {
+    Surface {
+      HighScoreSummaryArea(highScoreStateProvider)
     }
   }
 }

@@ -6,17 +6,21 @@ import com.kh2rando.tracker.generated.resources.prog_stt_axel_1
 import com.kh2rando.tracker.generated.resources.prog_stt_axel_2
 import com.kh2rando.tracker.generated.resources.prog_stt_computer_room
 import com.kh2rando.tracker.generated.resources.prog_stt_data_roxas
+import com.kh2rando.tracker.generated.resources.prog_stt_hayner
 import com.kh2rando.tracker.generated.resources.prog_stt_minigame
 import com.kh2rando.tracker.generated.resources.prog_stt_struggle
 import com.kh2rando.tracker.generated.resources.prog_stt_twilight_thorn
+import com.kh2rando.tracker.generated.resources.prog_stt_vivi
 import com.kh2rando.tracker.generated.resources.progression_chest
 import com.kh2rando.tracker.generated.resources.progression_stt_axel_story
 import com.kh2rando.tracker.generated.resources.progression_stt_computer_room
+import com.kh2rando.tracker.generated.resources.progression_stt_hayner
 import com.kh2rando.tracker.generated.resources.progression_stt_munny_pouch
 import com.kh2rando.tracker.generated.resources.progression_stt_pod_room
 import com.kh2rando.tracker.generated.resources.progression_stt_roxas
-import com.kh2rando.tracker.generated.resources.progression_stt_struggle
+import com.kh2rando.tracker.generated.resources.progression_stt_setzer
 import com.kh2rando.tracker.generated.resources.progression_stt_twilight_thorn
+import com.kh2rando.tracker.generated.resources.progression_stt_vivi
 import com.kh2rando.tracker.model.HasCustomizableIcon
 import com.kh2rando.tracker.model.Location
 import org.jetbrains.compose.resources.DrawableResource
@@ -53,6 +57,20 @@ enum class SimulatedTwilightTownProgress(
     associatedFlag = TwilightTownProgress.Flag.TT_315_END_L,
   ),
 
+  Hayner(
+    displayString = Res.string.prog_stt_hayner,
+    defaultIcon = Res.drawable.progression_stt_hayner,
+    customIconIdentifier = "hayner",
+    associatedFlag = TwilightTownProgress.Flag.TT_406_END_L,
+  ),
+
+  Vivi(
+    displayString = Res.string.prog_stt_vivi,
+    defaultIcon = Res.drawable.progression_stt_vivi,
+    customIconIdentifier = "vivi",
+    associatedFlag = TwilightTownProgress.Flag.TT_408_END_L,
+  ),
+
   Axel1(
     displayString = Res.string.prog_stt_axel_1,
     defaultIcon = Res.drawable.progression_stt_axel_story,
@@ -62,7 +80,7 @@ enum class SimulatedTwilightTownProgress(
 
   Struggle(
     displayString = Res.string.prog_stt_struggle,
-    defaultIcon = Res.drawable.progression_stt_struggle,
+    defaultIcon = Res.drawable.progression_stt_setzer,
     customIconIdentifier = "struggle",
     associatedFlag = TwilightTownProgress.Flag.TT_SCENARIO_4_END,
   ),

@@ -6,6 +6,7 @@ import com.kh2rando.tracker.generated.resources.prog_sp_hostile_program
 import com.kh2rando.tracker.generated.resources.prog_sp_larxene
 import com.kh2rando.tracker.generated.resources.prog_sp_larxene_data
 import com.kh2rando.tracker.generated.resources.prog_sp_mcp
+import com.kh2rando.tracker.generated.resources.prog_sp_sark
 import com.kh2rando.tracker.generated.resources.prog_sp_screens
 import com.kh2rando.tracker.generated.resources.prog_sp_solar_sailer
 import com.kh2rando.tracker.generated.resources.progression_chest
@@ -14,6 +15,7 @@ import com.kh2rando.tracker.generated.resources.progression_sp_hostile_program
 import com.kh2rando.tracker.generated.resources.progression_sp_larxene
 import com.kh2rando.tracker.generated.resources.progression_sp_larxene_data
 import com.kh2rando.tracker.generated.resources.progression_sp_master_control_program
+import com.kh2rando.tracker.generated.resources.progression_sp_sark
 import com.kh2rando.tracker.generated.resources.progression_sp_solar_sailer
 import com.kh2rando.tracker.model.HasCustomizableIcon
 import com.kh2rando.tracker.model.Location
@@ -56,6 +58,13 @@ enum class SpaceParanoidsProgress(
     defaultIcon = Res.drawable.progression_sp_solar_sailer,
     customIconIdentifier = "solar_sailer",
     associatedFlag = Flag.TR_tr07_ms203,
+  ),
+
+  Sark(
+    displayString = Res.string.prog_sp_sark,
+    defaultIcon = Res.drawable.progression_sp_sark,
+    customIconIdentifier = "sark",
+    associatedFlag = Flag.TR_tr09_ms204,
   ),
 
   MCP(
