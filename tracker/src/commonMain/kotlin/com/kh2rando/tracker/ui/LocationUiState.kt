@@ -44,6 +44,7 @@ data class LocationUiState(
   val impossibleProofs: ImmutableSet<Proof> = persistentSetOf(),
   val userMarkCount: Int = 0,
   val auxiliaryHintInfo: LocationAuxiliaryHintInfo = LocationAuxiliaryHintInfo.NotApplicableToHintSystem,
+  val chestsOpenable: Boolean = false,
 ) {
 
   val revealedButNotAcquiredPrototypes: ImmutableList<ItemPrototype> = revealedItems.removeAcquired(acquiredItems)

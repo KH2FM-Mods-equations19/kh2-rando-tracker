@@ -43,6 +43,7 @@
     <string name="desc_seed_hash">Seed hash</string>
     <string name="desc_location_complete">Completed</string>
     <string name="desc_locked_visit">Locked visit</string>
+    <string name="desc_locked_chests">Locked chests</string>
     <string name="desc_no_path_to_light">No path to the light</string>
     <string name="desc_proofs">Proofs</string>
     <string name="desc_emblems">Lucky Emblems (%1$s available)</string>

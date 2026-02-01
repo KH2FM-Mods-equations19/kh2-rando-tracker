@@ -98,6 +98,12 @@ data class HintFileJson(
   @SerialName("emblems")
   val emblemSettings: EmblemSettings? = null,
 
+  /**
+   * Names of the locations that are locked by keyblades.
+   */
+  @SerialName("enabledKeybladeLockingWorlds")
+  val keybladeLockedLocations: Set<String>? = null,
+
   ) {
 
   @Serializable

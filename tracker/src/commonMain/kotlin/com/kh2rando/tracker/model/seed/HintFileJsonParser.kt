@@ -233,7 +233,9 @@ private fun HintFileJson.parseTrackableItems(): Set<ItemPrototype> {
         }
 
         "keyblade" -> {
-          addAll(ChestUnlockKeyblade.entries)
+          keybladeLockedLocations?.forEach { rawLocationName ->
+            resolveUnlockKeyblade(rawLocationName)?.let { add(it) }
+          }
         }
 
         "other" -> {
@@ -384,18 +386,30 @@ private fun HintFileJson.parseJSmarteeHints(): JSmarteeHintSystem {
 }
 
 private fun HintFileJson.ReportData.toJSmarteeHint(number: Int): JSmarteeHint {
-  val hintedLocation = checkNotNull(resolveItemLocation(rawHintedLocation)) {
-    "Could not resolve location $rawHintedLocation for report $number"
+  val rawHintedLocation = rawHintedLocation
+  val count = count
+  if (rawHintedLocation == null || count == null) {
+    return JSmarteeHint(
+      hintOrReportNumber = number,
+      // Note: the report location is not required when using progression mode
+      reportLocation = resolveItemLocation(reportLocation),
+      hintedLocation = null,
+      importantCheckCount = null,
+      journalText = journalText,
+    )
+  } else {
+    val hintedLocation = checkNotNull(resolveItemLocation(rawHintedLocation)) {
+      "Could not resolve location $rawHintedLocation for report $number"
+    }
+    return JSmarteeHint(
+      hintOrReportNumber = number,
+      // Note: the report location is not required when using progression mode
+      reportLocation = resolveItemLocation(reportLocation),
+      hintedLocation = hintedLocation,
+      importantCheckCount = count,
+      journalText = journalText,
+    )
   }
-  val count = checkNotNull(count) { "Report $number is missing an important check count" }
-  return JSmarteeHint(
-    hintOrReportNumber = number,
-    // Note: the report location is not required when using progression mode
-    reportLocation = resolveItemLocation(reportLocation),
-    hintedLocation = hintedLocation,
-    importantCheckCount = count,
-    journalText = journalText,
-  )
 }
 
 private fun HintFileJson.parseJSmarteeProgressionSettings(): JSmarteeHintSystem.ProgressionSettings? {
@@ -447,19 +461,29 @@ private fun HintFileJson.parsePointsHints(
 }
 
 private fun HintFileJson.ReportData.toPointsHint(number: Int, trackableItems: Set<ItemPrototype>): PointsHint {
-  val hintedLocation = checkNotNull(resolveItemLocation(rawHintedLocation)) {
-    "Could not resolve location $rawHintedLocation for report $number"
+  val rawHintedLocation = rawHintedLocation
+  val revealedItemId = revealedItemId
+  return if (rawHintedLocation == null || revealedItemId == null) {
+    PointsHint(
+      hintOrReportNumber = number,
+      hintedLocation = null,
+      revealedItem = null,
+      journalText = journalText,
+    )
+  } else {
+    val hintedLocation = checkNotNull(resolveItemLocation(rawHintedLocation)) {
+      "Could not resolve location $rawHintedLocation for report $number"
+    }
+    val revealedItem = checkNotNull(trackableItems.firstOrNull { it.checkGameIds(target = GameId(revealedItemId)) }) {
+      "Could not find the revealed item $revealedItemId for report $number"
+    }
+    return PointsHint(
+      hintOrReportNumber = number,
+      hintedLocation = hintedLocation,
+      revealedItem = revealedItem,
+      journalText = journalText,
+    )
   }
-  val revealedItemId = checkNotNull(revealedItemId) { "Report $number is missing an ID for the revealed item" }
-  val revealedItem = checkNotNull(trackableItems.firstOrNull { it.checkGameIds(target = GameId(revealedItemId)) }) {
-    "Could not find the revealed item $revealedItemId for report $number"
-  }
-  return PointsHint(
-    hintOrReportNumber = number,
-    hintedLocation = hintedLocation,
-    revealedItem = revealedItem,
-    journalText = journalText,
-  )
 }
 
 private fun HintFileJson.parsePointsProgressionSettings(
@@ -623,6 +647,30 @@ private fun resolveItemLocation(rawLocation: String?): Location? {
     "Creations" -> Location.Creations
     "Critical Bonuses" -> Location.GardenOfAssemblage
     "Garden of Assemblage" -> Location.GardenOfAssemblage
+    else -> null
+  }
+}
+
+/**
+ * Resolves in item [rawLocation] into a [Location], returning null if unable to do so.
+ */
+private fun resolveUnlockKeyblade(rawLocation: String?): ChestUnlockKeyblade? {
+  return when (rawLocation) {
+    "Twilight Town" -> ChestUnlockKeyblade.Oathkeeper
+    "Simulated Twilight Town" -> ChestUnlockKeyblade.BondOfFlame
+    "Hollow Bastion" -> ChestUnlockKeyblade.SleepingLion
+    "Cavern of Remembrance" -> ChestUnlockKeyblade.WinnersProof
+    "Agrabah" -> ChestUnlockKeyblade.WishingLamp
+    "Beast's Castle" -> ChestUnlockKeyblade.RumblingRose
+    "Disney Castle / Timeless River" -> ChestUnlockKeyblade.Monochrome
+    "Halloween Town" -> ChestUnlockKeyblade.DecisivePumpkin
+    "Land of Dragons" -> ChestUnlockKeyblade.HiddenDragon
+    "Olympus Coliseum" -> ChestUnlockKeyblade.HerosCrest
+    "Pride Lands" -> ChestUnlockKeyblade.CircleOfLife
+    "Port Royal" -> ChestUnlockKeyblade.FollowTheWind
+    "Space Paranoids" -> ChestUnlockKeyblade.PhotonDebugger
+    "The World That Never Was" -> ChestUnlockKeyblade.TwoBecomeOne
+    "Hundred Acre Wood" -> ChestUnlockKeyblade.SweetMemories
     else -> null
   }
 }

@@ -10,6 +10,7 @@ import com.kh2rando.tracker.model.hints.PathHintSystem
 import com.kh2rando.tracker.model.hints.PointsHintSystem
 import com.kh2rando.tracker.model.hints.ShananasHintSystem
 import com.kh2rando.tracker.model.hints.SpoilerHintSystem
+import com.kh2rando.tracker.model.item.ChestUnlockKeyblade
 import com.kh2rando.tracker.model.item.ItemPrototype
 import com.kh2rando.tracker.model.item.VisitUnlock
 import com.kh2rando.tracker.model.locationsMap
@@ -106,16 +107,22 @@ class FullGameState(
 
   override val locationUiStates: ImmutableMap<Location, StateFlow<LocationUiState>> = run {
     val seedSettings = seed.settings
+    val trackableItems = seedSettings.trackableItems
     val gameAcquiredItemsSets = acquiredItems
     val userSelectedLocations = userSelectedLocations
     val autoDetectedLocations = detectedLocations
 
-    val trackLockedVisits = seedSettings.trackableItems.any { it is VisitUnlock }
+    val trackLockedVisits = trackableItems.any { it is VisitUnlock }
     val unlockItemsByLocation = VisitUnlock.entries.associateBy { it.associatedLocation }
+    val unlockKeybladesByLocation = ChestUnlockKeyblade.entries.associateBy { it.associatedLocation }
 
     seedSettings.enabledLocations.locationsMap { location ->
       val locationState = stateForLocation(location)
       val visitCount = location.visitCount
+
+      val unlockItem = unlockItemsByLocation[location]
+      val unlockKeyblade = unlockKeybladesByLocation[location]
+      val canKeybladesLock = unlockKeyblade != null && unlockKeyblade in trackableItems
 
       combineMany(
         gameAcquiredItemsSets,
@@ -144,7 +151,9 @@ class FullGameState(
           userMarkCount,
           auxiliaryHintInfo,
         ->
+        val gameAcquiredPrototypes = gameAcquiredItems.map { it.prototype }
         val mostRecentHintLocation = (mostRecentRevealedPrimaryHint as? LocationAwareHintInfo)?.location
+
         LocationUiState(
           gameStateUpdater = this,
           location = location,
@@ -156,11 +165,10 @@ class FullGameState(
           lockedVisitCount = if (!trackLockedVisits || visitCount == 0) {
             0
           } else {
-            val unlockItem = unlockItemsByLocation[location]
             val acquiredUnlocks = if (unlockItem == null) {
               0
             } else {
-              gameAcquiredItems.count { it.prototype == unlockItem }
+              gameAcquiredPrototypes.count { it == unlockItem }
             }
             visitCount - acquiredUnlocks
           },
@@ -169,7 +177,12 @@ class FullGameState(
           possibleProofs = possibleProofs,
           impossibleProofs = impossibleProofs,
           userMarkCount = userMarkCount,
-          auxiliaryHintInfo = auxiliaryHintInfo
+          auxiliaryHintInfo = auxiliaryHintInfo,
+          chestsOpenable = if (canKeybladesLock) {
+            unlockKeyblade in gameAcquiredPrototypes
+          } else {
+            true
+          },
         )
       }
         .flowOn(backgroundDispatcher)

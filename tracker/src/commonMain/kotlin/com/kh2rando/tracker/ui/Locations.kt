@@ -16,10 +16,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
@@ -58,6 +60,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.coerceAtLeast
 import androidx.compose.ui.unit.dp
 import com.kh2rando.tracker.generated.resources.Res
+import com.kh2rando.tracker.generated.resources.chest_locked
+import com.kh2rando.tracker.generated.resources.desc_locked_chests
 import com.kh2rando.tracker.generated.resources.desc_locked_visit
 import com.kh2rando.tracker.generated.resources.desc_no_path_to_light
 import com.kh2rando.tracker.generated.resources.hint_count_adjusted_by_reveals
@@ -258,7 +262,10 @@ private fun LocationRow(
         locationIconSupplier = locationIconSupplier,
         isSelectedLocation = isUserSelectedLocation,
         lockedVisitContent = {
-          LockArea(lockCount = locationUiState.lockedVisitCount)
+          LockArea(
+            visitLockCount = locationUiState.lockedVisitCount,
+            chestsOpenable = locationUiState.chestsOpenable,
+          )
         },
         progressContent = progressContent,
         counterState = counterState,
@@ -504,7 +511,7 @@ private fun LocationHeader(
 
       Box(Modifier.fillMaxHeight().align(Alignment.TopStart)) {
         Row {
-          Box(Modifier.width(16.dp).fillMaxHeight()) {
+          Box(Modifier.width(20.dp).fillMaxHeight()) {
             lockedVisitContent()
           }
 
@@ -539,17 +546,72 @@ private fun LocationHeader(
 }
 
 @Composable
-private fun LockArea(lockCount: Int, modifier: Modifier = Modifier) {
+private fun LockArea(visitLockCount: Int, chestsOpenable: Boolean, modifier: Modifier = Modifier) {
+  val lockTint = ColorToken.Gold.color.copy(alpha = 0.75f)
+
   Column(
     modifier = modifier.fillMaxHeight(),
     verticalArrangement = Arrangement.spacedBy(1.dp, Alignment.CenterVertically),
   ) {
-    repeat(lockCount) {
+    if (visitLockCount > 0) {
+      val lockedVisitDescription = stringResource(Res.string.desc_locked_visit)
+
+      Box(
+        modifier = Modifier.fillMaxWidth().aspectRatio(1.0f),
+        contentAlignment = Alignment.Center,
+      ) {
+        if (visitLockCount == 1) {
+          Icon(
+            Icons.Filled.Lock,
+            contentDescription = lockedVisitDescription,
+            tint = lockTint,
+          )
+        }
+        if (visitLockCount == 2) {
+          val iconSizeModifier = Modifier.size(12.dp)
+          Icon(
+            Icons.Filled.Lock,
+            contentDescription = lockedVisitDescription,
+            tint = lockTint,
+            modifier = iconSizeModifier.align(Alignment.BottomStart),
+          )
+          Icon(
+            Icons.Filled.Lock,
+            contentDescription = lockedVisitDescription,
+            tint = lockTint,
+            modifier = iconSizeModifier.align(Alignment.TopEnd),
+          )
+        }
+        if (visitLockCount == 3) {
+          val iconSizeModifier = Modifier.size(12.dp)
+          Icon(
+            Icons.Filled.Lock,
+            contentDescription = lockedVisitDescription,
+            tint = lockTint,
+            modifier = iconSizeModifier.align(Alignment.BottomStart),
+          )
+          Icon(
+            Icons.Filled.Lock,
+            contentDescription = lockedVisitDescription,
+            tint = lockTint,
+            modifier = iconSizeModifier.align(Alignment.Center),
+          )
+          Icon(
+            Icons.Filled.Lock,
+            contentDescription = lockedVisitDescription,
+            tint = lockTint,
+            modifier = iconSizeModifier.align(Alignment.TopEnd),
+          )
+        }
+      }
+    }
+
+    if (!chestsOpenable) {
       Icon(
-        Icons.Filled.Lock,
-        contentDescription = stringResource(Res.string.desc_locked_visit),
-        modifier = Modifier.fillMaxWidth().weight(1.0f, fill = false),
-        tint = ColorToken.Gold.color.copy(alpha = 0.75f),
+        imageResource(Res.drawable.chest_locked),
+        contentDescription = stringResource(Res.string.desc_locked_chests),
+        modifier = Modifier.fillMaxWidth().aspectRatio(1.0f),
+        tint = lockTint,
       )
     }
   }
@@ -827,4 +889,3 @@ private fun locationRowWeight(thisLocationItemRowCount: Int): Float {
     else -> 2.5f
   }
 }
-

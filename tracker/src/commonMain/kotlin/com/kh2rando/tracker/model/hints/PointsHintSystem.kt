@@ -20,11 +20,11 @@ data class PointsHint(
   /**
    * The location containing [revealedItem].
    */
-  val hintedLocation: Location,
+  val hintedLocation: Location?,
   /**
    * The item revealed by this hint.
    */
-  val revealedItem: ItemPrototype,
+  val revealedItem: ItemPrototype?,
   override val journalText: String?,
 ) : Hint
 
@@ -50,19 +50,31 @@ class PointsHintSystem(
     location to items.sumOf { pointValuesByPrototype[it] ?: 0 }
   }
 
-  private val hintInfoByHintOrReportNumber: Map<Int, HintInfo.ItemLocation> = hints.associate { hint ->
+  private val hintInfoByHintOrReportNumber: Map<Int, HintInfo> = hints.associate { hint ->
     val hintOrReportNumber = hint.hintOrReportNumber
-    val info = HintInfo.ItemLocation(
-      hintOrReportNumber = hintOrReportNumber,
-      location = hint.hintedLocation,
-      item = hint.revealedItem,
-      journalText = hint.journalText,
-    )
+    val hintedLocation = hint.hintedLocation
+    val revealedItem = hint.revealedItem
+    val info = if (hintedLocation == null || revealedItem == null) {
+      HintInfo.JournalTextOnly(
+        hintOrReportNumber = hintOrReportNumber,
+        journalText = hint.journalText,
+      )
+    } else {
+      HintInfo.ItemLocation(
+        hintOrReportNumber = hintOrReportNumber,
+        location = hintedLocation,
+        item = revealedItem,
+        journalText = hint.journalText,
+      )
+    }
     hintOrReportNumber to info
   }
 
   val hintsByHintedLocation: Map<Location, List<HintInfo.ItemLocation>> =
-    hintInfoByHintOrReportNumber.values.groupBy { it.location }
+    hintInfoByHintOrReportNumber
+      .values
+      .filterIsInstance<HintInfo.ItemLocation>()
+      .groupBy { it.location }
 
   override fun isValidReportLocation(location: Location, report: AnsemReport): Boolean {
     return report in allItemsByLocation[location].orEmpty()
@@ -72,7 +84,7 @@ class PointsHintSystem(
     return hintInfoForReport(reportNumber = report.reportNumber)
   }
 
-  fun hintInfoForReport(reportNumber: Int): HintInfo.ItemLocation? {
+  fun hintInfoForReport(reportNumber: Int): HintInfo? {
     return hintInfoByHintOrReportNumber[reportNumber]
   }
 

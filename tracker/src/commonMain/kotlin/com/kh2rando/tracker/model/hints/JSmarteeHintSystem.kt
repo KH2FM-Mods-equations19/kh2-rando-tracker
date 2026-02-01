@@ -23,11 +23,11 @@ data class JSmarteeHint(
   /**
    * The location being hinted by this hint.
    */
-  val hintedLocation: Location,
+  val hintedLocation: Location?,
   /**
    * The count of important checks for the [hintedLocation].
    */
-  val importantCheckCount: Int,
+  val importantCheckCount: Int?,
 
   override val journalText: String?,
 ) : Hint
@@ -48,19 +48,31 @@ class JSmarteeHintSystem(
   override val basicProgressionSettings: BasicProgressionSettings?
     get() = progressionSettings?.basicSettings
 
-  val hintInfoByHintOrReportNumber: Map<Int, HintInfo.ImportantCheckCount> = hints.associate { hint ->
+  val hintInfoByHintOrReportNumber: Map<Int, HintInfo> = hints.associate { hint ->
     val hintOrReportNumber = hint.hintOrReportNumber
-    val info = HintInfo.ImportantCheckCount(
-      hintOrReportNumber = hintOrReportNumber,
-      location = hint.hintedLocation,
-      count = hint.importantCheckCount,
-      journalText = hint.journalText,
-    )
+    val hintedLocation = hint.hintedLocation
+    val importantCheckCount = hint.importantCheckCount
+    val info = if (hintedLocation == null || importantCheckCount == null) {
+      HintInfo.JournalTextOnly(
+        hintOrReportNumber = hintOrReportNumber,
+        journalText = hint.journalText,
+      )
+    } else {
+      HintInfo.ImportantCheckCount(
+        hintOrReportNumber = hintOrReportNumber,
+        location = hintedLocation,
+        count = importantCheckCount,
+        journalText = hint.journalText,
+      )
+    }
     hintOrReportNumber to info
   }
 
   val hintsByHintedLocation: Map<Location, HintInfo.ImportantCheckCount> =
-    hintInfoByHintOrReportNumber.values.associateBy { it.location }
+    hintInfoByHintOrReportNumber
+      .values
+      .filterIsInstance<HintInfo.ImportantCheckCount>()
+      .associateBy { it.location }
   val reportLocationsByReport: Map<AnsemReport, Location>?
 
   init {

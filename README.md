@@ -88,6 +88,13 @@ experience both playing and watching the randomizer.
 
 ## Changelog
 
+### 2.3.0
+
+- Handle the possibility of points hints not revealing items
+- Handle the possibility of JSmartee hints not having a count
+- Handle generator setting for choosing specific locations for chest locking
+- Display chests locked icons next to each applicable location
+
 ### 2.2.0
 
 - Restore old spoiler hints behavior for indicating world completion

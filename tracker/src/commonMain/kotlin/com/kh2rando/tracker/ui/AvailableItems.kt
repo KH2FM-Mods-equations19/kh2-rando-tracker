@@ -95,6 +95,41 @@ fun AvailableItemsLayout(gameState: FullGameState, modifier: Modifier = Modifier
     )
   }
 
+  @Composable
+  fun ColumnScope.rowFromChestUnlockKeyblades() {
+    val unlockKeybladePrototypes = ChestUnlockKeyblade.entries
+    val anyEnabled = unlockKeybladePrototypes.any { it in enabledItemTypes }
+    if (!anyEnabled) return
+
+    AvailableItemsRow(
+      entries = unlockKeybladePrototypes.map { prototype ->
+        if (prototype in enabledItemTypes) {
+          AvailableItemEntry(
+            prototype = prototype,
+            totalCopies = itemsByPrototype[prototype]!!.size,
+            availableCount = availableByPrototype[prototype].orEmpty().size,
+            revealedButNotAcquiredCount = revealedButNotAcquiredByPrototype[prototype].orEmpty().size,
+            strikeCount = 0,
+          )
+        } else {
+          AvailableItemEntry(
+            prototype = prototype,
+            totalCopies = 1,
+            availableCount = 0,
+            revealedButNotAcquiredCount = 0,
+            strikeCount = 0,
+          )
+        }
+      },
+      onTryAcquireItem = { prototype ->
+        val selectedLocation = gameState.userSelectedLocations.value
+        if (selectedLocation != null) {
+          gameState.acquireItemManually(prototype, selectedLocation)
+        }
+      }
+    )
+  }
+
   Surface(modifier = modifier, color = MaterialTheme.colorScheme.surfaceContainer) {
     Column(modifier = Modifier) {
       rowFromPrototypes(AnsemReport.entries)
@@ -102,7 +137,7 @@ fun AvailableItemsLayout(gameState: FullGameState, modifier: Modifier = Modifier
       rowFromPrototypes(
         DriveForm.entries + SummonCharm.entries + ImportantAbility.entries + Proof.entries + PromiseCharm
       )
-      rowFromPrototypes(ChestUnlockKeyblade.entries)
+      rowFromChestUnlockKeyblades()
       rowFromPrototypes(
         listOf(
           VisitUnlock.BeastsClaw,
