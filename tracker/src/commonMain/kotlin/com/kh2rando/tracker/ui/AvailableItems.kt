@@ -1,8 +1,7 @@
-@file:OptIn(ExperimentalFoundationApi::class, ExperimentalComposeUiApi::class)
+@file:OptIn(ExperimentalComposeUiApi::class)
 
 package com.kh2rando.tracker.ui
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.draganddrop.dragAndDropSource
 import androidx.compose.foundation.layout.Arrangement
@@ -29,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draganddrop.DragAndDropTransferAction
 import androidx.compose.ui.draganddrop.DragAndDropTransferData
 import androidx.compose.ui.draganddrop.DragAndDropTransferable
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -301,9 +301,10 @@ private fun Modifier.itemDragAndDropSource(
     drawDragDecoration = {
       drawIntoCanvas {
         val canvasSize = size
+        val drawSize = minOf(canvasSize.width, canvasSize.height, 48.dp.toPx())
         with(dragIconPainter) {
           draw(
-            size = canvasSize.copy(width = canvasSize.height),
+            size = Size(width = drawSize, height = drawSize),
             alpha = 0.9f,
             colorFilter = tint.tintFilterOrNull()
           )

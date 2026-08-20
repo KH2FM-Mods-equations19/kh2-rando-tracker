@@ -1,6 +1,5 @@
 package com.kh2rando.tracker.ui
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -38,42 +37,6 @@ import com.kh2rando.tracker.generated.resources.desc_high_score_points
 import com.kh2rando.tracker.generated.resources.desc_objectives
 import com.kh2rando.tracker.generated.resources.desc_proofs
 import com.kh2rando.tracker.generated.resources.desc_reports
-import com.kh2rando.tracker.generated.resources.hash_ability_unequip
-import com.kh2rando.tracker.generated.resources.hash_accessory
-import com.kh2rando.tracker.generated.resources.hash_ai_mode_frequent
-import com.kh2rando.tracker.generated.resources.hash_ai_mode_moderate
-import com.kh2rando.tracker.generated.resources.hash_ai_mode_rare
-import com.kh2rando.tracker.generated.resources.hash_ai_settings
-import com.kh2rando.tracker.generated.resources.hash_armor
-import com.kh2rando.tracker.generated.resources.hash_button_circle
-import com.kh2rando.tracker.generated.resources.hash_button_cross
-import com.kh2rando.tracker.generated.resources.hash_button_l1
-import com.kh2rando.tracker.generated.resources.hash_button_l2
-import com.kh2rando.tracker.generated.resources.hash_button_r1
-import com.kh2rando.tracker.generated.resources.hash_button_r2
-import com.kh2rando.tracker.generated.resources.hash_button_square
-import com.kh2rando.tracker.generated.resources.hash_button_triangle
-import com.kh2rando.tracker.generated.resources.hash_exclamation_mark
-import com.kh2rando.tracker.generated.resources.hash_form
-import com.kh2rando.tracker.generated.resources.hash_gumi_block
-import com.kh2rando.tracker.generated.resources.hash_gumi_blueprint
-import com.kh2rando.tracker.generated.resources.hash_gumi_brush
-import com.kh2rando.tracker.generated.resources.hash_gumi_gear
-import com.kh2rando.tracker.generated.resources.hash_gumi_ship
-import com.kh2rando.tracker.generated.resources.hash_item_consumable
-import com.kh2rando.tracker.generated.resources.hash_item_key
-import com.kh2rando.tracker.generated.resources.hash_item_tent
-import com.kh2rando.tracker.generated.resources.hash_magic
-import com.kh2rando.tracker.generated.resources.hash_material
-import com.kh2rando.tracker.generated.resources.hash_party
-import com.kh2rando.tracker.generated.resources.hash_question_mark
-import com.kh2rando.tracker.generated.resources.hash_rank_a
-import com.kh2rando.tracker.generated.resources.hash_rank_b
-import com.kh2rando.tracker.generated.resources.hash_rank_c
-import com.kh2rando.tracker.generated.resources.hash_rank_s
-import com.kh2rando.tracker.generated.resources.hash_weapon_keyblade
-import com.kh2rando.tracker.generated.resources.hash_weapon_shield
-import com.kh2rando.tracker.generated.resources.hash_weapon_staff
 import com.kh2rando.tracker.generated.resources.high_score_bonus_levels
 import com.kh2rando.tracker.generated.resources.high_score_bosses
 import com.kh2rando.tracker.generated.resources.high_score_death_penalty
@@ -105,9 +68,7 @@ import com.kh2rando.tracker.model.item.Proof
 import com.kh2rando.tracker.model.seed.FinalDoorRequirement
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -440,53 +401,8 @@ private fun NoCurrentHintContent(
   if (seedHashIconNames.isNotEmpty()) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
       Text(generatorVersion)
-      for (iconName in seedHashIconNames) {
-        val iconResource = seedHashIconResource(iconName) ?: continue
-        Image(imageResource(iconResource), contentDescription = iconName)
-      }
+      SeedHashIcons(seedHashIconNames)
     }
-  }
-}
-
-private fun seedHashIconResource(iconName: String): DrawableResource? {
-  return when (iconName) {
-    "item-consumable" -> Res.drawable.hash_item_consumable
-    "item-tent" -> Res.drawable.hash_item_tent
-    "item-key" -> Res.drawable.hash_item_key
-    "ability-unequip" -> Res.drawable.hash_ability_unequip
-    "weapon-keyblade" -> Res.drawable.hash_weapon_keyblade
-    "weapon-staff" -> Res.drawable.hash_weapon_staff
-    "weapon-shield" -> Res.drawable.hash_weapon_shield
-    "armor" -> Res.drawable.hash_armor
-    "magic" -> Res.drawable.hash_magic
-    "material" -> Res.drawable.hash_material
-    "exclamation-mark" -> Res.drawable.hash_exclamation_mark
-    "question-mark" -> Res.drawable.hash_question_mark
-    "accessory" -> Res.drawable.hash_accessory
-    "party" -> Res.drawable.hash_party
-    "ai-mode-frequent" -> Res.drawable.hash_ai_mode_frequent
-    "ai-mode-moderate" -> Res.drawable.hash_ai_mode_moderate
-    "ai-mode-rare" -> Res.drawable.hash_ai_mode_rare
-    "ai-settings" -> Res.drawable.hash_ai_settings
-    "rank-s" -> Res.drawable.hash_rank_s
-    "rank-a" -> Res.drawable.hash_rank_a
-    "rank-b" -> Res.drawable.hash_rank_b
-    "rank-c" -> Res.drawable.hash_rank_c
-    "gumi-brush" -> Res.drawable.hash_gumi_brush
-    "gumi-blueprint" -> Res.drawable.hash_gumi_blueprint
-    "gumi-ship" -> Res.drawable.hash_gumi_ship
-    "gumi-block" -> Res.drawable.hash_gumi_block
-    "gumi-gear" -> Res.drawable.hash_gumi_gear
-    "form" -> Res.drawable.hash_form
-    "button-r1" -> Res.drawable.hash_button_r1
-    "button-r2" -> Res.drawable.hash_button_r2
-    "button-l1" -> Res.drawable.hash_button_l1
-    "button-l2" -> Res.drawable.hash_button_l2
-    "button-triangle" -> Res.drawable.hash_button_triangle
-    "button-cross" -> Res.drawable.hash_button_cross
-    "button-square" -> Res.drawable.hash_button_square
-    "button-circle" -> Res.drawable.hash_button_circle
-    else -> null
   }
 }
 

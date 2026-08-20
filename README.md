@@ -62,6 +62,7 @@ experience both playing and watching the randomizer.
     - Automatically on a timer
 - Customizable icons for most symbols
 - Displays the seed hash when a seed is loaded
+- Automatic detection of seeds from OpenKH Mods Manager, once configured
 - Displays the journal ability hints for Ansem Reports
 - Manually scroll-wheeling through a predefined set of mark icons for each location
 - Extended information window
@@ -87,6 +88,13 @@ experience both playing and watching the randomizer.
 - Bingo (may not ever work compatibly with other trackers)
 
 ## Changelog
+
+### 2.4.0
+
+- Add support for detecting and loading seeds from OpenKH Mods Manager
+- Use the new randomizer logo and a new distinguishable icon
+- Fix some sizing issues for drag indicators
+- Modernize infrastructure
 
 ### 2.3.0
 

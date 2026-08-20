@@ -18,6 +18,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kh2rando.tracker.auto.AutoTracker
 import com.kh2rando.tracker.auto.AutoTrackingState
@@ -30,15 +31,18 @@ import com.kh2rando.tracker.generated.resources.tracker_logo
 import com.kh2rando.tracker.io.TrackerFileHandler
 import com.kh2rando.tracker.model.AutoTrackingDisplayInfo
 import com.kh2rando.tracker.model.Location
+import com.kh2rando.tracker.model.gamestate.BaseGameState
 import com.kh2rando.tracker.model.gamestate.FullGameState
 import com.kh2rando.tracker.model.gamestate.GameStateFactory
 import com.kh2rando.tracker.model.gamestate.TrackerStateViewModel
 import com.kh2rando.tracker.model.preferences.TrackerPreferences
 import com.kh2rando.tracker.model.preferences.collectAsState
 import com.kh2rando.tracker.model.seed.FinalDoorRequirement
+import com.kh2rando.tracker.model.seed.RandomizerSeed
 import com.kh2rando.tracker.ui.AboutWindow
 import com.kh2rando.tracker.ui.AutoTrackingConsoleContent
 import com.kh2rando.tracker.ui.ChooseColorsWindow
+import com.kh2rando.tracker.ui.ComposeViewModelStoreOwner
 import com.kh2rando.tracker.ui.CustomIconsWindow
 import com.kh2rando.tracker.ui.CustomizableIconRegistry
 import com.kh2rando.tracker.ui.DebugMenu
@@ -51,15 +55,18 @@ import com.kh2rando.tracker.ui.ProgressFlagsViewerContent
 import com.kh2rando.tracker.ui.ProgressionDebugMenu
 import com.kh2rando.tracker.ui.ResetConfirmationDialog
 import com.kh2rando.tracker.ui.SaveWindowSizeAndPosition
+import com.kh2rando.tracker.ui.SeedDetectionContent
 import com.kh2rando.tracker.ui.SeedDropTarget
 import com.kh2rando.tracker.ui.SettingsMenu
 import com.kh2rando.tracker.ui.TrackerDarkColorScheme
 import com.kh2rando.tracker.ui.TrackerMenu
-import com.kh2rando.tracker.ui.rememberViewModelStoreOwner
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import okio.Path.Companion.toOkioPath
 import okio.buffer
 import okio.use
 import org.jetbrains.compose.resources.painterResource
@@ -121,7 +128,7 @@ fun main(args: Array<String>) {
       position = initialPreferences.mainWindowPosition
     )
 
-    val viewModelStoreOwner = rememberViewModelStoreOwner()
+    val viewModelStoreOwner = remember { ComposeViewModelStoreOwner() }
     val trackerStateViewModel = viewModel(viewModelStoreOwner) { TrackerStateViewModel(debugMode) }
     var autoTrackingState: AutoTrackingState by remember { mutableStateOf(AutoTrackingState.None) }
 
@@ -136,6 +143,7 @@ fun main(args: Array<String>) {
     CompositionLocalProvider(
       TrackerPreferences.LocalPreferences provides preferences,
       CustomizableIconRegistry.LocalCustomizableIconRegistry provides CustomizableIconRegistry(),
+      LocalViewModelStoreOwner provides viewModelStoreOwner,
     ) {
       MaterialTheme(TrackerDarkColorScheme) {
         val trackerLogoIcon = painterResource(Res.drawable.tracker_logo)
@@ -144,10 +152,23 @@ fun main(args: Array<String>) {
           state = windowState,
           title = stringResource(Res.string.app_title),
           icon = trackerLogoIcon,
-          onCloseRequest = ::exitApplication,
+          onCloseRequest = {
+            viewModelStoreOwner.dispose()
+            exitApplication()
+          },
         ) {
           val gameStateState by trackerStateViewModel.gameStateState.collectAsState()
           val gameState = gameStateState.gameState
+
+          val onChooseModsManagerLocation = {
+            val modsManagerLocation = trackerFileHandler.chooseModsManagerLocation()
+            if (modsManagerLocation != null) {
+              applicationCoroutineScope.launch {
+                val modsManagerPath = modsManagerLocation.absoluteFile.toOkioPath(normalize = true)
+                preferences.modsManagerLocation.save(modsManagerPath)
+              }
+            }
+          }
 
           MenuBar {
             TrackerMenu(
@@ -174,6 +195,7 @@ fun main(args: Array<String>) {
             SettingsMenu(
               preferences = preferences,
               onShowChooseColorsWindow = { showingChooseColorsWindow = true },
+              onShowChooseModsManagerLocation = onChooseModsManagerLocation,
             )
             OtherMenu(
               onShowCustomIconsWindow = { showingCustomIconsWindow = true },
@@ -191,6 +213,7 @@ fun main(args: Array<String>) {
             gameStateState = gameStateState,
             autoTrackingState = autoTrackingState,
             preferences = preferences,
+            fileHandler = trackerFileHandler,
             onFileDropped = { file, dropFileType ->
               trackerStateViewModel.startLoadingGameState {
                 val dropResult = SeedDropTarget.handleDroppedFile(file, dropFileType, trackerFileHandler)
@@ -204,6 +227,15 @@ fun main(args: Array<String>) {
                 }
               }
             },
+            onChooseModsManagerLocation = onChooseModsManagerLocation,
+            onUseExistingSeed = { seed ->
+              trackerStateViewModel.startLoadingGameState {
+                gameStateFactory.create(
+                  baseGameState = BaseGameState(seed),
+                  previouslyRevealedHints = persistentListOf(),
+                )
+              }
+            }
           )
 
           if (showingAboutTracker) {
@@ -320,7 +352,10 @@ private fun MainWindow(
   gameStateState: TrackerStateViewModel.GameStateState,
   autoTrackingState: AutoTrackingState,
   preferences: TrackerPreferences,
+  fileHandler: TrackerFileHandler,
   onFileDropped: (File, DropFileType) -> Unit,
+  onUseExistingSeed: (RandomizerSeed) -> Unit,
+  onChooseModsManagerLocation: () -> Unit,
 ) {
   MainWindowContent(
     gameStateState = gameStateState,
@@ -342,6 +377,14 @@ private fun MainWindow(
     noSeedContent = {
       SeedDropTarget(
         onFileDropped = onFileDropped,
+        seedDetectionContent = {
+          SeedDetectionContent(
+            preferences = preferences,
+            fileHandler = fileHandler,
+            onChooseModsManagerLocation = onChooseModsManagerLocation,
+            onUseExistingSeed = onUseExistingSeed,
+          )
+        }
       )
     }
   )

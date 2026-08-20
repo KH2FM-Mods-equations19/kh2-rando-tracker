@@ -46,7 +46,7 @@ class GameProcessFinder(private val kernel32: Kernel32 = Kernel32.INSTANCE) {
     val foundModuleHandle = outModules.asSequence()
       .take(outModulesFound.value)
       .filterNotNull()
-      .mapNotNull { moduleHandle ->
+      .firstNotNullOfOrNull { moduleHandle ->
         val outModulePath = CharArray(5000) { ' ' }
         val size = processStatusApi.GetModuleFileNameExW(processHandle, moduleHandle, outModulePath, outModulePath.size)
         if (size == 0) {
@@ -57,7 +57,6 @@ class GameProcessFinder(private val kernel32: Kernel32 = Kernel32.INSTANCE) {
           if ("KINGDOM HEARTS II FINAL MIX.exe" in modulePath) moduleHandle else null
         }
       }
-      .firstOrNull()
 
     return if (foundModuleHandle == null) {
       throw GameProcessFinderException.GameModuleNotFound()

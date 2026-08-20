@@ -8,7 +8,7 @@ plugins {
   alias(libs.plugins.kotlinSerialization)
 }
 
-val trackerVersion: String by rootProject
+val trackerVersion: String = providers.gradleProperty("trackerVersion").get()
 version = trackerVersion
 
 java {
@@ -42,7 +42,7 @@ kotlin {
 //    }
 
   sourceSets {
-    val desktopMain by getting
+    val desktopMain = getByName("desktopMain")
 
     commonMain.dependencies {
       implementation(libs.androidx.datastore)
@@ -53,7 +53,6 @@ kotlin {
       implementation(libs.coil)
       implementation(libs.compose.foundation)
       implementation(libs.compose.material3)
-      implementation(libs.compose.materialIconsExtended)
       implementation(libs.compose.preview)
       implementation(libs.compose.resources)
       implementation(libs.compose.runtime)
@@ -89,7 +88,7 @@ compose {
 
   desktop {
     application {
-      val trackerDebugMode: String by rootProject
+      val trackerDebugMode: String = providers.gradleProperty("trackerDebugMode").getOrElse("false")
 
       mainClass = "com.kh2rando.tracker.MainKt"
 
@@ -103,14 +102,14 @@ compose {
         targetFormats(TargetFormat.Msi)
         packageName = "KH2 Rando Tracker"
         description = "KH2 Rando Tracker"
-        copyright = "© 2025 equations19"
+        copyright = "© 2026 equations19"
         packageVersion = trackerVersion
         vendor = "equations19"
         modules("jdk.unsupported")
 
         windows {
           shortcut = true
-          iconFile.set(file("replica_data.ico"))
+          iconFile.set(file("tracker_logo.ico"))
         }
       }
     }

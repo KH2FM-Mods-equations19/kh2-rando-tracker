@@ -55,6 +55,8 @@ fun AboutWindowContent(
       item {
         Text(buildAnnotatedString {
           append("Thanks to ")
+          withLink(LinkAnnotation.Url("https://github.com/roromaniac", linkStyles)) { append("roromaniac") }
+          append(", ")
           withLink(LinkAnnotation.Url("https://github.com/Dee-Ayy", linkStyles)) { append("Dee-Ayy") }
           append(", ")
           withLink(LinkAnnotation.Url("https://github.com/Red-Buddha", linkStyles)) { append("Red-Buddha") }
@@ -117,51 +119,51 @@ private val thirdPartyLibraries: List<ThirdPartyLibrary>
       ThirdPartyLibrary(
         name = "androidx",
         link = "https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt",
-        copyright = "Copyright (C) 2017-2024 The Android Open Source Project",
+        copyright = "Copyright (C) 2017-2026 The Android Open Source Project",
       ),
       ThirdPartyLibrary(
         name = "coil",
-        link = "https://github.com/coil-kt/coil/blob/3.0.0-rc02/LICENSE.txt",
-        copyright = "Copyright 2024 Coil Contributors",
+        link = "https://github.com/coil-kt/coil/blob/3.6.0/LICENSE.txt",
+        copyright = "Copyright 2026 Coil Contributors",
       ),
       ThirdPartyLibrary(
         name = "compose-multiplatform",
         link = "https://github.com/JetBrains/compose-multiplatform/blob/v1.7.0/LICENSE.txt",
-        copyright = "Copyright 2020-2024 JetBrains s.r.o. and respective authors and developers.",
+        copyright = "Copyright 2020-2026 JetBrains s.r.o. and respective authors and developers.",
       ),
       ThirdPartyLibrary(
         name = "java-native-access",
-        link = "https://github.com/java-native-access/jna/blob/5.15.0/AL2.0",
+        link = "https://github.com/java-native-access/jna/blob/5.19.1/AL2.0",
         copyright = "Copyright (c) 2007-2015 JNA Contributors",
       ),
       ThirdPartyLibrary(
         name = "kaml",
-        link = "https://github.com/charleskorn/kaml/blob/0.61.0/LICENSE",
+        link = "https://github.com/charleskorn/kaml/blob/0.104.0/LICENSE",
         copyright = "Copyright 2018-2023 Charles Korn.",
       ),
       ThirdPartyLibrary(
         name = "kotlin",
-        link = "https://github.com/JetBrains/kotlin/blob/v2.0.21/license/README.md",
-        copyright = "Copyright 2010-2024 JetBrains s.r.o. and Kotlin Programming Language contributors.",
+        link = "https://github.com/JetBrains/kotlin/blob/v2.4.10/license/README.md",
+        copyright = "Copyright 2010-2026 JetBrains s.r.o. and Kotlin Programming Language contributors.",
       ),
       ThirdPartyLibrary(
         name = "kotlinx.collections.immutable",
-        link = "https://github.com/Kotlin/kotlinx.collections.immutable/blob/v0.3.8/LICENSE.txt",
-        copyright = "Copyright 2016-2024 JetBrains s.r.o. and contributors",
+        link = "https://github.com/Kotlin/kotlinx.collections.immutable/blob/v0.5.1/LICENSE.txt",
+        copyright = "Copyright 2016-2026 JetBrains s.r.o. and contributors",
       ),
       ThirdPartyLibrary(
         name = "kotlinx.coroutines",
-        link = "https://github.com/Kotlin/kotlinx.coroutines/blob/1.8.1/LICENSE.txt",
-        copyright = "Copyright 2016-2024 JetBrains s.r.o. and contributors",
+        link = "https://github.com/Kotlin/kotlinx.coroutines/blob/1.11.0/LICENSE.txt",
+        copyright = "Copyright 2016-2026 JetBrains s.r.o. and contributors",
       ),
       ThirdPartyLibrary(
         name = "kotlinx.serialization",
-        link = "https://github.com/Kotlin/kotlinx.serialization/blob/v1.7.1/LICENSE.txt",
-        copyright = "Copyright 2017-2019 JetBrains s.r.o. and respective authors and developers",
+        link = "https://github.com/Kotlin/kotlinx.serialization/blob/v1.11.0/LICENSE.txt",
+        copyright = "Copyright 2017-2026 JetBrains s.r.o. and respective authors and developers",
       ),
       ThirdPartyLibrary(
         name = "okio",
-        link = "https://github.com/square/okio/blob/3.9.1/LICENSE.txt",
+        link = "https://github.com/lysine-dev/okio/blob/parent-3.18.1/LICENSE.txt",
         copyright = "Copyright 2013 Square, Inc.",
       ),
     )

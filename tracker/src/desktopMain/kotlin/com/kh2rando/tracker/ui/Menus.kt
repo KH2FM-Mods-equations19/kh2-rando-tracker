@@ -18,6 +18,7 @@ import com.kh2rando.tracker.generated.resources.menu_auto_math
 import com.kh2rando.tracker.generated.resources.menu_auto_save_progress
 import com.kh2rando.tracker.generated.resources.menu_auto_tracking_auto_start
 import com.kh2rando.tracker.generated.resources.menu_choose_colors
+import com.kh2rando.tracker.generated.resources.menu_choose_mods_manager_location
 import com.kh2rando.tracker.generated.resources.menu_extended_window
 import com.kh2rando.tracker.generated.resources.menu_layout_classic
 import com.kh2rando.tracker.generated.resources.menu_layout_goa
@@ -88,6 +89,7 @@ fun MenuBarScope.TrackerMenu(
 fun MenuBarScope.SettingsMenu(
   preferences: TrackerPreferences,
   onShowChooseColorsWindow: () -> Unit,
+  onShowChooseModsManagerLocation: () -> Unit,
 ) {
   val scope = rememberCoroutineScope()
 
@@ -161,6 +163,10 @@ fun MenuBarScope.SettingsMenu(
 
     Item(text = stringResource(Res.string.menu_choose_colors)) {
       onShowChooseColorsWindow()
+    }
+
+    Item(text = stringResource(Res.string.menu_choose_mods_manager_location)) {
+      onShowChooseModsManagerLocation()
     }
   }
 }

@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -75,7 +73,7 @@ fun ProgressFlagsViewerContent(
           if (value) {
             CompletedIndicator()
           } else {
-            Icon(Icons.Default.Clear, contentDescription = null)
+            Icon(MaterialIcons.close, contentDescription = null)
           }
         }
       }

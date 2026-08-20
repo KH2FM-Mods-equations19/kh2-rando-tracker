@@ -120,7 +120,7 @@ enum class SystemIcon : HasCustomizableIcon, HasColorToken {
       get() = listOf("System", "stats")
     override val customIconIdentifier: String
       get() = "limit"
-    override val colorToken: ColorToken?
+    override val colorToken: ColorToken
       get() = ColorToken.Gold
   },
 

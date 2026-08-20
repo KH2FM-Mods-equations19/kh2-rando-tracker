@@ -1,9 +1,8 @@
-@file:OptIn(ExperimentalFoundationApi::class, ExperimentalComposeUiApi::class)
+@file:OptIn(ExperimentalComposeUiApi::class)
 
 package com.kh2rando.tracker.ui
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -25,9 +24,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
@@ -562,7 +558,7 @@ private fun LockArea(visitLockCount: Int, chestsOpenable: Boolean, modifier: Mod
       ) {
         if (visitLockCount == 1) {
           Icon(
-            Icons.Filled.Lock,
+            MaterialIcons.lock,
             contentDescription = lockedVisitDescription,
             tint = lockTint,
           )
@@ -570,13 +566,13 @@ private fun LockArea(visitLockCount: Int, chestsOpenable: Boolean, modifier: Mod
         if (visitLockCount == 2) {
           val iconSizeModifier = Modifier.size(12.dp)
           Icon(
-            Icons.Filled.Lock,
+            MaterialIcons.lock,
             contentDescription = lockedVisitDescription,
             tint = lockTint,
             modifier = iconSizeModifier.align(Alignment.BottomStart),
           )
           Icon(
-            Icons.Filled.Lock,
+            MaterialIcons.lock,
             contentDescription = lockedVisitDescription,
             tint = lockTint,
             modifier = iconSizeModifier.align(Alignment.TopEnd),
@@ -585,19 +581,19 @@ private fun LockArea(visitLockCount: Int, chestsOpenable: Boolean, modifier: Mod
         if (visitLockCount == 3) {
           val iconSizeModifier = Modifier.size(12.dp)
           Icon(
-            Icons.Filled.Lock,
+            MaterialIcons.lock,
             contentDescription = lockedVisitDescription,
             tint = lockTint,
             modifier = iconSizeModifier.align(Alignment.BottomStart),
           )
           Icon(
-            Icons.Filled.Lock,
+            MaterialIcons.lock,
             contentDescription = lockedVisitDescription,
             tint = lockTint,
             modifier = iconSizeModifier.align(Alignment.Center),
           )
           Icon(
-            Icons.Filled.Lock,
+            MaterialIcons.lock,
             contentDescription = lockedVisitDescription,
             tint = lockTint,
             modifier = iconSizeModifier.align(Alignment.TopEnd),
@@ -714,7 +710,7 @@ private fun AdjustedCountArea(modifier: Modifier = Modifier) {
     val displayText = stringResource(Res.string.hint_count_adjusted_by_reveals)
     SimpleTooltipArea(tooltipText = displayText) {
       Icon(
-        Icons.Default.Add,
+        MaterialIcons.add,
         contentDescription = displayText,
         tint = ColorToken.Green.color
       )

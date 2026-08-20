@@ -45,37 +45,29 @@ class BaseGameState(
   objectivesMarkedSecondary: Set<Objective> = emptySet(),
 ) : BaseGameStateApi, BaseGameStateUpdateApi {
 
-  private val _soraState = MutableStateFlow(SoraState.Unspecified)
   override val soraStates: StateFlow<SoraState>
-    get() = _soraState
+    field = MutableStateFlow(SoraState.Unspecified)
 
-  private val _driveFormsState = MutableStateFlow(DriveFormsState.Unspecified)
   override val driveFormsStates: StateFlow<DriveFormsState>
-    get() = _driveFormsState
+    field = MutableStateFlow(DriveFormsState.Unspecified)
 
-  private val _growthState = MutableStateFlow(GrowthState.Unspecified)
   override val growthStates: StateFlow<GrowthState>
-    get() = _growthState
+    field = MutableStateFlow(GrowthState.Unspecified)
 
-  private val _musicState = MutableStateFlow(MusicState.Unspecified)
   override val musicStates: StateFlow<MusicState>
-    get() = _musicState
+    field = MutableStateFlow(MusicState.Unspecified)
 
-  private val _deaths = MutableStateFlow(deaths)
   override val deaths: StateFlow<Int>
-    get() = _deaths
+    field = MutableStateFlow(deaths)
 
-  private val _acquiredEmblemCount = MutableStateFlow(0)
   override val acquiredEmblemCounts: StateFlow<Int>
-    get() = _acquiredEmblemCount
+    field = MutableStateFlow(0)
 
-  private val _detectedLocation = MutableStateFlow<Location?>(null)
   override val detectedLocations: StateFlow<Location?>
-    get() = _detectedLocation
+    field = MutableStateFlow<Location?>(null)
 
-  private val _userSelectedLocation = MutableStateFlow<Location?>(null)
   override val userSelectedLocations: StateFlow<Location?>
-    get() = _userSelectedLocation
+    field = MutableStateFlow<Location?>(null)
 
   private val locationStates: ImmutableMap<Location, LocationState> =
     Location.entries.locationsMap { LocationState(it) }
@@ -90,29 +82,20 @@ class BaseGameState(
     }.toImmutableSet()
   }
 
-  private val _availableItems: MutableStateFlow<PersistentSet<UniqueItem>> =
-    MutableStateFlow(allTrackableItems.toPersistentSet())
   override val availableItems: StateFlow<ImmutableSet<UniqueItem>>
-    get() = _availableItems
+    field: MutableStateFlow<PersistentSet<UniqueItem>> = MutableStateFlow(allTrackableItems.toPersistentSet())
 
-  private val _acquiredItems: MutableStateFlow<PersistentSet<UniqueItem>> = MutableStateFlow(persistentSetOf())
   override val acquiredItems: StateFlow<ImmutableSet<UniqueItem>>
-    get() = _acquiredItems
+    field: MutableStateFlow<PersistentSet<UniqueItem>> = MutableStateFlow(persistentSetOf())
 
-  private val _manuallyCompletedObjectives: MutableStateFlow<PersistentSet<Objective>> =
-    MutableStateFlow(manuallyCompletedObjectives.toPersistentSet())
   override val manuallyCompletedObjectives: StateFlow<ImmutableSet<Objective>>
-    get() = _manuallyCompletedObjectives
+    field: MutableStateFlow<PersistentSet<Objective>> = MutableStateFlow(manuallyCompletedObjectives.toPersistentSet())
 
-  private val _objectivesMarkedSecondary: MutableStateFlow<PersistentSet<Objective>> =
-    MutableStateFlow(objectivesMarkedSecondary.toPersistentSet())
   override val objectivesMarkedSecondary: StateFlow<ImmutableSet<Objective>>
-    get() = _objectivesMarkedSecondary
+    field: MutableStateFlow<PersistentSet<Objective>> = MutableStateFlow(objectivesMarkedSecondary.toPersistentSet())
 
-  private val _ansemReportStrikes: MutableStateFlow<PersistentList<Int>> =
-    MutableStateFlow(ansemReportStrikes.toPersistentList())
   override val ansemReportStrikes: StateFlow<ImmutableList<Int>>
-    get() = _ansemReportStrikes
+    field: MutableStateFlow<PersistentList<Int>> = MutableStateFlow(ansemReportStrikes.toPersistentList())
 
   private var isSoraCurrentlyDead = false
 
@@ -159,7 +142,7 @@ class BaseGameState(
         }
 
         if (!seed.settings.hintSystem.isValidReportLocation(location, prototype)) {
-          _ansemReportStrikes.update { previous ->
+          ansemReportStrikes.update { previous ->
             previous.mutate { builder ->
               builder[reportIndex] = builder[reportIndex] + 1
             }
@@ -168,10 +151,10 @@ class BaseGameState(
         }
       }
 
-      _availableItems.update { previous -> previous - availableItem }
+      availableItems.update { previous -> previous - availableItem }
 
       location.writableState.acquireItem(availableItem)
-      _acquiredItems.update { previous -> previous + availableItem }
+      acquiredItems.update { previous -> previous + availableItem }
 
       true
     }
@@ -191,8 +174,8 @@ class BaseGameState(
 
   override fun rejectItemManually(item: UniqueItem, location: Location) {
     location.writableState.rejectItemManually(item)
-    _availableItems.update { previous -> previous + item }
-    _acquiredItems.update { previous -> previous - item }
+    availableItems.update { previous -> previous + item }
+    acquiredItems.update { previous -> previous - item }
   }
 
   override fun addManualRejectionsForLocation(location: Location, prototypes: Collection<ItemPrototype>) {
@@ -208,11 +191,11 @@ class BaseGameState(
   }
 
   override fun recordDeath() {
-    _deaths.update { previous -> previous + 1 }
+    deaths.update { previous -> previous + 1 }
   }
 
   override fun manuallyToggleLocation(location: Location) {
-    _userSelectedLocation.update { previous ->
+    userSelectedLocations.update { previous ->
       if (previous == location) null else location
     }
   }
@@ -242,7 +225,7 @@ class BaseGameState(
   }
 
   override fun manuallyToggleObjective(objective: Objective) {
-    _manuallyCompletedObjectives.update { previous ->
+    manuallyCompletedObjectives.update { previous ->
       if (objective in previous) {
         previous - objective
       } else {
@@ -252,7 +235,7 @@ class BaseGameState(
   }
 
   override fun toggleObjectiveSecondary(objective: Objective) {
-    _objectivesMarkedSecondary.update { previous ->
+    objectivesMarkedSecondary.update { previous ->
       if (objective in previous) {
         previous - objective
       } else {
@@ -262,12 +245,12 @@ class BaseGameState(
   }
 
   override fun applyAutoTrackerSnapshot(previousSnapshot: AutoTrackerSnapshot, newSnapshot: AutoTrackerSnapshot) {
-    _detectedLocation.value = newSnapshot.currentLocation
-    _soraState.value = newSnapshot.soraState
-    _driveFormsState.value = newSnapshot.driveFormsState
-    _growthState.value = newSnapshot.growthState
-    _musicState.value = newSnapshot.musicState
-    _acquiredEmblemCount.value = newSnapshot.emblemCount
+    detectedLocations.value = newSnapshot.currentLocation
+    soraStates.value = newSnapshot.soraState
+    driveFormsStates.value = newSnapshot.driveFormsState
+    growthStates.value = newSnapshot.growthState
+    musicStates.value = newSnapshot.musicState
+    acquiredEmblemCounts.value = newSnapshot.emblemCount
     acquireNewItems(previousSnapshot, newSnapshot)
     recordProgress(newSnapshot)
     handleDeath(previousSnapshot, newSnapshot)

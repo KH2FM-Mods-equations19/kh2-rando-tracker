@@ -67,7 +67,9 @@ class AutoTracker(
    * auto-tracking until successful. Returns a [Job] as a handle to the running task.
    */
   fun start(coroutineScope: CoroutineScope, onAutoTrackingStateChange: (AutoTrackingState) -> Unit): Job {
-    return coroutineScope.launch(SupervisorJob()) {
+    // This used to be launch(SupervisorJob()) but that's now deprecated. Can't remember why we needed the
+    // SupervisorJob() and things seem mostly fine without it, but leaving a note here as a reference.
+    return coroutineScope.launch {
       onAutoTrackingStateChange(AutoTrackingState.Scanning(coroutineContext.job))
 
       while (true) {

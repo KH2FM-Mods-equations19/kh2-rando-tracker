@@ -20,6 +20,7 @@
     <string name="menu_use_custom_images">Load custom images</string>
     <string name="menu_auto_math">Revealed item auto-math</string>
     <string name="menu_choose_colors">Choose colors</string>
+    <string name="menu_choose_mods_manager_location">Choose OpenKH Mods Manager location</string>
     <string name="menu_other">Other</string>
 
     <string name="state_loading_seed">Loading seed</string>
@@ -32,6 +33,11 @@
     <string name="dialog_reset_cancel">Cancel</string>
 
     <string name="main_drop_seed_here">Drop a randomizer seed (.zip) or a tracker save (.kh2tracker) file here to begin.</string>
+    <string name="main_configure_mods_manager_label">Or, configure OpenKH Mods Manager to automatically detect future seeds.</string>
+    <string name="main_configure_mods_manager_button">Choose Mods Manager location</string>
+    <string name="main_mods_manager_no_seed_found_label">Or, add a randomizer seed in OpenKH Mods Manager, and you'll be prompted to load it from here next time.</string>
+    <string name="main_mods_manager_use_found_seed_label">Or, use this seed found in OpenKH Mods Manager.</string>
+    <string name="main_use_mods_manager_seed_button">Use this seed</string>
 
     <string name="stat_level">Sora's level</string>
     <string name="stat_strength">Strength</string>

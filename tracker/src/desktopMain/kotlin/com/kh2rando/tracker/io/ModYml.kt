@@ -10,3 +10,8 @@ class ModAsset(val name: String, val source: List<AssetSource>)
 
 @Serializable
 class AssetSource(val name: String)
+
+@Serializable
+class ModsManagerConfiguration(
+  val installedModsPath: String? = null,
+)

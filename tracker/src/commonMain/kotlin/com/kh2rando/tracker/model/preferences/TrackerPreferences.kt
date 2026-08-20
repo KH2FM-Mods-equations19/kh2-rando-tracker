@@ -181,6 +181,15 @@ class TrackerPreferences(private val dataStore: DataStore<Preferences>) {
     defaultValue = ColorToken.Green.color
   )
 
+  /**
+   * The location of OpenKH Mods Manager, as a directory.
+   */
+  val modsManagerLocation = FilePreference(
+    dataStore,
+    key = stringPreferencesKey("tracker.modsManagerLocation"),
+    defaultValue = null,
+  )
+
   companion object {
 
     fun createDataStore(producePath: () -> Path): DataStore<Preferences> {

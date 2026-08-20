@@ -16,6 +16,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import okio.Path
+import okio.Path.Companion.toPath
 
 /**
  * A preference that can be persisted.
@@ -178,6 +180,25 @@ class ColorPreference(
 
   override fun toLong(value: Color): Long {
     return value.toArgb().toLong()
+  }
+
+}
+
+/**
+ * A preference representing a file path (stored as a string).
+ */
+class FilePreference(
+  dataStore: DataStore<Preferences>,
+  override val key: Preferences.Key<String>,
+  override val defaultValue: Path?
+): StringBackedPreference<Path?>(dataStore) {
+
+  override fun fromString(rawValue: String): Path? {
+    return if (rawValue.isEmpty()) null else rawValue.toPath()
+  }
+
+  override fun toString(value: Path?): String {
+    return value?.toString() ?: ""
   }
 
 }

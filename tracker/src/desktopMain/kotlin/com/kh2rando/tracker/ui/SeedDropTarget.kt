@@ -1,14 +1,13 @@
-@file:OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
+@file:OptIn(ExperimentalComposeUiApi::class)
 
 package com.kh2rando.tracker.ui
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.draganddrop.dragAndDropTarget
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -102,6 +101,7 @@ object SeedDropTarget {
 @Composable
 fun SeedDropTarget(
   onFileDropped: (File, DropFileType) -> Unit,
+  seedDetectionContent: @Composable () -> Unit,
   modifier: Modifier = Modifier,
 ) {
   var showTargetBorder by remember { mutableStateOf(false) }
@@ -129,8 +129,6 @@ fun SeedDropTarget(
   }
 
   Column(
-    horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Center,
     modifier = modifier.then(
       if (showTargetBorder) {
         val color = ColorToken.Green.color
@@ -150,13 +148,19 @@ fun SeedDropTarget(
     Image(
       imageResource(Res.drawable.randomizer_logo),
       contentDescription = null,
-      modifier = Modifier.heightIn(max = 96.dp),
+      modifier = Modifier.heightIn(max = 96.dp).weight(1.0f).align(Alignment.CenterHorizontally),
     )
-    Text(
-      stringResource(Res.string.main_drop_seed_here),
-      style = MaterialTheme.typography.titleMedium,
-      fontFamily = khMenuFontFamily(),
-    )
+    Box(modifier = Modifier.weight(1.0f)) {
+      Text(
+        stringResource(Res.string.main_drop_seed_here),
+        style = MaterialTheme.typography.titleMedium,
+        fontFamily = khMenuFontFamily(),
+        modifier = Modifier.align(Alignment.CenterStart),
+      )
+    }
+    Box(modifier = Modifier.weight(1.0f)) {
+      seedDetectionContent()
+    }
   }
 }
 

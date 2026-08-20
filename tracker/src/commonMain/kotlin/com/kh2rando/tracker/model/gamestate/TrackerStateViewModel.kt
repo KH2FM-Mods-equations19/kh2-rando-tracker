@@ -11,21 +11,17 @@ import kotlin.time.Duration.Companion.milliseconds
 
 class TrackerStateViewModel(private val debugMode: Boolean) : ViewModel() {
 
-  private val _gameStateState: MutableStateFlow<GameStateState> = MutableStateFlow(GameStateState.NotLoaded())
-
   /**
    * Current status of loading of the [FullGameState].
    */
   val gameStateState: StateFlow<GameStateState>
-    get() = _gameStateState
-
-  private val _latestAutoTrackerScanTime: MutableStateFlow<Duration> = MutableStateFlow(0.milliseconds)
+    field: MutableStateFlow<GameStateState> = MutableStateFlow(GameStateState.NotLoaded())
 
   /**
    * How long the most recent auto-tracking scan took.
    */
   val latestAutoTrackerScanTime: StateFlow<Duration>
-    get() = _latestAutoTrackerScanTime
+    field: MutableStateFlow<Duration> = MutableStateFlow(0.milliseconds)
 
   /**
    * Starts loading the [FullGameState] by delegating the load to [loader]. Marks the [gameStateState] as
@@ -33,15 +29,15 @@ class TrackerStateViewModel(private val debugMode: Boolean) : ViewModel() {
    */
   fun startLoadingGameState(loader: GameStateLoader) {
     viewModelScope.launch {
-      _gameStateState.value = GameStateState.Loading
+      gameStateState.value = GameStateState.Loading
       try {
         val gameState = loader.loadGameState()
-        _gameStateState.value = GameStateState.Loaded(gameState)
+        gameStateState.value = GameStateState.Loaded(gameState)
       } catch (e: Exception) {
         if (e is CancellationException) {
           throw e
         } else {
-          _gameStateState.value = GameStateState.NotLoaded(e)
+          gameStateState.value = GameStateState.NotLoaded(e)
         }
       }
     }
@@ -51,7 +47,7 @@ class TrackerStateViewModel(private val debugMode: Boolean) : ViewModel() {
    * Sets the [gameStateState] to [GameStateState.NotLoaded].
    */
   fun resetGameState() {
-    _gameStateState.value = GameStateState.NotLoaded()
+    gameStateState.value = GameStateState.NotLoaded()
   }
 
   /**
@@ -60,7 +56,7 @@ class TrackerStateViewModel(private val debugMode: Boolean) : ViewModel() {
   fun publishAutoTrackerScanTime(duration: Duration) {
     // Is this worth the optimization of skipping it when in debug? Maybe, maybe not.
     if (debugMode) {
-      _latestAutoTrackerScanTime.value = duration
+      latestAutoTrackerScanTime.value = duration
     }
   }
 
